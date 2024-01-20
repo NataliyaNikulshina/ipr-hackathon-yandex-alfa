@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "*": ["src/types/*"]
-     },
+    // "baseUrl": "./",
+    // "paths": {
+    //   "*": ["src/types/*"]
+    //  },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

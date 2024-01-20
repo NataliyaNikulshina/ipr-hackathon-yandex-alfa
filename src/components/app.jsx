@@ -1,11 +1,9 @@
-import Button from "src/ui/buttons/button";
+import Signin from "../pages/signin/signin";
 
 const App = () => {
   return (
     <div>
-      <header>
-        <Button>Jnrhsnm</Button>
-      </header>
+        <Signin />
     </div>
   );
 }
