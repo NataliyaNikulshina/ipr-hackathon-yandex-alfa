@@ -1,10 +1,9 @@
-import Signin from "../pages/signin/signin";
+import Signin from "./pages/signin/signin";
 
 const App = () => {
   return (
-    <div>
         <Signin />
-    </div>
+
   );
 }
 

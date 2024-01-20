@@ -1,0 +1,80 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.wrapper {
+  max-width: 304px;
+  position: relative;
+  width: 100%;
+}
+
+@mixin input-pseudo($ph-color, $hph-color, $dp-color, $db-color ) {
+  &::placeholder {
+    color: $ph-color;
+  }
+
+  &:hover {
+    background-color: $hph-color;
+  }
+
+  &:disabled::placeholder {
+    color: $dp-color;
+  }
+
+  &:disabled {
+    color: $d-color;
+    background-color: $db-color;
+  }
+}
+
+.input {
+//   @include input-pseudo(
+//     #6a6b74,
+//     #F3F4F5,
+//     #AAAAAD,
+//     #AAAAAD
+//   );
+
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #e7e8ea;
+  border: 1px solid transparent;
+  border-radius: $l-border-radius;
+  outline: 0;
+  box-sizing: border-box;
+  @include font("Arial", $m-font-size, $normal, #0a0a0a);
+  @include line-sizes(16px, 1px);
+
+  &:hover {
+    background-color: #F3F4F5;
+  }
+
+  &:disabled {
+    background-color: #F3F4F5;
+  }
+
+  &:disabled::placeholder {
+    color: #AAAAAD;
+  }
+
+  &::placeholder {
+    color: #6A6B74;
+  }
+
+  &:focus {
+    border: 1px solid #86868A;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+  }
+}
+
+.password {
+  background-color: transparent;
+  @include position(absolute, $top: 14px, $right: 24px);
+  @include button-style-reset;
+  @include indents;
+}
