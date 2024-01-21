@@ -47,11 +47,16 @@ const Input: FC<IInput> = ({
     }
   };
 
+  const placeholder_active = stylesInput.placeholder + " " + stylesInput.placeholder_active;
+
   return (
     <div className={stylesInput.wrapper}>
+      <label className={stylesInput.inputContainer}>
+      <span className={ 
+        disabled ? stylesInput.placeholder_disabled : (value ? placeholder_active : stylesInput.placeholder)
+        }>{placeholder}</span>
       <input
         className={stylesInput.input}
-        placeholder={placeholder}
         type={typeValues || type}
         value={value}
         onChange={onChange}
@@ -62,6 +67,7 @@ const Input: FC<IInput> = ({
         disabled={disabled}
         id={id}
       />
+      </label>
       { type==='password' && (
         <button
           type="button"
@@ -69,7 +75,7 @@ const Input: FC<IInput> = ({
           onClick={handleShowPassword}
           className={`${stylesInput.password}`}
         >
-          <EyeIcon show={showPassword} />
+          <EyeIcon show={showPassword} color={disabled ? '#AAAAAD' : '#000'}/>
         </button>
       )}
     </div>
