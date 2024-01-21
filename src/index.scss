@@ -1,3 +1,8 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Arial', sans-serif;
   font-weight: 400;
@@ -6,4 +11,7 @@ body {
   margin: 0;
   width: 100%;
   background: #fff;
+}
+.container {
+  max-width: 955px;
 }
