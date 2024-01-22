@@ -2,14 +2,13 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
-
-//  Ссылки на картинки инфо попапа
-import darts from "./images/darts.png";
-import telephoneOperator from "./images/telephone-operator.png";
-import dartsTask from "./images/darts-task.png";
+import Profile from "./pages/profile/profile";
 
 // Ссылки на проверочные константы (заглушки)
-import { arrTodayTasks, arrThisWekTasks } from './ui/verificationConstants/verificationConstants.js'
+import {
+  arrTodayTasks,
+  arrThisWekTasks,
+} from "./ui/verificationConstants/verificationConstants.js";
 
 const routesUrl = {
   homePage: "/",
@@ -41,46 +40,44 @@ const App = () => {
   const [howManyOpenPoups, setHowManyOpenPoups] = useState(0);
 
   const handlePopup = (() => {
-
     const whatPopupHandle = (popupAssignment) => {
       let setIsPopup = [];
-      if (popupAssignment === 'info') {
+      if (popupAssignment === "info") {
         setIsPopup[0] = isInfoPopupOpen;
         setIsPopup[1] = setIsInfoPopupOpen;
-      } else if (popupAssignment === 'error') {
+      } else if (popupAssignment === "error") {
         setIsPopup[0] = isErrorPopupOpen;
         setIsPopup[1] = setIsErrorPopupOpen;
-      } else if (popupAssignment === 'task') {
+      } else if (popupAssignment === "task") {
         setIsPopup[0] = isTaskTrackingLogPopupOpen;
         setIsPopup[1] = setIsTaskTrackingLogPopupOpen;
-      };
+      }
       return setIsPopup;
-    }
+    };
 
     const open = (props) => {
       let setIsPopup = whatPopupHandle(props.popupAssignment);
 
       if (setIsPopup.length && !setIsPopup[0].tugle) {
-
         setHowManyOpenPoups(howManyOpenPoups + 1);
 
-        if (props.popupAssignment === 'task') {
+        if (props.popupAssignment === "task") {
           setIsPopup[1]({
             ...setIsPopup[0],
             tugle: true,
-            popupImg: props.newPopupImg ? props.newPopupImg : '',
+            popupImg: props.newPopupImg ? props.newPopupImg : "",
             arrTodayTasks: arrTodayTasks ? arrTodayTasks : [],
-            arrThisWekTasks: arrThisWekTasks ? arrThisWekTasks : []
+            arrThisWekTasks: arrThisWekTasks ? arrThisWekTasks : [],
           });
         } else {
           setIsPopup[1]({
             ...setIsPopup[0],
             tugle: true,
-            popupText: props.newPopupText ? props.newPopupText : '',
-            popupImg: props.newPopupImg ? props.newPopupImg : ''
+            popupText: props.newPopupText ? props.newPopupText : "",
+            popupImg: props.newPopupImg ? props.newPopupImg : "",
           });
-        };
-      };
+        }
+      }
     };
 
     const close = (popupAssignment) => {
@@ -90,84 +87,44 @@ const App = () => {
     };
 
     const closeEvent = (evt, popupAssignment) => {
-      if (evt.type === 'click') {
-        const isOverlay = evt.target.classList.contains('popup-overlay');
-        const isCloseButton = evt.target.classList.contains('close-button') || evt.target.classList.contains('close-button__ico-box') || evt.target.classList.contains('close-button__icon');
+      if (evt.type === "click") {
+        const isOverlay = evt.target.classList.contains("popup-overlay");
+        const isCloseButton =
+          evt.target.classList.contains("close-button") ||
+          evt.target.classList.contains("close-button__ico-box") ||
+          evt.target.classList.contains("close-button__icon");
         if (isOverlay || isCloseButton) {
           close(popupAssignment);
-        };
-      } else if (evt.type === 'keydown') { if (evt.key === 'Escape') { close(popupAssignment); } };
+        }
+      } else if (evt.type === "keydown") {
+        if (evt.key === "Escape") {
+          close(popupAssignment);
+        }
+      }
     };
 
-    return { open, closeEvent }
-
+    return { open, closeEvent };
   })();
 
   return (
     <Routes>
       <Route path={routesUrl.signin} element={<Signin />} />
-      <Route
-        path={routesUrl.homePage}
-        element={
-          <>
-            <button
-              type="button"
-              onClick={() => {
-                const popupAssignment = "info";
-                const text = "Комментарий отправлен сотруднику!";
-                handlePopup.open({
-                  popupAssignment,
-                  newPopupText: text,
-                  newPopupImg: darts,
-                });
-              }}
-            >
-              Открыть popup info
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                const popupAssignment = "error";
-                const text =
-                  "Что-то пошло не так, проверьте подключение к интернету";
-                handlePopup.open({
-                  popupAssignment,
-                  newPopupText: text,
-                  newPopupImg: telephoneOperator,
-                });
-              }}
-            >
-              Открыть popup error
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                const popupAssignment = "task";
-                handlePopup.open({ popupAssignment, newPopupImg: dartsTask });
-              }}
-            >
-              Открыть popup task
-            </button>
-            <Popup
-              isOpen={isInfoPopupOpen}
-              onClose={handlePopup.closeEvent}
-              zIndex={howManyOpenPoups}
-            />
-            <Popup
-              isOpen={isErrorPopupOpen}
-              onClose={handlePopup.closeEvent}
-              zIndex={howManyOpenPoups}
-            />
-            <Popup
-              isOpen={isTaskTrackingLogPopupOpen}
-              onClose={handlePopup.closeEvent}
-              zIndex={howManyOpenPoups}
-            />
-          </>
-        }
-      ></Route>
+      <Route path={routesUrl.homePage} element={<Profile />} />
+      {/* <Popup
+        isOpen={isInfoPopupOpen}
+        onClose={handlePopup.closeEvent}
+        zIndex={howManyOpenPoups}
+      />
+      <Popup
+        isOpen={isErrorPopupOpen}
+        onClose={handlePopup.closeEvent}
+        zIndex={howManyOpenPoups}
+      />
+      <Popup
+        isOpen={isTaskTrackingLogPopupOpen}
+        onClose={handlePopup.closeEvent}
+        zIndex={howManyOpenPoups}
+      /> */}
     </Routes>
   );
 };
