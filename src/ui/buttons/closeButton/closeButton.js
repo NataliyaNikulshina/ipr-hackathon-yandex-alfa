@@ -1,4 +1,4 @@
-const PopupClossButton = (props)=> {
+const ClossButton = (props)=> {
 
   return (
     <button type="button" className={`${props.elementStyle[`${props.elementType}__close-button`]} close-button`} id='info-popup-close-button'>
@@ -9,4 +9,4 @@ const PopupClossButton = (props)=> {
   );
 };
 
-export default PopupClossButton;
+export default ClossButton;

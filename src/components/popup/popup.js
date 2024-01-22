@@ -1,7 +1,7 @@
 import React from 'react';
 import popupStyle from './popup.module.scss';
-import closingCross from '../../icons/closing-cross.svg';
-import PopupClossButton from '../../ui/popupClossButton/popupClossButton.js'
+import closingCross from '../../ui/icons/closing-cross.svg';
+import CloseButton from '../../ui/buttons/closeButton/closeButton.js'
 import Unpacker from '../../ui/unpacker/unpacker.js'
 
 const Popup = (props) => {
@@ -56,7 +56,7 @@ const Popup = (props) => {
           </div>
         </div>}
 
-        <PopupClossButton svgHref={closingCross} svgId='#closing-cross' elementStyle={popupStyle} elementType={`${props.isOpen.popupAssignment}-popup`} />
+        <CloseButton svgHref={closingCross} svgId='#closing-cross' elementStyle={popupStyle} elementType={`${props.isOpen.popupAssignment}-popup`} />
 
         {props.isOpen.popupAssignment !== 'task' && <p className={`${popupStyle[`${props.isOpen.popupAssignment}-popup__text-box`]}`}>{props.isOpen.popupText}</p>}
       </div>

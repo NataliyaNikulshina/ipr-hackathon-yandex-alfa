@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useState, useEffect } from "react";
 import stylesInput from "./input.module.scss";
-import EyeIcon from "../icons/eye";
+import EyeIcon from "../../icons/eye";
 
 interface IInput {
   isInvalid?: boolean;

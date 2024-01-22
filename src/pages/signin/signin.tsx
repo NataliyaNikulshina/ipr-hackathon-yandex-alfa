@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from "react";
 import Link from "../../ui/links/link";
-import Button from "../../ui/buttons/button";
+import Button from "../../ui/buttons/button/button";
 import LogoIcon from "../../ui/icons/logo";
-import Input from "../../ui/inputs/input";
+import Input from "../../ui/inputs/input/input";
 import useForm from "../../utils/use-form";
 
 import stylesSignin from "./signin.module.scss";
