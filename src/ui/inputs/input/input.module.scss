@@ -68,11 +68,16 @@
     -moz-appearance: textfield;
     margin: 0;
   }
+  &:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+  }
 }
 
-.password {
-  background-color: transparent;
-  @include position(absolute, $top: 16px, $right: 24px);
+.button {
+  //background-color: transparent;
+  @include position(absolute, $top: 17px, $right: 24px);
   @include button-style-reset;
   @include indents;
 }

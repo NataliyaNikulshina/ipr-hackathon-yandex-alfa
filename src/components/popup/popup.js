@@ -1,7 +1,7 @@
 import React from 'react';
 import popupStyle from './popup.module.scss';
 import closingCross from '../../ui/icons/closing-cross.svg';
-import CloseButton from '../../ui/buttons/closeButton/closeButton.js'
+import CloseButton from './closeButton/closeButton.js'
 import Unpacker from '../../ui/unpacker/unpacker.js'
 
 const Popup = (props) => {

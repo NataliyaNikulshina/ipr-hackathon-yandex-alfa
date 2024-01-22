@@ -1,6 +1,7 @@
 import { FC, ChangeEvent, useState, useEffect } from "react";
 import stylesInput from "./input.module.scss";
 import EyeIcon from "../../icons/eye";
+import CloseIcon from "../../icons/close";
 
 interface IInput {
   isInvalid?: boolean;
@@ -8,6 +9,7 @@ interface IInput {
   errorMessage?: string;
   value?: string | number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  setValues?: () => void;
   disabled?: boolean;
   name?: string;
   minLength?: number;
@@ -24,6 +26,7 @@ const Input: FC<IInput> = ({
   placeholder = 'Введите данные',
   value,
   onChange,
+  setValues,
   disabled,
   name,
   minLength = 2,
@@ -119,9 +122,19 @@ const Input: FC<IInput> = ({
           type="button"
           aria-label="show/hide password"
           onClick={handleShowPassword}
-          className={`${stylesInput.password}`}
+          className={`${stylesInput.button}`}
         >
           <EyeIcon show={showPassword} color={disabled ? '#AAAAAD' : '#000'}/>
+        </button>
+      )}
+      { type==='text' && value && (
+        <button
+          type="button"
+          aria-label="clear input"
+          onClick={setValues}
+          className={`${stylesInput.button}`}
+        >
+          <CloseIcon />
         </button>
       )}
     </div>

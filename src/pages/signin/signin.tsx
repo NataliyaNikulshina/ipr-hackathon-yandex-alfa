@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, FormEvent } from "react";
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
 import LogoIcon from "../../ui/icons/logo";
@@ -7,13 +7,14 @@ import useForm from "../../utils/use-form";
 
 import stylesSignin from "./signin.module.scss";
 
-function handleClick() {
+const handleSignin = (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
   alert("Вы вошли");
 }
 
 const Signin: FC = (): JSX.Element => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const { values, handleChange } = useForm({
+  const { values, handleChange, setValues } = useForm({
     email: { value: "", valueValid: false },
     password: { value: "", valueValid: false },
   });
@@ -22,15 +23,23 @@ const Signin: FC = (): JSX.Element => {
     (values.email.valueValid && values.password.valueValid) ? setButtonDisabled(false) : setButtonDisabled(true);
   }, [values]);
 
+  const clearInput = () => {
+    setValues({
+      email: { value: "", valueValid: false },
+      password: { value: values.password.value , valueValid: values.password.valueValid },
+    });
+  }
+
   return (
     <section className={stylesSignin.signinPage}>
       <div className={stylesSignin.signinBackgroundImage} />
       <div className={stylesSignin.wrapperImage}>
         <LogoIcon />
       </div>
-      <form className={stylesSignin.inputsForm}>
+      <form className={stylesSignin.inputsForm} onSubmit={handleSignin}>
         <Input
           type="text"
+          setValues={clearInput}
           onChange={handleChange}
           value={values.email.value}
           name="email"
@@ -52,7 +61,6 @@ const Signin: FC = (): JSX.Element => {
         />
         <Button
           buttonHtmlType="submit"
-          onClick={handleClick}
           color="red"
           width="304"
           heigth="56"

@@ -23,8 +23,8 @@ const EyeIcon: FC<IEyeIcon> = ({
     <circle cx="8" cy="8" r="2.1579" stroke={color || "black"} />
     {!show && (
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M2.97976 2.97978C3.17502 2.78452 3.4916 2.78452 3.68687 2.97978L13.0202 12.3131C13.2155 12.5084 13.2155 12.825 13.0202 13.0202C12.8249 13.2155 12.5084 13.2155 12.3131 13.0202L2.97976 3.68689C2.7845 3.49163 2.7845 3.17504 2.97976 2.97978Z"
         fill={color || "black"}
       />
@@ -33,7 +33,7 @@ const EyeIcon: FC<IEyeIcon> = ({
       <path
         d="M2.53351 2.50906L13.466 13.4416"
         stroke={color || "black"}
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
     )}
     <path
