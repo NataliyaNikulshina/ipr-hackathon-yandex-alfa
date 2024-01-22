@@ -1,0 +1,31 @@
+/* Переменные жирности шрифта */
+$bold: 600;
+$semi-bold: 500;
+$normal: 400;
+
+/* Переменные размеров шрифта */
+$xxl-font-size: 24px;
+$l-font-size: 18px;
+$s-font-size: 14px;
+
+/* Переменные параметров шрифта попапа информации и ошибок */
+$info-and-error-popup-font-family: Arial;
+$info-and-error-popup-font-size: 48px;
+$info-and-error-popup-font-weight: 700;
+$info-and-error-popup-line-height: normal;
+
+/* Переменные параметров шрифта титула списка попапа задач */
+$task-popup-titl-font-family: Arial;
+$task-popup-titl-font-size: 14px;
+$task-popup-titl-line-height: 1.3;
+
+/* Цвет фона сегодняшней задачи списка попапа задач */
+$task-popup-today-color: #008837;
+
+/* Переменные параметров шрифта задачи попапа задач */
+$task-popup-font-family: Arial;
+$task-popup-font-size: 18px;
+$task-popup-line-height: 1.1;
+
+/* Цвет фона недельной задачи списка попапа задач */
+$task-popup-this-week-color: #DEE1E6;
