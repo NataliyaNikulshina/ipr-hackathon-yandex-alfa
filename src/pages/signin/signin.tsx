@@ -1,8 +1,9 @@
-import { FC, useState, ChangeEvent } from "react";
+import { FC, useState, useEffect } from "react";
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button";
 import LogoIcon from "../../ui/icons/logo";
 import Input from "../../ui/inputs/input";
+import useForm from "../../utils/use-form";
 
 import stylesSignin from "./signin.module.scss";
 
@@ -10,30 +11,16 @@ function handleClick() {
   alert("Вы вошли");
 }
 
-function useForm(inputValues: any) {
-  const [values, setValues] = useState(inputValues);
-
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { value, name } = event.target;
-    setValues({
-      ...values,
-      [name]: { value, valueValid: event.target.validity.valid },
-    });
-  };
-  return {
-    values,
-    handleChange,
-    setValues,
-  };
-}
-
 const Signin: FC = (): JSX.Element => {
-  const { values, handleChange, setValues } = useForm({
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const { values, handleChange } = useForm({
     email: { value: "", valueValid: false },
     password: { value: "", valueValid: false },
   });
+
+  useEffect(() => {
+    (values.email.valueValid && values.password.valueValid) ? setButtonDisabled(false) : setButtonDisabled(true);
+  }, [values]);
 
   return (
     <section className={stylesSignin.signinPage}>
@@ -50,6 +37,7 @@ const Signin: FC = (): JSX.Element => {
           placeholder="Email"
           minLength={2}
           maxLength={30}
+          pattern="^\S+@\S+\.\S+$"
           required
         />
         <Input
@@ -62,20 +50,13 @@ const Signin: FC = (): JSX.Element => {
           maxLength={30}
           required
         />
-        {/* <Input
-          type="password"
-          onChange={() => console.log("ok")}
-          placeholder="Пароль"
-          minLength={2}
-          required
-          disabled
-        /> */}
         <Button
           buttonHtmlType="submit"
           onClick={handleClick}
           color="red"
           width="304"
           heigth="56"
+          disabled={buttonDisabled}
         >
           Войти
         </Button>

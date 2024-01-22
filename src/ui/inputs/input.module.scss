@@ -76,3 +76,17 @@
   @include button-style-reset;
   @include indents;
 }
+
+.incorrect_text {
+  @include indents(4px 0 0 0, 0);
+  @include font("Arial", $xs-font-size, $normal, #e12f2f);
+}
+
+.incorrect_input {
+  border: 1px solid #e12f2f;
+
+  &:focus {
+    background-color: #fff;
+    border: 1px solid #e12f2f;
+  }
+}

@@ -3,9 +3,9 @@ import stylesInput from "./input.module.scss";
 import EyeIcon from "../icons/eye";
 
 interface IInput {
-  //   isInvalid?: boolean;
+  isInvalid?: boolean;
   placeholder?: string;
-  //   errorMessage?: string;
+  errorMessage?: string;
   value?: string | number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
@@ -15,11 +15,13 @@ interface IInput {
   type?: "text" | "password";
   required?: boolean;
   id?: string;
+  pattern?: string;
 }
 
 const Input: FC<IInput> = ({
-  //   isInvalid,
-  placeholder,
+  isInvalid,
+  errorMessage = 'Вы ввели неправильное значение',
+  placeholder = 'Введите данные',
   value,
   onChange,
   disabled,
@@ -28,10 +30,15 @@ const Input: FC<IInput> = ({
   maxLength,
   type = "text",
   required,
+  pattern,
   id,
 }): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [typeValues, setTypeValues] = useState<string>("");
+  const [error, setError] = useState<{ error: boolean; textError: string }>({
+    error: false,
+    textError: '',
+  });
 
   useEffect(() => {
     setTypeValues(type);
@@ -48,6 +55,39 @@ const Input: FC<IInput> = ({
   };
 
   const placeholder_active = stylesInput.placeholder + " " + stylesInput.placeholder_active;
+  const input_error = stylesInput.input + " " + stylesInput.incorrect_input;
+
+  const validate = (input: ChangeEvent<HTMLInputElement>) => {
+    const validityState = input.currentTarget.validity;
+    if (validityState.valueMissing) {
+      setError({ error: true, textError: 'Это поле обязательно' });
+    } else if (validityState.patternMismatch) {
+      setError({ error: true, textError: errorMessage });
+    } else if (validityState.tooLong) {
+      setError({
+        error: true,
+        textError: `Максимум ${maxLength} символов`,
+      });
+    } else if (validityState.tooShort) {
+      setError({
+        error: true,
+        textError: `Минимум ${minLength} символа`,
+      });
+    } else if (validityState.typeMismatch) {
+      setError({
+        error: true,
+        textError: 'Неверный тип данных',
+      });
+    } else if (isInvalid) {
+      setError({
+        error: true,
+        textError: errorMessage,
+      });
+    } else {
+      setError({ error: false, textError: '' });
+    }
+    onChange(input);
+  };
 
   return (
     <div className={stylesInput.wrapper}>
@@ -56,17 +96,23 @@ const Input: FC<IInput> = ({
         disabled ? stylesInput.placeholder_disabled : (value ? placeholder_active : stylesInput.placeholder)
         }>{placeholder}</span>
       <input
-        className={stylesInput.input}
+        className={(error.error || isInvalid) ? input_error : stylesInput.input}
         type={typeValues || type}
         value={value}
-        onChange={onChange}
+        onChange={validate}
         name={name}
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        pattern={pattern}
         disabled={disabled}
         id={id}
       />
+      {(error.error || isInvalid) && (
+        <p className={stylesInput.incorrect_text}>
+          {error.textError}
+        </p>
+      )}
       </label>
       { type==='password' && (
         <button
