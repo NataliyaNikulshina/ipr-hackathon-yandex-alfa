@@ -2,6 +2,24 @@
 
 /* Миксины для всего проекта */
 
+/* RESET */
+/* Сброс стиля текстовых элементов */
+@mixin style-text-reset {
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+}
+/* Сброс стиля списка */
+@mixin list-style-reset {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 /* Свойства шрифта и строки */
 @mixin font($font-family,
   $font-size: inherit,

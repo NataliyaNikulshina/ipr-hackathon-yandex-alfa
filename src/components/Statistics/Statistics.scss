@@ -1,0 +1,52 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.statistics {
+  @include style-text-reset;
+
+  &__container {
+    @include flex(row, space-between);
+    min-height: 206px;
+    border-radius: 34px;
+    box-shadow: -8px -8px 40px 0px rgba(95, 99, 104, 0.1),
+      16px 16px 40px 0px rgba(95, 99, 104, 0.1);
+    padding: 24px 24px 24px 34px;
+  }
+  &__doughnut {
+    width: 130px !important;
+  }
+  &__total {
+    position: relative;
+  }
+  &__total-count {
+    @include font('Arial', $xl-font-size, 700, #ef3124);
+    position: absolute;
+    top: 74px;
+    right: 38px;
+  }
+  &__title {
+    font-size: $s-font-size;
+    color: #6a6b74;
+    text-align: center;
+  }
+  &__count {
+    color: #ef3124;
+    font-size: $xxl-font-size;
+    padding-bottom: 46px;
+  }
+  &__list {
+    @include list-style-reset;
+    @include flex(row, center, center);
+    height: 100%;
+  }
+  &__item {
+    height: 100%;
+    padding: 0 10px;
+    @include flex(column, space-between, center);
+    white-space: normal;
+    border-left: 1px solid #d5d6dc;
+    .statistics__title {
+      max-width: 88px;
+    }
+  }
+}
