@@ -6,7 +6,16 @@ $normal: 400;
 /* Переменные размеров шрифта */
 $xxl-font-size: 24px;
 $l-font-size: 18px;
+$m-font-size: 16px;
 $s-font-size: 14px;
+$xs-font-size: 12px;
+
+/* Переменные радиуса скругления */
+$xl-border-radius: 33px;
+$l-border-radius: 12px;
+$m-border-radius: 8px;
+$s-border-radius: 4px;
+$border-radius-circle: 50%;
 
 /* Переменные параметров шрифта попапа информации и ошибок */
 $info-and-error-popup-font-family: Arial;
@@ -29,3 +38,4 @@ $task-popup-line-height: 1.1;
 
 /* Цвет фона недельной задачи списка попапа задач */
 $task-popup-this-week-color: #DEE1E6;
+

@@ -1,0 +1,13 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+
+.black {
+    @include font("Arial", $l-font-size, $normal);
+    color: #000000;
+}
+
+.blue {
+    @include font("Arial", $l-font-size, $normal);
+    color: #2A77EF;
+}
