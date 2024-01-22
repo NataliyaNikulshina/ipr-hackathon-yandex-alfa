@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import stylesProfile from "./profile.module.scss";
+import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
 
@@ -9,7 +9,7 @@ import telephoneOperator from "./images/telephone-operator.png";
 import dartsTask from "./images/darts-task.png";
 //import  { handlePopup }  from "../../app";
 
-const Profile: FC = (): JSX.Element => {
+const HomePage: FC = (): JSX.Element => {
   return <section className={stylesProfile.page}>
     <Statistics />
 
@@ -26,4 +26,4 @@ const Profile: FC = (): JSX.Element => {
   </section>;
 };
 
-export default Profile;
+export default HomePage;

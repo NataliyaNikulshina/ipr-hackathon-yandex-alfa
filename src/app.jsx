@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
-import Profile from "./pages/profile/profile";
+import HomePage from "./pages/homePage/homePage";
 
 // Ссылки на проверочные константы (заглушки)
 import {
@@ -107,10 +107,12 @@ const App = () => {
   })();
 
   return (
-    <Routes>
-      <Route path={routesUrl.signin} element={<Signin />} />
-      <Route path={routesUrl.homePage} element={<Profile />} />
-      {/* <Popup
+    <>
+      <Routes>
+        <Route path={routesUrl.signin} element={<Signin />} />
+        <Route path={routesUrl.homePage} element={<HomePage />} />
+      </Routes>
+      <Popup
         isOpen={isInfoPopupOpen}
         onClose={handlePopup.closeEvent}
         zIndex={howManyOpenPoups}
@@ -124,8 +126,8 @@ const App = () => {
         isOpen={isTaskTrackingLogPopupOpen}
         onClose={handlePopup.closeEvent}
         zIndex={howManyOpenPoups}
-      /> */}
-    </Routes>
+      />
+    </>
   );
 };
 
