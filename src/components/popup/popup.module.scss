@@ -1,0 +1,162 @@
+ @import "../../stylesheets/variables.scss";
+ @import "../../stylesheets/mixins.scss";
+
+ .popup {
+   position: fixed;
+   inset: 0;
+   background: rgba(26, 26, 26, 0.40);
+   visibility: hidden;
+   opacity: 0;
+   transition: visibility 0.4s, opacity 0.4s linear;
+
+   &_opened {
+     visibility: visible;
+     opacity: 1;
+     transition: visibility 0, opacity 0.4s linear;
+   }
+ }
+
+ .info-popup,
+ .error-popup,
+ .task-popup {
+   &__content-box {
+     position: absolute;
+     box-sizing: border-box;
+     background-color: #fff;
+     overflow: hidden;
+     background-size: cover;
+     background-repeat: no-repeat;
+   }
+
+
+   &__close-button {
+     @include button-style-reset;
+     inline-size: 24px;
+     block-size: 24px;
+     background-color: transparent;
+     transition: opacity .4s;
+
+     &:hover {
+       opacity: 0.6;
+     }
+   }
+
+   &__close-button-icon {
+     fill: #0E0E0E;
+   }
+ }
+
+ .error-popup__content-box,
+ .info-popup__content-box {
+  
+  background-position: left bottom;
+ }
+
+.task-popup__content-box {
+  background-position: bottom right;
+}
+
+ .info-popup,
+ .error-popup {
+
+   &__content-box {
+     inset-inline-start: 50%;
+     inset-block-start: 50%;
+     transform: translateX(-50%) translateY(-50%);
+     @include flex(column, space-between, flex-end, 10px);
+     block-size: calc(100dvb - 120px);
+     max-block-size: 604px;
+     inline-size: calc(100dvi - 40px);
+     max-inline-size: 955px;
+     margin-block-end: 100px;
+     border-radius: 34px;
+   }
+
+   &__close-button {
+     margin-block-start: 40px;
+     margin-inline-end: 40px;
+   }
+
+   &__text-box {
+     @include font($info-and-error-popup-font-family,
+       $info-and-error-popup-font-size,
+       $info-and-error-popup-font-weight);
+     @include line-sizes($info-and-error-popup-line-height);
+     margin: 5px 80px 80px;
+     inline-size: 334px;
+   }
+
+ }
+
+ .task-popup {
+
+   &__content-box {
+     inset-inline-start: 0;
+     inset-block-start: 0;
+     @include flex(row, flex-end, flex-start, 47px);
+     block-size: 100dvb;
+     inline-size: calc(100dvi - 40px);
+     max-inline-size: 1382px;
+     border-top-right-radius: 34px;
+     border-bottom-right-radius: 34px;
+     transform-origin: 0;
+     transition: transform 0.4s;
+     transform: scaleX(0);
+   }
+
+   &__tasks-box {
+     @include flex(column, flex-start, false, 24px);
+     overflow-x: hidden;
+     overflow-y: auto;
+     max-inline-size: 847px;
+     inline-size: calc(100% - 44px);
+     margin-block-start: 44px;
+     margin-block-end: 44px;
+     margin-inline-start: 44px;
+     max-block-size: calc(100dvb - 88px);
+   }
+
+   &__tasks-titl {
+     display: block;
+     @include font($task-popup-titl-font-family,
+       $task-popup-titl-font-size,
+       $normal );
+     @include line-sizes($task-popup-titl-line-height);
+     margin-block-end: 12px;
+   }
+
+   &__tasks-list {
+     @include flex(column, flex-start, false, 12px);
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     @include font($task-popup-font-family,
+       $task-popup-font-size,
+       $normal );
+     @include line-sizes($task-popup-line-height);
+   }
+
+   &__task {
+     padding-inline: 24px;
+     padding-block: 40px;
+     border-radius: 10px;
+   }
+
+   &__task_today {
+     background-color: $task-popup-today-color;
+   }
+
+   &__task_this-week {
+     background: $task-popup-this-week-color;
+   }
+
+   &__close-button {
+     margin-block-start: 36px;
+     margin-inline-end: 36px;
+   }
+
+ }
+
+ .popup_opened .task-popup__content-box {
+   transform: scaleX(1);
+ }
