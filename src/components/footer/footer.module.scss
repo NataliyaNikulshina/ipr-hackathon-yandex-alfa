@@ -1,0 +1,16 @@
+@import "../../stylesheets/variables.scss";
+@import "../../stylesheets/mixins.scss";
+
+.footer {
+border-block-start: 2px solid  #DEE1E6;
+border-block-end: 2px solid  #DEE1E6;
+// block-size: 20px;
+
+  &__links-box {
+
+  }
+
+  &__links {
+
+  }
+}

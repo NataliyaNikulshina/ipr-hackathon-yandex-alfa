@@ -35,3 +35,66 @@ export const arrThisWekTasks = [
     title: 'Вы получили новое достижение: «От винта»!'
   }
 ];
+
+export const footerLickList = [
+  {
+    id: 1,
+    title: 'Главная',
+    url: '#/'
+  },
+  {
+    id: 2,
+    title: 'Подразделения',
+    url: '#2'
+  },
+  {
+    id: 3,
+    title: 'SAP АХД',
+    url: '#3'
+  },
+  {
+    id: 4,
+    title: 'WSS Docs',
+    url: '#4'
+  },
+  {
+    id: 5,
+    title: 'WSS Docs',
+    url: '#5'
+  },
+  {
+    id: 6,
+    title: 'Все о работе',
+    url: '#6'
+  },
+  {
+    id: 7,
+    title: 'Заказ HR-услуг',
+    url: '#7'
+  },
+  {
+    id: 8,
+    title: 'Заказ HR-услуг',
+    url: '#8'
+  },
+  {
+    id: 9,
+    title: 'Заказ HR-услуг',
+    url: '#9'
+  },
+  {
+    id: 10,
+    title: 'Заказ HR-услуг',
+    url: '#10'
+  },
+  {
+    id: 11,
+    title: 'Заказ HR-услуг',
+    url: '#11'
+  },
+  {
+    id: 12,
+    title: 'Заказ HR-услуг',
+    url: '#12'
+  },
+];
