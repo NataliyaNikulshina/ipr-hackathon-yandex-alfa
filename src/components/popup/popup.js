@@ -1,7 +1,7 @@
 import React from 'react';
 import popupStyle from './popup.module.scss';
-import closingCross from '../../icons/closing-cross.svg';
-import resetBasket from '../../icons/reset-basket.svg'
+import closingCross from '../../ui/icons/closing-cross.svg';
+import resetBasket from '../../ui/icons/reset-basket.svg'
 import PopupClossButton from '../../ui/svgButton/svgButton.js';
 import Unpacker from '../../ui/unpacker/unpacker.js';
 

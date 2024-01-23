@@ -1,0 +1,97 @@
+@import "../../../stylesheets/variables";
+@import "../../../stylesheets/mixins";
+
+.wrapper {
+  max-width: 304px;
+  position: relative;
+  width: 100%;
+}
+
+@mixin placeholder($color) {
+  @include position(absolute, $top: 14px, $left: 24px);
+  @include font("Arial", $m-font-size, $normal, $color);
+  pointer-events: none;
+  transform-origin: left;
+  transition: top 0.5s, transform 0.5s;
+}
+
+.inputContainer {
+  .placeholder {
+    @include placeholder(#6a6b74);
+  }
+
+  .placeholder_active {
+    transform: scale(0.85);
+    top: 4px;
+  }
+
+  .placeholder_disabled {
+    @include placeholder(#aaaaad);
+  }
+
+  &:focus-within {
+    .placeholder {
+      transform: scale(0.85);
+      top: 4px;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 22px 24px 10px;
+  background-color: #e7e8ea;
+  border: 1px solid transparent;
+  border-radius: $l-border-radius;
+  outline: 0;
+  box-sizing: border-box;
+  @include font("Arial", $m-font-size, $normal, #0a0a0a);
+  @include line-sizes(16px, 1px);
+  transition: border 0.5s;
+
+  &:hover {
+    background-color: #f3f4f5;
+  }
+
+  &:disabled {
+    background-color: #f3f4f5;
+  }
+
+  &:focus {
+    background-color: #fff;
+    border: 1px solid #86868a;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+  }
+  &:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+  }
+}
+
+.button {
+  //background-color: transparent;
+  @include position(absolute, $top: 17px, $right: 24px);
+  @include button-style-reset;
+  @include indents;
+}
+
+.incorrect_text {
+  @include indents(4px 0 0 0, 0);
+  @include font("Arial", $xs-font-size, $normal, #e12f2f);
+}
+
+.incorrect_input {
+  border: 1px solid #e12f2f;
+
+  &:focus {
+    background-color: #fff;
+    border: 1px solid #e12f2f;
+  }
+}
