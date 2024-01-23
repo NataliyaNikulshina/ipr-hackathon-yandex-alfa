@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
+import NotFound from "./pages/not-found/not-found";
 
 // Ссылки на проверочные константы (заглушки)
 import {
@@ -10,7 +11,7 @@ import {
   arrThisWekTasks,
 } from "./ui/verificationConstants/verificationConstants.js";
 
-const routesUrl = {
+export const routesUrl = {
   homePage: "/",
   signin: "/signin",
   notFound: "*",
@@ -111,6 +112,7 @@ const App = () => {
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
         <Route path={routesUrl.homePage} element={<HomePage />} />
+        <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <Popup
         isOpen={isInfoPopupOpen}
