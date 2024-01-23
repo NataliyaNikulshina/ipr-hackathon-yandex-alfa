@@ -36,7 +36,7 @@ export const arrThisWekTasks = [
   }
 ];
 
-export const footerLickList = [
+export const footerLinkList = [
   {
     id: 1,
     title: 'Главная',
@@ -59,7 +59,7 @@ export const footerLickList = [
   },
   {
     id: 5,
-    title: 'WSS Docs',
+    title: 'Сервисы',
     url: '#5'
   },
   {
@@ -74,27 +74,27 @@ export const footerLickList = [
   },
   {
     id: 8,
-    title: 'Заказ HR-услуг',
+    title: 'Карьера в банке',
     url: '#8'
   },
   {
     id: 9,
-    title: 'Заказ HR-услуг',
+    title: 'Контакты',
     url: '#9'
   },
   {
     id: 10,
-    title: 'Заказ HR-услуг',
+    title: 'Академия',
     url: '#10'
   },
   {
     id: 11,
-    title: 'Заказ HR-услуг',
+    title: 'Заказ IT-услуг',
     url: '#11'
   },
   {
     id: 12,
-    title: 'Заказ HR-услуг',
+    title: 'Сайт Альфа-банка',
     url: '#12'
   },
 ];

@@ -11,7 +11,7 @@ import telephoneOperator from '../images/telephone-operator.png';
 import dartsTask from '../images/darts-task.png';
 
 // Ссылки на проверочные константы (заглушки)
-import { arrTodayTasks, arrThisWekTasks, footerLickList } from '../ui/verificationConstants/verificationConstants.js'
+import { arrTodayTasks, arrThisWekTasks, footerLinkList } from '../ui/verificationConstants/verificationConstants.js'
 
 const App = () => {
 
@@ -58,7 +58,7 @@ const App = () => {
         >
           Открыть popup task
         </button>
-        <Footer footerLickList={footerLickList} />
+        <Footer footerLinkList={footerLinkList} />
       </div>
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />

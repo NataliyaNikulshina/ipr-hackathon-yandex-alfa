@@ -6,20 +6,16 @@ function Footer(props) {
   return (
     <section className={`${footerStyle[`footer`]}`}>
       <ul className={`${footerStyle[`footer__links-box`]}`}>
-        <li>
-          <a className={`${footerStyle[`footer__links`]}`} href='#/' target='_blank' rel='noreferrer'>Github</a>
-        </li>
-        <li>
-          <a className={`${footerStyle[`footer__links`]}`} href='#/' target='_blank' rel='noreferrer'>Github</a>
-        </li>
-        <li>
-          <a className={`${footerStyle[`footer__links`]}`} href='#/' target='_blank' rel='noreferrer'>Github</a>
-        </li>
-        <li>
-          <a className={`${footerStyle[`footer__links`]}`} href='#/' target='_blank' rel='noreferrer'>Github</a>
-        </li>
+        {
+          props.footerLinkList.length ?
+            props.footerLinkList.map((title) => <Unpacker key={title.id}>
+              <li>
+                <a className={`${footerStyle[`footer__links`]}`} href={title.url} target='_blank' rel='noreferrer'>{title.title}</a>
+              </li>
+            </Unpacker>) : ''
+        }
       </ul>
-      <p>A</p>
+      <a className={`${footerStyle[`footer__logo`]}`} href='#0' target='_blank' rel='noreferrer'>A</a>
     </section>
   );
 };
