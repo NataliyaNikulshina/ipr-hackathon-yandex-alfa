@@ -1,6 +1,9 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
+.wrapper {
+    @include flex(row, center, center, 16px);
+}
 
 .black {
     @include font("Arial", $l-font-size, $normal);
@@ -10,6 +13,11 @@
 .blue {
     @include font("Arial", $l-font-size, $normal);
     color: #2A77EF;
+}
+
+.grey {
+    @include font("Arial", $l-font-size, $normal);
+    color: #6A6B74;
 }
 
 .underline{
