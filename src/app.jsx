@@ -4,7 +4,6 @@ import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
-import Footer from './components/footer/footer';
 
 // функция управления popup
 import HandlePopup from './ui/handlePopup/handlePopup';
@@ -15,7 +14,7 @@ import telephoneOperator from "./images/telephone-operator.png";
 import dartsTask from "./images/darts-task.png";
 
 // Ссылки на проверочные константы (заглушки)
-import { arrTodayTasks, arrThisWekTasks, footerLinkList } from './ui/verificationConstants/verificationConstants.js'
+import { arrTodayTasks, arrThisWekTasks } from './ui/verificationConstants/verificationConstants.js'
 
 export const routesUrl = {
   homePage: "/",
@@ -65,7 +64,6 @@ const handlePopup = HandlePopup();
             >
               Открыть popup task
             </button>
-      <Footer footerLinkList={footerLinkList} />
             <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />

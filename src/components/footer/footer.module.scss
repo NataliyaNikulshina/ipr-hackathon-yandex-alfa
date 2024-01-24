@@ -6,6 +6,7 @@
   border-block-end: 2px solid #DEE1E6;
   @include flex(row, space-between);
   padding-block: 16px;
+  width: 100%;
 
   &__links-box {
     list-style: none;
