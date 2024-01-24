@@ -68,13 +68,13 @@ const Signin: FC = (): JSX.Element => {
         >
           Войти
         </Button>
-        {/* <Link
+        <Link
         href={"#"}
         color='blue'
         size='18'
       >
         Забыли пароль?
-      </Link> */}
+      </Link>
       </form>
     </section>
   );

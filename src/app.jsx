@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import Footer from './components/footer/footer';
@@ -26,11 +26,11 @@ const App = () => {
   const handlePopup = HandlePopup();
 
   return (
-    // <Routes>
-      // <Route path={routesUrl.signin} element={<Signin />} />
-      // <Route
-        // path={routesUrl.homePage}
-        // element={
+    <Routes>
+      <Route path={routesUrl.signin} element={<Signin />} />
+      <Route
+        path={routesUrl.homePage}
+        element={
           <>
             <button
               type="button"
@@ -68,9 +68,9 @@ const App = () => {
             <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
           </>
-        // }
-      // ></Route>
-    // </Routes>
+        }
+      ></Route>
+    </Routes>
   );
 };
 

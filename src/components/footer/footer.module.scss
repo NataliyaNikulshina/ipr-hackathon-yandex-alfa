@@ -10,7 +10,7 @@
   &__links-box {
     list-style: none;
     display: grid;
-    row-gap: 22px;
+    gap: 22px;
     grid-template-columns: repeat(4, 1fr);
     inline-size: 100%;
     justify-content: space-between;
@@ -27,7 +27,6 @@
       $footer-font-size,
       $normal );
     @include line-sizes($footer-line-height);
-    padding-inline-end: 22px;
 
     &:hover {
       opacity: 0.6;
@@ -39,6 +38,5 @@
     block-size: 40px;
     margin: 18px 20px;
   }
-
 
 }

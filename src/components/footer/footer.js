@@ -1,6 +1,7 @@
 import React from 'react';
 import footerStyle from './footer.module.scss';
 import Unpacker from '../../ui/unpacker/unpacker.js'
+import LogoIcon from "../../ui/icons/logo";
 
 function Footer(props) {
   return (
@@ -15,7 +16,9 @@ function Footer(props) {
             </Unpacker>) : ''
         }
       </ul>
-      <a className={`${footerStyle[`footer__logo`]}`} href='#0' target='_blank' rel='noreferrer'>A</a>
+      <div className={`${footerStyle[`footer__logo`]}`}>
+        <LogoIcon width={'40'} height={'40'}/>
+      </div>
     </section>
   );
 };

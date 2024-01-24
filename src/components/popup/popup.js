@@ -30,7 +30,7 @@ const Popup = (props) => {
       }
     };
 
-  }, [isOpen]);
+  }, [isOpen.tugle]);
 
   return (
     <aside className={`${popupStyle['popup']} ${isOpen.tugle && popupStyle['popup_opened']} ${isOpen.popupAssignment}-popup popup-overlay`} id={`${isOpen.popupAssignment}-popup-overlay`}>

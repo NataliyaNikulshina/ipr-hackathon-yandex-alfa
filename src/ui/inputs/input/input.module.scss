@@ -76,7 +76,7 @@
 }
 
 .button {
-  //background-color: transparent;
+  background-color: transparent;
   @include position(absolute, $top: 17px, $right: 24px);
   @include button-style-reset;
   @include indents;

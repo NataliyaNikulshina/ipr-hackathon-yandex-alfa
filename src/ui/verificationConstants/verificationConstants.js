@@ -40,61 +40,61 @@ export const footerLinkList = [
   {
     id: 1,
     title: 'Главная',
-    url: '#/'
+    url: '#'
   },
   {
     id: 2,
     title: 'Подразделения',
-    url: '#2'
+    url: '#'
   },
   {
     id: 3,
     title: 'SAP АХД',
-    url: '#3'
+    url: '#'
   },
   {
     id: 4,
     title: 'WSS Docs',
-    url: '#4'
+    url: '#'
   },
   {
     id: 5,
     title: 'Сервисы',
-    url: '#5'
+    url: '#'
   },
   {
     id: 6,
     title: 'Все о работе',
-    url: '#6'
+    url: '#'
   },
   {
     id: 7,
     title: 'Заказ HR-услуг',
-    url: '#7'
+    url: '#'
   },
   {
     id: 8,
     title: 'Карьера в банке',
-    url: '#8'
+    url: '#'
   },
   {
     id: 9,
     title: 'Контакты',
-    url: '#9'
+    url: '#'
   },
   {
     id: 10,
     title: 'Академия',
-    url: '#10'
+    url: '#'
   },
   {
     id: 11,
     title: 'Заказ IT-услуг',
-    url: '#11'
+    url: '#'
   },
   {
     id: 12,
     title: 'Сайт Альфа-банка',
-    url: '#12'
+    url: '#'
   },
 ];
