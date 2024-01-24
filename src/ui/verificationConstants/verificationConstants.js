@@ -35,3 +35,66 @@ export const arrThisWekTasks = [
     title: 'Вы получили новое достижение: «От винта»!'
   }
 ];
+
+export const footerLinkList = [
+  {
+    id: 1,
+    title: 'Главная',
+    url: '#'
+  },
+  {
+    id: 2,
+    title: 'Подразделения',
+    url: '#'
+  },
+  {
+    id: 3,
+    title: 'SAP АХД',
+    url: '#'
+  },
+  {
+    id: 4,
+    title: 'WSS Docs',
+    url: '#'
+  },
+  {
+    id: 5,
+    title: 'Сервисы',
+    url: '#'
+  },
+  {
+    id: 6,
+    title: 'Все о работе',
+    url: '#'
+  },
+  {
+    id: 7,
+    title: 'Заказ HR-услуг',
+    url: '#'
+  },
+  {
+    id: 8,
+    title: 'Карьера в банке',
+    url: '#'
+  },
+  {
+    id: 9,
+    title: 'Контакты',
+    url: '#'
+  },
+  {
+    id: 10,
+    title: 'Академия',
+    url: '#'
+  },
+  {
+    id: 11,
+    title: 'Заказ IT-услуг',
+    url: '#'
+  },
+  {
+    id: 12,
+    title: 'Сайт Альфа-банка',
+    url: '#'
+  },
+];
