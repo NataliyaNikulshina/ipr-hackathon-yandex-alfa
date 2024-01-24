@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
+import HomePage from "./pages/homePage/homePage";
+import NotFound from "./pages/not-found/not-found";
 import Footer from './components/footer/footer';
 
 // функция управления popup
@@ -15,7 +17,7 @@ import dartsTask from "./images/darts-task.png";
 // Ссылки на проверочные константы (заглушки)
 import { arrTodayTasks, arrThisWekTasks, footerLinkList } from './ui/verificationConstants/verificationConstants.js'
 
-const routesUrl = {
+export const routesUrl = {
   homePage: "/",
   signin: "/signin",
   notFound: "*",
@@ -23,16 +25,16 @@ const routesUrl = {
 
 const App = () => {
 
-  const handlePopup = HandlePopup();
+const handlePopup = HandlePopup();
 
   return (
-    <Routes>
-      <Route path={routesUrl.signin} element={<Signin />} />
-      <Route
-        path={routesUrl.homePage}
-        element={
-          <>
-            <button
+    <>
+      <Routes>
+        <Route path={routesUrl.signin} element={<Signin />} />
+        <Route path={routesUrl.homePage} element={<HomePage />} />
+        <Route path={routesUrl.notFound} element={<NotFound />} />
+      </Routes>
+      <button
               type="button"
               onClick={() => {
                 const popupAssignment = 'info';
@@ -63,14 +65,11 @@ const App = () => {
             >
               Открыть popup task
             </button>
-            <Footer footerLinkList={footerLinkList} />
+      <Footer footerLinkList={footerLinkList} />
             <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
-          </>
-        }
-      ></Route>
-    </Routes>
+    </>
   );
 };
 
