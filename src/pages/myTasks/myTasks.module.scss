@@ -1,0 +1,11 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.page {
+  @include flex(column, space-between, center, 10px);
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}

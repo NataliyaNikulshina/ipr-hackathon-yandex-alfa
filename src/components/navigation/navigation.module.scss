@@ -1,0 +1,13 @@
+@import "../../stylesheets/variables.scss";
+@import "../../stylesheets/mixins.scss";
+
+.nav {
+  @include flex(row, start, start, 8px);
+  @include indents(48px 0 20px 346px, 0);
+  width: 100%;
+}
+
+.wrapper{
+    @include flex(row, start, start, 8px); 
+    @include indents(0, 0);
+}

@@ -4,6 +4,9 @@ import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
+import MyIpr from "./pages/myIpr/myIpr";
+import IprEmployee from "./pages/iprEmployee/iprEmployee";
+import MyTasks from "./pages/myTasks/myTasks";
 
 // функция управления popup
 import HandlePopup from './ui/handlePopup/handlePopup';
@@ -16,9 +19,13 @@ import dartsTask from "./images/darts-task.png";
 // Ссылки на проверочные константы (заглушки)
 import { arrTodayTasks, arrThisWekTasks } from './ui/verificationConstants/verificationConstants.js'
 
+
 export const routesUrl = {
   homePage: "/",
+  myIPR: "/myipr",
+  myTasks: "/myipr/my-tasks",
   signin: "/signin",
+  iprEmployee: "/ipr-employee",
   notFound: "*",
 };
 
@@ -31,6 +38,9 @@ const handlePopup = HandlePopup();
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
         <Route path={routesUrl.homePage} element={<HomePage />} />
+        <Route path={routesUrl.iprEmployee} element={<IprEmployee />} />
+        <Route path={routesUrl.myTasks} element={<MyTasks />} />
+        <Route path={routesUrl.myIPR} element={<MyIpr />} />
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <button
