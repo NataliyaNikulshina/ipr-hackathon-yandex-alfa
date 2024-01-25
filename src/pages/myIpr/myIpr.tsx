@@ -10,9 +10,7 @@ import { mockDataTask } from "../../ui/verificationConstants/verificationConstan
 // замоканный is_Boss
 const isBoss = false;
 
-
 const MyIpr: FC = (): JSX.Element => {
-
   function onClick() {
     alert("Переход к определенному списку задач");
   }
@@ -20,13 +18,13 @@ const MyIpr: FC = (): JSX.Element => {
   return (
     <section className={stylesProfile.page}>
       <Button color="ipr" width="304" heigth="48" onClick={onClick}>
-        Мои будущие задачи
+        Название ИПР
       </Button>
       <Button color="ipr" width="304" heigth="48" onClick={onClick}>
-        Мои будущие задачи
+        Название ИПР
       </Button>
       <Button color="ipr" width="304" heigth="48" onClick={onClick}>
-        Мои будущие задачи
+        Название ИПР
       </Button>
       <ListTask tasks={mockDataTask} isBoss={isBoss} />
     </section>
