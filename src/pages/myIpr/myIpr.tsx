@@ -18,7 +18,13 @@ const MyIpr: FC = (): JSX.Element => {
 
   return (
     <section className={stylesProfile.page}>
-      <Button color="white" width="304" heigth="48" onClick={onClickMyTasks}>
+      <Button color="ipr" width="304" heigth="48" onClick={onClickMyTasks}>
+        Мои будущие задачи
+      </Button>
+      <Button color="ipr" width="304" heigth="48" onClick={onClickMyTasks}>
+        Мои будущие задачи
+      </Button>
+      <Button color="ipr" width="304" heigth="48" onClick={onClickMyTasks}>
         Мои будущие задачи
       </Button>
     </section>

@@ -4,7 +4,7 @@
 .layout {
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 87px 1fr 160px;
+  grid-template-rows: 87px 1fr 165px;
   grid-template-columns: 303px 955px;
   column-gap: 20px;
   box-sizing: border-box;
@@ -37,6 +37,7 @@
   &__footer {
     grid-column: 1 / 3;
     grid-row: 3;
+    padding-top: 10px;
     margin: 0 auto;
     width: 100%;
   }

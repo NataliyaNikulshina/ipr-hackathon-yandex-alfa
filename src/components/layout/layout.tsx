@@ -37,13 +37,13 @@ const Layout: FC = () => {
             name="Антонова Екатерина Владимировна"
             appointment="Главный финансовый аналитик"
           />
-          <Button color="white" width="304" heigth="48">
+          <Button color="nav_white" width="304" heigth="48">
             Мои достижения
           </Button>
-          <Button color="white" width="304" heigth="48" onClick={onClickTeam} disabled={!location.pathname.includes('/myipr') ? true : false}>
+          <Button color="nav_white" width="304" heigth="48" onClick={onClickTeam} disabled={!location.pathname.includes('/myipr') ? true : false}>
             Моя команда
           </Button>
-          <Button color="white" width="304" heigth="48" onClick={onClickIPR} disabled={location.pathname.includes('/myipr')? true : false}>
+          <Button color="nav_white" width="304" heigth="48" onClick={onClickIPR} disabled={location.pathname.includes('/myipr')? true : false}>
             Мои ИПР
           </Button>
       </div>

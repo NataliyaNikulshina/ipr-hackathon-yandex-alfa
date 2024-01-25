@@ -67,3 +67,34 @@
     background-color: #D3D5D6;
   }
 }
+
+.nav_white {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+
+    &:disabled {
+    background-color: #E7E8EA;
+    border: 1px solid transparent;
+  }
+
+  &:not([disabled]):hover {
+    background-color: #EEEEEE;
+  }
+}
+
+.ipr {
+  color: #000;
+  @include font("Arial", $l-font-size, $bold);
+  background-color: #fff;
+
+    &:disabled {
+    background-color: #E7E8EA;
+  }
+
+  &:not([disabled]):hover {
+    background-color: #EEEEEE;
+  }
+}
+
+
