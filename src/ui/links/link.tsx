@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import ArrowIcon from "../icons/arrow";
 import stylesILink from "./link.module.scss";
 
@@ -8,6 +8,7 @@ export interface ILink {
   color?: "black" | "blue" | "grey";
   underline?: boolean;
   href: string;
+  onClick?: (e: MouseEvent) => void;
   children: React.ReactNode;
   arrow?: boolean;
   disabled?: boolean;
@@ -22,6 +23,7 @@ const Link: FC<ILink> = ({
   underline = true,
   arrow = false,
   disabled = false,
+  onClick
 }) => {
   const styleColor =
     color === "blue"
@@ -40,6 +42,7 @@ const Link: FC<ILink> = ({
       {arrow && <ArrowIcon color={colorLink} />}
       <a
         href={href}
+        onClick={onClick}
         className={styleAll}
         style={
           disabled
