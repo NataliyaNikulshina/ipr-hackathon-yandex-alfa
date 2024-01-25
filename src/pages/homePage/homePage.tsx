@@ -2,6 +2,7 @@ import { FC, useState, useEffect, FormEvent } from "react";
 import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
+import TeamTable from '../../components/TeamTable/TeamTable';
 import Card from "../../components/card/card";
 import Footer from "../../components/footer/footer";
 
@@ -31,7 +32,7 @@ const HomePage: FC = (): JSX.Element => {
         Алексеевич"
         appointment="Финансовый аналитик"
       />
-
+  <TeamTable />
       {/* <button
               type="button"
               onClick={() => {
