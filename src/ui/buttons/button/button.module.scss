@@ -97,4 +97,11 @@
   }
 }
 
+.transparent{
+  justify-content: flex-start;
+  color: #0E0E0E;
+  background-color: transparent;
+  @include line-sizes($letter-spacing: 0);
+}
+
 

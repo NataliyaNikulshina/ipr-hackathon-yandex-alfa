@@ -6,7 +6,7 @@ import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
 import MyIpr from "./pages/myIpr/myIpr";
 import IprEmployee from "./pages/iprEmployee/iprEmployee";
-import MyTasks from "./pages/myTasks/myTasks";
+import MyTask from "./pages/myTask/myTask";
 import Layout from "./components/layout/layout";
 
 // функция управления popup
@@ -20,7 +20,7 @@ import telephoneOperator from "./images/telephone-operator.png";
 export const routesUrl = {
   homePage: "/",
   myIPR: "/myipr",
-  myTasks: "/myipr/my-tasks",
+  myTask: "/myipr/my-task",
   signin: "/signin",
   iprEmployee: "/ipr-employee",
   notFound: "*",
@@ -37,7 +37,7 @@ const handlePopup = HandlePopup();
         <Route path={routesUrl.homePage} element={ <Layout /> }>
           <Route path={routesUrl.homePage} element={<HomePage />} />
           <Route path={routesUrl.iprEmployee} element={<IprEmployee />} />
-          <Route path={routesUrl.myTasks} element={<MyTasks />} />
+          <Route path={routesUrl.myTask} element={<MyTask />} />
           <Route path={routesUrl.myIPR} element={<MyIpr />} />
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
