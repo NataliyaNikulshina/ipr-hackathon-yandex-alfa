@@ -1,0 +1,1 @@
+export const isContainRoute = (state:any, route:any) =>  state.some(({url}:any) => url === route);

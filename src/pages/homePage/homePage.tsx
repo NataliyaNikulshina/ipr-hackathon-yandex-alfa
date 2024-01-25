@@ -1,9 +1,12 @@
 import { FC, useState, useEffect, FormEvent } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
 import Card from "../../components/card/card";
 import Footer from "../../components/footer/footer";
+import Navigation from "../../components/navigation/navigation";
+import Button from "../../ui/buttons/button/button";
 
 //  Ссылки на картинки инфо попапа
 import darts from "./images/darts.png";
@@ -15,8 +18,22 @@ import dartsTask from "./images/darts-task.png";
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 
 const HomePage: FC = (): JSX.Element => {
+  const navigate = useNavigate();
+  let initialBreadcrumb = [];
+
+  const onClickIPR = () => {
+    navigate("/myipr");
+  };
+
+  const onClickEmployee = () => {
+    initialBreadcrumb = [{ path: "/", url: "/", title: "Моя команда" }];
+    navigate("/ipr-employee", { state: initialBreadcrumb });
+  };
+
+
   return (
     <section className={stylesProfile.page}>
+      <Navigation />
       <Statistics />
       <Card
         size="big"
@@ -24,13 +41,18 @@ const HomePage: FC = (): JSX.Element => {
         name="Антонова Екатерина Владимировна"
         appointment="Главный финансовый аналитик"
       />
-      <Card
-        size="small"
-        // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-        name="Соколов Михаил 
-        Алексеевич"
-        appointment="Финансовый аналитик"
-      />
+      <Button color="white" width="304" heigth="48" >
+        Мои достижения
+      </Button>
+      <Button color="white" width="304" heigth="48" disabled>
+        Моя команда
+      </Button>
+      <Button color="white" width="304" heigth="48" onClick={onClickIPR}>
+        Мои ИПР
+      </Button>
+      <Button color="white" width="304" heigth="48" onClick={onClickEmployee}>
+        Будущая таблица сотрудников
+      </Button>
 
       {/* <button
               type="button"

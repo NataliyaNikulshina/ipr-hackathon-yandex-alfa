@@ -10,6 +10,7 @@ export interface ILink {
   href: string;
   children: React.ReactNode;
   arrow?: boolean;
+  disabled?: boolean;
 }
 
 const Link: FC<ILink> = ({
@@ -20,20 +21,35 @@ const Link: FC<ILink> = ({
   color = "blue",
   underline = true,
   arrow = false,
+  disabled = false,
 }) => {
-  const styleColor = color === "blue" ? stylesILink.blue : color === "black" ? stylesILink.black : stylesILink.grey;
+  const styleColor =
+    color === "blue"
+      ? stylesILink.blue
+      : color === "black"
+      ? stylesILink.black
+      : stylesILink.grey;
   const styleAll = !underline
     ? styleColor + " " + stylesILink.underline
     : styleColor;
-  const colorLink = color === "blue" ? '#2A77EF' : color === "black" ? '#0E0E0E' : '#6A6B74';
+  const colorLink =
+    color === "blue" ? "#2A77EF" : color === "black" ? "#0E0E0E" : "#6A6B74";
 
   return (
     <div className={stylesILink.wrapper}>
-      {arrow && <ArrowIcon color={colorLink}/>}
+      {arrow && <ArrowIcon color={colorLink} />}
       <a
         href={href}
         className={styleAll}
-        style={{ fontSize: `${size}px`, fontWeight: weight }}
+        style={
+          disabled
+            ? {
+                pointerEvents: "none",
+                fontSize: `${size}px`,
+                fontWeight: weight,
+              }
+            : { fontSize: `${size}px`, fontWeight: weight }
+        }
       >
         {children}
       </a>
