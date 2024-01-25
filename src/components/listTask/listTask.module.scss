@@ -1,0 +1,23 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.container {
+  width: 522px;
+  min-height: 357px;
+  border-radius: $xl-border-radius;
+  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
+    2px 2px 5px 0px rgba(95, 99, 104, 0.15);
+  @include indents(8px, 0);
+}
+
+.list {
+  @include flex (column, $gap: 16px);
+  list-style: none;
+  @include indents(0, 0);
+}
+
+.item {
+    @include flex (row, space-between, center, 8px);
+    border-bottom: 1px solid rgba(106, 107, 116, 0.15);
+    @include size(504px, 40px);
+  }

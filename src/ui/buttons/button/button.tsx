@@ -5,7 +5,7 @@ import stylesButton from "./button.module.scss";
 export interface IButton {
   width: string;
   heigth: string;
-  color?: "red" | "black" | "grey" | "white" | "nav_white" | "ipr";
+  color?: "red" | "black" | "grey" | "white" | "nav_white" | "ipr" | "transparent";
   buttonHtmlType?: "button" | "submit" | "reset";
   onClick?: VoidFunction;
   disabled?: boolean;
@@ -46,6 +46,10 @@ const Button: FC<IButton> = ({
     case "ipr":
       // eslint-disable-next-line no-useless-concat
       stylesAll += " " + `${stylesButton.ipr}`;
+      break;
+    case "transparent":
+      // eslint-disable-next-line no-useless-concat
+      stylesAll += " " + `${stylesButton.transparent}`;
       break;
   }
 

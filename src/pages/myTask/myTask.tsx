@@ -1,12 +1,12 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./myTasks.module.scss";
+import styles from "./myTask.module.scss";
 
 // import Button from "../../ui/buttons/button/button";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
-const MyTasks: FC = (): JSX.Element => {
+const MyTask: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -14,7 +14,7 @@ const MyTasks: FC = (): JSX.Element => {
   useEffect(
     () => {
       if (state && !isContainRoute(state, url)) {
-        navigate('', { state: [...state, { path: pathname, url, title: "Задачи" }], replace: true });
+        navigate('', { state: [...state, { path: pathname, url, title: "Задача" }], replace: true });
       }
     },
     [pathname, url, state]
@@ -23,9 +23,9 @@ const MyTasks: FC = (): JSX.Element => {
 
   return (
     <section className={styles.page}>
-      <p>Мои Задачи</p>
+      <p>Здесь будет моя задача</p>
     </section>
   );
 };
 
-export default MyTasks;
+export default MyTask;
