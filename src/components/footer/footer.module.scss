@@ -20,19 +20,19 @@
     margin: 0;
   }
 
-  &__links {
-    text-decoration: none;
-    color: currentColor;
-    transition: opacity .4s;
-    @include font($footer-font-family,
-      $footer-font-size,
-      $normal );
-    @include line-sizes($footer-line-height);
+  // &__links {
+  //   text-decoration: none;
+  //   color: currentColor;
+  //   transition: opacity .4s;
+  //   @include font($footer-font-family,
+  //     $footer-font-size,
+  //     $normal );
+  //   @include line-sizes($footer-line-height);
 
-    &:hover {
-      opacity: 0.6;
-    }
-  }
+  //   &:hover {
+  //     opacity: 0.6;
+  //   }
+  // }
 
   &__logo {
     inline-size: 40px;
