@@ -30,7 +30,6 @@ const Crumb = ({ title, path, url }: any) => {
 
 const Navigation: FC<Navigation> = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <nav className={styleNav.nav}>
       {location.state ? (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
@@ -7,17 +7,14 @@ import NotFound from "./pages/not-found/not-found";
 import MyIpr from "./pages/myIpr/myIpr";
 import IprEmployee from "./pages/iprEmployee/iprEmployee";
 import MyTasks from "./pages/myTasks/myTasks";
+import Layout from "./components/layout/layout";
 
 // функция управления popup
-import HandlePopup from './ui/handlePopup/handlePopup';
+import HandlePopup from './utils/handlePopup/handlePopup';
 
 //  Ссылки на картинки инфо попапа
 import darts from "./images/darts.png";
 import telephoneOperator from "./images/telephone-operator.png";
-import dartsTask from "./images/darts-task.png";
-
-// Ссылки на проверочные константы (заглушки)
-import { arrTodayTasks, arrThisWekTasks } from './ui/verificationConstants/verificationConstants.js'
 
 
 export const routesUrl = {
@@ -30,20 +27,22 @@ export const routesUrl = {
 };
 
 const App = () => {
-
+const path = useLocation().pathname;
 const handlePopup = HandlePopup();
 
   return (
     <>
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.homePage} element={<HomePage />} />
-        <Route path={routesUrl.iprEmployee} element={<IprEmployee />} />
-        <Route path={routesUrl.myTasks} element={<MyTasks />} />
-        <Route path={routesUrl.myIPR} element={<MyIpr />} />
+        <Route path={routesUrl.homePage} element={ <Layout /> }>
+          <Route path={routesUrl.homePage} element={<HomePage />} />
+          <Route path={routesUrl.iprEmployee} element={<IprEmployee />} />
+          <Route path={routesUrl.myTasks} element={<MyTasks />} />
+          <Route path={routesUrl.myIPR} element={<MyIpr />} />
+        </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
-      <button
+      {/* <button
               type="button"
               onClick={() => {
                 const popupAssignment = 'info';
@@ -63,20 +62,9 @@ const handlePopup = HandlePopup();
               }}
             >
               Открыть popup error
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                const popupAssignment = 'task';
-                handlePopup.open({ popupAssignment, newPopupImg: dartsTask, arrTodayTasks, arrThisWekTasks })
-              }}
-            >
-              Открыть popup task
-            </button>
+            </button> */}
             <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
             <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
-            <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
     </>
   );
 };
