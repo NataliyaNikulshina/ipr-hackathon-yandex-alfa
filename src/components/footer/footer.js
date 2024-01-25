@@ -9,7 +9,7 @@ function Footer(props) {
     <section className={`${footerStyle[`footer`]}`}>
       <ul className={`${footerStyle[`footer__links-box`]}`}>
         {
-          props.footerLinkList.length ?
+          props.footerLinkList?.length ?
             props.footerLinkList.map((title) => <Unpacker key={title.id}>
               <li>
                 <Link

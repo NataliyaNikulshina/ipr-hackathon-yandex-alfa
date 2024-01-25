@@ -6,6 +6,11 @@ import styleCard from "./card.module.scss";
 import light from "../../ui/icons/achievement/light.svg";
 import people from "../../ui/icons/achievement/people.svg";
 import timer from "../../ui/icons/achievement/timer.svg";
+import Popup from "../popup/popup";
+import dartsTask from "../../images/darts.png";
+import HandlePopup from "../../utils/handlePopup/handlePopup";
+// Ссылки на проверочные константы (заглушки)
+import { arrTodayTasks, arrThisWekTasks } from '../../ui/verificationConstants/verificationConstants.js'
 
 export interface ICard {
   size: string;
@@ -14,11 +19,16 @@ export interface ICard {
   appointment: string;
 }
 
-function onClick() {
-  alert("Открываем уведомления");
-}
-
 const Card: FC<ICard> = ({ size, avatar, name, appointment }) => {
+
+  const handlePopup = HandlePopup();
+
+  function onClick() {
+    const popupAssignment = "task";
+    handlePopup.open({ popupAssignment, newPopupImg: dartsTask, arrTodayTasks, arrThisWekTasks });
+    console.log(handlePopup.open);
+  }
+
   const styleAll =
     size === "big"
       ? styleCard.card + " " + styleCard.big
@@ -56,6 +66,7 @@ const Card: FC<ICard> = ({ size, avatar, name, appointment }) => {
           <img src={timer} alt="Achievement" />
         </div>
       </div>
+      <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
     </div>
   );
 };

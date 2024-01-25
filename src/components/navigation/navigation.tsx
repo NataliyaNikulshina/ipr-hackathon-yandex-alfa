@@ -1,14 +1,20 @@
-import { FC, FormEvent } from "react";
+import { FC, MouseEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Link from "../../ui/links/link";
 
 import styleNav from "./navigation.module.scss";
+import { removeRemainingCrumbs } from "../../utils/breadcrumbs";
 
 export interface Navigation {}
 
 const Crumb = ({ title, path, url }: any) => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { state, pathname } = useLocation();
+
+  const routeTo = (e:MouseEvent) => {
+    e.preventDefault();
+    navigate(path, { replace: true, state: removeRemainingCrumbs(state, url) });
+  };
 
   return (
     <span className={styleNav.wrapper}>
@@ -18,7 +24,7 @@ const Crumb = ({ title, path, url }: any) => {
         </Link>
       ) : (
         <>
-          <Link href={url} color="grey" size="14" underline={false}>
+          <Link href={url} onClick={routeTo} color="grey" size="14" underline={false}>
             {title}
           </Link>
           {` > `}
@@ -30,7 +36,6 @@ const Crumb = ({ title, path, url }: any) => {
 
 const Navigation: FC<Navigation> = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <nav className={styleNav.nav}>
       {location.state ? (
