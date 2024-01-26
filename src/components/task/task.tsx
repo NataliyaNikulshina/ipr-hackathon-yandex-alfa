@@ -44,7 +44,7 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss}) => {
         name="crm"
         value={title}
       />
-      <Button color="transparent" width="456" heigth="20" onClick={onClickMyTasks}>
+      <Button color="transparent" width="456" heigth="35" onClick={onClickMyTasks}>
         {title}
       </Button>
       <div className={styleTask.status}>

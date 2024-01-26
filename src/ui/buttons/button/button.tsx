@@ -3,8 +3,8 @@ import React, { FC } from "react";
 import stylesButton from "./button.module.scss";
 
 export interface IButton {
-  width: string;
-  heigth: string;
+  width?: string;
+  heigth?: string;
   color?: "red" | "black" | "grey" | "white" | "nav_white" | "ipr" | "transparent";
   buttonHtmlType?: "button" | "submit" | "reset";
   onClick?: VoidFunction;
@@ -56,7 +56,7 @@ const Button: FC<IButton> = ({
   return (
     <button
       className={stylesAll}
-      style={{ width: width + "px", height: heigth + "px" }}
+      style={!(color==="ipr") ? { width: width + "px", height: heigth + "px" } : { width: width + "px", minHeight: heigth + "px !important" }}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}

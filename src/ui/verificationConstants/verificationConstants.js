@@ -137,4 +137,60 @@ export const mockDataTask = [
     status: "in_progress",
     checkbox: false,
   },
+  {
+    id: 7,
+    title: "Планирование в Excel",
+    status: "trail",
+    checkbox: false,
+  },
+  {
+    id: 8,
+    title: "Итоговый тест",
+    status: "in_progress",
+    checkbox: false,
+  },
+  {
+    id: 9,
+    title: "Пройти тест на знание корпоративной культуры, поднять уровень понимания темы",
+    status: "trail",
+    checkbox: false,
+  },
+  {
+    id: 10,
+    title: "Итоговый тест",
+    status: "in_progress",
+    checkbox: false,
+  },
 ];
+
+
+export const mockDataIpr = [
+  {
+    id: 1,
+    title: "Изменения по ипотечному кредитованию на январь 2024",
+  },
+  {
+    id: 2,
+    title: "Виды льготных ипотек",
+  },
+  {
+    id: 3,
+    title: "Планирование по системе SMART",
+  },
+  {
+    id: 4,
+    title: "Психология потребителя",
+  },
+  {
+    id: 5,
+    title: "Изменения по ипотечному кредитованию на январь 2024",
+  },
+  {
+    id: 6,
+    title: "Планирование по системе SMART",
+  },
+  {
+    id: 7,
+    title: "Психология потребителя",
+  },
+]
