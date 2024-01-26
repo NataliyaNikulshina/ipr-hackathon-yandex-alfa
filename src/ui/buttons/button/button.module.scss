@@ -86,7 +86,10 @@
 .ipr {
   color: #000;
   @include font("Arial", $l-font-size, $bold);
+  @include line-sizes(20px);
   background-color: #fff;
+  text-align: left;
+  padding: 16px;
 
     &:disabled {
     background-color: #E7E8EA;
@@ -99,6 +102,7 @@
 
 .transparent{
   justify-content: flex-start;
+  text-align: left;
   color: #0E0E0E;
   background-color: transparent;
   @include line-sizes($letter-spacing: 0);

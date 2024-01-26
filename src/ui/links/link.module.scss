@@ -1,22 +1,23 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
-.wrapper {
+@mixin icon () {
     @include flex(row, center, center, 16px);
+    @include font("Arial", $l-font-size, $normal);
 }
 
 .black {
-    @include font("Arial", $l-font-size, $normal);
+    @include icon();
     color: #000000;
 }
 
 .blue {
-    @include font("Arial", $l-font-size, $normal);
+    @include icon();
     color: #2A77EF;
 }
 
 .grey {
-    @include font("Arial", $l-font-size, $normal);
+    @include icon();
     color: #6A6B74;
 }
 

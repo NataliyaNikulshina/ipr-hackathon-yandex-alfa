@@ -4,7 +4,9 @@
   .item {
     @include flex (row, space-between, center, 8px);
     border-bottom: 1px solid rgba(106, 107, 116, 0.15);
-    @include size(504px, 40px);
+    @include size(504px, 50px);
+    @include indents(5px 0, 0);
+    box-sizing: border-box;
   }
 
   .status {
