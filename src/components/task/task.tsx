@@ -19,7 +19,7 @@ export interface ITasks {
   isBoss?: boolean;
 }
 
-const Task: FC<ITasks> = ({ title, checkbox, status, isBoss}) => {
+const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
   const [crm, setCrm] = useState(checkbox);
 
   const location = useLocation();
@@ -29,8 +29,8 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss}) => {
 
   const onClickMyTasks = () => {
     initialBreadcrumb = [{ path: location.pathname, url, title: "Мои ИПР" }];
-    navigate("/myipr/my-task", {state: initialBreadcrumb});
-    }
+    navigate("/myipr/my-task", { state: initialBreadcrumb });
+  };
 
   const onCrmChange = () => {
     setCrm(!crm);
@@ -38,23 +38,31 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss}) => {
 
   return (
     <li className={styleTask.item}>
-      <Checkbox
-        checked={crm}
-        onChange={onCrmChange}
-        name="crm"
-        value={title}
-      />
-      <Button color="transparent" width="456" heigth="35" onClick={onClickMyTasks}>
+      <Checkbox checked={crm} onChange={onCrmChange} name="crm" value={title} />
+      <Button
+        color="transparent"
+        width="456"
+        heigth="35"
+        onClick={onClickMyTasks}
+      >
         {title}
       </Button>
       <div className={styleTask.status}>
-      {status==="not_complete" && (<NotCompletedIcon />)}
-      {status==="in_progress" && (<InProgressIcon />)}
-      {status==="complete" && (<CompleteIcon />)}
-      {status==="cansel" && (<CanselIcon />)}
-      {status==="trail" && (<TrailIcon />)}
+        {status === "not_complete" && <NotCompletedIcon />}
+        {status === "in_progress" && <InProgressIcon />}
+        {status === "complete" && <CompleteIcon />}
+        {status === "cansel" && <CanselIcon />}
+        {status === "trail" && <TrailIcon />}
       </div>
-      {isBoss && (<EditIcon />)}
+      <span className={styleTask.tool}>
+        {(status === "not_complete" && "Задача не выполнена") ||
+          (status === "in_progress" && "Задача в работе") ||
+          (status === "complete" && "Задача выполнена") ||
+          (status === "cansel" && "Задача отменена") ||
+          (status === "trail" && "Задача отстает")}
+      </span>
+      {/* {status==="not_complete" && (<span className={styleTask.tool}>Подсказка</span>)} */}
+      {isBoss && <EditIcon />}
     </li>
   );
 };
