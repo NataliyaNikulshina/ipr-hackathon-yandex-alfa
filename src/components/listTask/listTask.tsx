@@ -23,7 +23,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss }) => {
                   <Task title={el.title} checkbox={el.checkbox} status={el.status} isBoss={isBoss} />
               </Unpacker>
             ))
-          : ""}
+          : "Задач не существует"}
         {/* <li className={styleTask.item}>
           <input type="checkbox">{tasks.checkbox}</input>
           <Button color="transparent" width="456" heigth="20" onClick={onClick}>

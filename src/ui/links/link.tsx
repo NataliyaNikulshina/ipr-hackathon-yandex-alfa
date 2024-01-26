@@ -38,8 +38,6 @@ const Link: FC<ILink> = ({
     color === "blue" ? "#2A77EF" : color === "black" ? "#0E0E0E" : "#6A6B74";
 
   return (
-    <div className={stylesILink.wrapper}>
-      {arrow && <ArrowIcon color={colorLink} />}
       <a
         href={href}
         onClick={onClick}
@@ -54,9 +52,9 @@ const Link: FC<ILink> = ({
             : { fontSize: `${size}px`, fontWeight: weight }
         }
       >
+        {arrow && <ArrowIcon color={colorLink} />}
         {children}
       </a>
-    </div>
   );
 };
 
