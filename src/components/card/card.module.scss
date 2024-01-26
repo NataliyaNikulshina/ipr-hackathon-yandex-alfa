@@ -36,7 +36,6 @@
 
 .icon{
     @include button-style-reset;
-    position: absolute;
     @include position( absolute, $top:15px, $left:15px);
 }
 
