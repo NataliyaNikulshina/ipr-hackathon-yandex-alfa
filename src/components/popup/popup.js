@@ -45,7 +45,7 @@ const Popup = (props) => {
                 svgId='#reset-basket'
                 viewBox='0 0 32 32'
                 elementStyle={popupStyle}
-                elementName={`${isOpen.popupAssignment}`}
+                elementName={`${isOpen.popupAssignment}-`}
                 elementType='popup'
                 destiny='reset-button'
                 onClick={props.handlePopup.resetTasks} />
@@ -79,7 +79,7 @@ const Popup = (props) => {
           svgId='#closing-cross'
           viewBox='0 0 20 20'
           elementStyle={popupStyle}
-          elementName={`${isOpen.popupAssignment}`}
+          elementName={`${isOpen.popupAssignment}-`}
           elementType='popup'
           destiny='close-button'
           onClick={close} />

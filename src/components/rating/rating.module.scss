@@ -1,0 +1,56 @@
+@import "../../stylesheets/variables.scss";
+@import "../../stylesheets/mixins.scss";
+
+.rating {
+  @include flex(column, space-between, center, 24px);
+  display: inline-flex;
+
+  background-color: rgb(239, 239, 248);
+
+  &__title {
+    @include font($rating-titl-font-family,
+      $rating-titl-font-size,
+      $rating-titl-font-weight,
+      $rating-titl-font-color );
+    @include line-sizes($rating-titl-line-height);
+    margin: 0;
+  }
+
+  &__icon-box {
+    @include flex(row-reverse, space-between, center, 30px);
+  }
+
+  &__price {
+    @include button-style-reset
+  }
+
+  &__price:hover {
+    cursor: auto;
+  }
+
+  &__price-icon-box {
+    inline-size: 48px;
+    block-size: 48px;
+  }
+
+  &__price-icon {
+    stroke: #D5D6DC;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    fill: transparent;
+    transition: stroke .4s, fill .2s;
+  }
+
+  &__price-icon:hover,
+  &__price:has(&__price-icon:hover)~&__price>&__price-icon-box>&__price-icon,
+  &__icon-box[data-total-value="1"]  &__price:nth-child(n + 5)>&__price-icon-box>&__price-icon,
+  &__icon-box[data-total-value="2"]  &__price:nth-child(n + 4)>&__price-icon-box>&__price-icon,
+  &__icon-box[data-total-value="3"]  &__price:nth-child(n + 3)>&__price-icon-box>&__price-icon,
+  &__icon-box[data-total-value="4"]  &__price:nth-child(n + 2)>&__price-icon-box>&__price-icon,
+  &__icon-box[data-total-value="5"]  &__price:nth-child(n + 1)>&__price-icon-box>&__price-icon {
+    stroke: #FDD835;
+    fill: #FDD835;
+    cursor: pointer
+  }
+
+}
