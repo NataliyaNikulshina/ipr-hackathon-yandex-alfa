@@ -18,13 +18,6 @@ const HomePage: FC = (): JSX.Element => {
 
   return (
     <section className={stylesProfile.page}>
-          <Button
-            color="white"
-            width="304"
-            heigth="48"
-            onClick={onClickEmployee}
-          >
-          </Button>
           <TeamTable />
           <Statistics />
     </section>

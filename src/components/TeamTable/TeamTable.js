@@ -6,6 +6,7 @@ import ButtonTableMore from "../../ui/buttons/buttonTableMore/buttonTableMore";
 const TeamTable = () => {
   const table = React.createRef();
   const [filter, setFilter] = useState("");
+  const [filterType, setFilterType] = useState("name");
   const [showMore, setShowMore] = useState(false);
   // моковые данные для верстки
   const [employees, setEmployees] = useState([
@@ -31,23 +32,28 @@ const TeamTable = () => {
   ]);
 
   const filteredEmployees = employees.filter((employee) =>
-    employee.name.toLowerCase().includes(filter.toLowerCase())
+    employee[filterType].toLowerCase().includes(filter.toLowerCase())
   );
   const handleShowMoreEmployees = () => {
     table.current.scrollTop = 0;
     setShowMore(!showMore)
   };
-
+  const handleFilterChangeType = () => {
+    console.log('click')
+    filterType === "name" ? setFilterType('position') : setFilterType('name')
+  }
   return (
     <section className="team-table" >
       <div className="team-table__search">
         <input
           type="text"
-          placeholder="Поиск по имени"
+          placeholder={filterType === "name" ? "Поиск по имени" : "Поиск по должности"}
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
-        <FilterIcon />
+        <button onClick={handleFilterChangeType}>
+          <FilterIcon />
+        </button> 
       </div>
       <div className={showMore ? "team-table__table more" : "team-table__table"} ref={table}>
         <div className="team-table__head">
