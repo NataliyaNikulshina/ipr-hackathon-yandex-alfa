@@ -7,7 +7,6 @@ const TeamTable = () => {
   const table = React.createRef();
   const [filter, setFilter] = useState("");
   const [filterType, setFilterType] = useState("name");
-  const [showMore, setShowMore] = useState(false);
   // моковые данные для верстки
   const [employees, setEmployees] = useState([
     { id: 1, name: "Чернявский Андрей Михайлович", position: "Менеджер по кредитованию" },
@@ -34,10 +33,6 @@ const TeamTable = () => {
   const filteredEmployees = employees.filter((employee) =>
     employee[filterType].toLowerCase().includes(filter.toLowerCase())
   );
-  const handleShowMoreEmployees = () => {
-    table.current.scrollTop = 0;
-    setShowMore(!showMore)
-  };
   const handleFilterChangeType = () => {
     console.log('click')
     filterType === "name" ? setFilterType('position') : setFilterType('name')
@@ -55,7 +50,7 @@ const TeamTable = () => {
           <FilterIcon />
         </button>
       </div>
-      <div className={showMore ? "team-table__table active" : "team-table__table"} ref={table}>
+      <div className="team-table__table" ref={table}>
         <div className="team-table__head">
           <span>СОТРУДНИК (ФИО)</span>
           <span>ДОЛЖНОСТЬ</span>
@@ -68,11 +63,6 @@ const TeamTable = () => {
             </a>
           ))}
         </div>
-      </div>
-      <div className={showMore ? "team-table__more active" : "team-table__more"}>
-        {filteredEmployees.length > 7 ? (
-          <ButtonTableMore onClick={handleShowMoreEmployees} rotate={showMore} />
-        ) : ('')}
       </div>
     </section>
   );
