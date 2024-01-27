@@ -28,7 +28,7 @@ const MyTask: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/myIpr", { replace: true });
+    navigate("/myipr", { replace: true });
   };
 
   function onClick() {
@@ -38,7 +38,7 @@ const MyTask: FC = (): JSX.Element => {
   return (
     <section className={styles.page}>
     <div className={styles.container}>
-      <span className={styles.link}>
+      <span className={styles.header}>
         <Link
           href={"/myipr"}
           onClick={routeTo}
@@ -50,6 +50,7 @@ const MyTask: FC = (): JSX.Element => {
         >
           Назад
         </Link>
+        <h1 className={styles.title}>Тест на знание корпоративной культуры</h1>
       </span>
       <div className={styles.wrapper}>
         <div className={styles.listIpr}>
@@ -63,7 +64,7 @@ const MyTask: FC = (): JSX.Element => {
               ))
             : "ИПР не существует"}
         </div>
-        <p>Тут будет задача</p>
+        <p className={styles.text}>Описание задачи</p>
       </div>
       <div className={styles.wrapper__button}>
         <Button color="red" width="281" heigth="56" onClick={onClick}>
