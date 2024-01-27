@@ -53,7 +53,7 @@ const TeamTable = () => {
         />
         <button onClick={handleFilterChangeType}>
           <FilterIcon />
-        </button> 
+        </button>
       </div>
       <div className={showMore ? "team-table__table more" : "team-table__table"} ref={table}>
         <div className="team-table__head">
@@ -69,9 +69,11 @@ const TeamTable = () => {
           ))}
         </div>
       </div>
-      {filteredEmployees.length > 7 ? (
-        <ButtonTableMore onClick={handleShowMoreEmployees} rotate={showMore} />
-      ) : ('')}
+      <div className="team-table__more">
+        {filteredEmployees.length > 7 ? (
+          <ButtonTableMore onClick={handleShowMoreEmployees} rotate={showMore} />
+        ) : ('')}
+      </div>
     </section>
   );
 };
