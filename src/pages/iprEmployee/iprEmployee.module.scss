@@ -2,7 +2,7 @@
 @use "../../stylesheets/mixins" as *;
 
 .page {
-  @include flex(column, start, center, 40px);
+  @include flex(column, start, center, 10px);
   background-color: #FFFFFF;
   width: 100%;
 }

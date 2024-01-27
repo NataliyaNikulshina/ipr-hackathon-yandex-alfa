@@ -1,0 +1,37 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+.item {
+  @include flex(row, space-between, center, 8px);
+  border-bottom: 1px solid rgba(106, 107, 116, 0.15);
+  @include size(504px, 50px);
+  @include indents(5px 0, 0);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.status {
+  @include size(24px, 24px);
+  @include flex(row, center, center);
+  cursor: pointer;
+}
+
+.tool {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.34s;
+  @include position( absolute, $top:40px, $right:10px);
+  z-index: 2;
+  min-width: 147px;
+  height: 42px;
+  border-radius: $l-border-radius;
+  background-color: rgba(14, 14, 14, 0.6);
+  text-align: center;
+  padding: 12px;
+  @include font("Arial", $s-font-size, $normal, #fff);
+}
+
+.status:hover + .tool {
+  opacity: 1;
+  visibility: visible;
+}
