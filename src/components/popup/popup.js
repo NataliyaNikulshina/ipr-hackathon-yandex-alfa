@@ -2,7 +2,7 @@ import React from 'react';
 import popupStyle from './popup.module.scss';
 import closingCross from '../../ui/icons/closing-cross.svg';
 import resetBasket from '../../ui/icons/reset-basket.svg'
-import PopupClossButton from '../../ui/svgButton/svgButton.js';
+import PopupButton from '../../ui/svgButton/svgButton.js';
 import Unpacker from '../../ui/unpacker/unpacker.js';
 
 const Popup = (props) => {
@@ -40,7 +40,7 @@ const Popup = (props) => {
           <div>
             <div className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-titl-box`]}`}>
               <span className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-titl`]}`}>Сегодня</span>
-              <PopupClossButton
+              <PopupButton
                 svgHref={resetBasket}
                 svgId='#reset-basket'
                 viewBox='0 0 32 32'
@@ -74,7 +74,7 @@ const Popup = (props) => {
           </div>
         </div>}
 
-        <PopupClossButton
+        <PopupButton
           svgHref={closingCross}
           svgId='#closing-cross'
           viewBox='0 0 20 20'
