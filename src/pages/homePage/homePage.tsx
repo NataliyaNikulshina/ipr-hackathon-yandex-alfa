@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
+import TeamTable from "../../components/TeamTable/TeamTable";
 import Button from "../../ui/buttons/button/button";
 
 const HomePage: FC = (): JSX.Element => {
@@ -23,8 +24,8 @@ const HomePage: FC = (): JSX.Element => {
             heigth="48"
             onClick={onClickEmployee}
           >
-            Будущая таблица сотрудников
           </Button>
+          <TeamTable />
           <Statistics />
     </section>
   );
