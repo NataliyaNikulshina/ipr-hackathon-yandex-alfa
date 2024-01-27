@@ -108,11 +108,16 @@
     overflow-y: auto;
     max-inline-size: 847px;
     inline-size: calc(100% - 44px);
-    margin-block-start: 44px;
-    margin-block-end: 44px;
-    margin-inline-start: 44px;
+    margin-block-start: 34px;
+    margin-block-end: 34px;
+    margin-inline-start: 34px;
     max-block-size: calc(100dvb - 88px);
     padding-right: 15px;
+  }
+
+  &__tasks-titl-box {
+    @include flex(row, space-between, flex-end);
+    margin-block-end: 12px;
   }
 
   &__tasks-titl {
@@ -124,32 +129,10 @@
     margin-block-end: 12px;
   }
 
-  &__tasks-list {
-    @include flex(column, flex-start, false, 12px);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    @include font($task-popup-font-family, $task-popup-font-size, $normal);
-    @include line-sizes($task-popup-line-height);
-  }
-
   &__task {
     padding-inline: 24px;
     padding-block: 40px;
     border-radius: 10px;
-  }
-
-  &__tasks-titl-box {
-    @include flex(row, space-between, flex-end);
-  }
-
-  &__tasks-titl {
-    display: inline-block;
-    @include font($task-popup-titl-font-family,
-      $task-popup-titl-font-size,
-      $normal );
-    @include line-sizes($task-popup-titl-line-height);
-    margin-block-end: 12px;
   }
 
   &__tasks-list {
@@ -185,7 +168,7 @@
     @include button-style-reset;
     inline-size: 32px;
     block-size: 32px;
-    margin-block-end: 6px;
+    margin-block-end: 8px;
     background-color: transparent;
     transition: opacity .4s;
 
