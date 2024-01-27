@@ -4,7 +4,6 @@ import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
 import TeamTable from "../../components/TeamTable/TeamTable";
-import Button from "../../ui/buttons/button/button";
 
 const HomePage: FC = (): JSX.Element => {
   const navigate = useNavigate();
