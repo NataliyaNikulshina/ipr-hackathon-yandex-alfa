@@ -52,7 +52,7 @@
     }
   }
 
-  &__table.more {
+  &__table.active {
     height: 780px;
     overflow: auto;
     transition: height .6s;
@@ -87,17 +87,24 @@
 
   &__more {
     position: absolute;
-    bottom: 45px;
-    left: 44px;
+    bottom: 44px;
+    left: 37px;
     background-color: #fff;
+    border-radius: 0 0 0 10px;
+    border-bottom: 1px solid #D5D6DC;
     height: 50px;
-    width: calc(100% - 92px);
+    width: calc(100% - 84px);
     text-align: center;
+  }
+  &__more.active {
+    bottom: 36px;
+    height: 58px;
   }
 }
 
 /* стилизация скролла*/
 .team-table__table::-webkit-scrollbar {
+  border-radius: $l-border-radius;
   width: 10px;
   background-color: #f9f9fd;
 }

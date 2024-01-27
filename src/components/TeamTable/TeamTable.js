@@ -55,7 +55,7 @@ const TeamTable = () => {
           <FilterIcon />
         </button>
       </div>
-      <div className={showMore ? "team-table__table more" : "team-table__table"} ref={table}>
+      <div className={showMore ? "team-table__table active" : "team-table__table"} ref={table}>
         <div className="team-table__head">
           <span>СОТРУДНИК (ФИО)</span>
           <span>ДОЛЖНОСТЬ</span>
@@ -69,7 +69,7 @@ const TeamTable = () => {
           ))}
         </div>
       </div>
-      <div className="team-table__more">
+      <div className={showMore ? "team-table__more active" : "team-table__more"}>
         {filteredEmployees.length > 7 ? (
           <ButtonTableMore onClick={handleShowMoreEmployees} rotate={showMore} />
         ) : ('')}
