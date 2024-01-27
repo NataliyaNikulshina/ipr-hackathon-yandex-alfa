@@ -18,6 +18,7 @@
 
 .wrapper {
   @include flex (row, space-between, start, 42px);
+  position: relative;
 
   &__button{
     @include flex (row, space-between, start, 16px);
@@ -50,4 +51,11 @@
   @include font("Arial", 18px, $normal, #000000);
   line-height: 20px;
   @include indents(0, 0);
+}
+
+.disabled {
+  background-color: rgba(255, 255, 255, 0.7);
+  @include size(244px, 357px);
+  @include position(absolute, $top:0, $left:0);
+  z-index: 2;
 }
