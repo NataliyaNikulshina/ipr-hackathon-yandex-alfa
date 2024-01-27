@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './TeamTable.scss';
 import FilterIcon from "../../ui/icons/filter";
 import ButtonTableMore from "../../ui/buttons/buttonTableMore/buttonTableMore";
@@ -42,6 +43,13 @@ const TeamTable = () => {
     console.log('click')
     filterType === "name" ? setFilterType('position') : setFilterType('name')
   }
+
+  const navigate = useNavigate();
+  const routeTo = (e) => {
+    e.preventDefault();
+    navigate("/employee-ipr", { state: [{ path: "/", url: "/", title: "Моя команда" }] });
+  };
+
   return (
     <section className="team-table" >
       <div className="team-table__search">
@@ -62,7 +70,7 @@ const TeamTable = () => {
         </div>
         <div className="team-table__body" >
           {filteredEmployees.map((employee) => (
-            <a href="#" key={employee.id}>
+            <a href="/employee-ipr" onClick={routeTo} key={employee.id}>
               <span>{employee.name}</span>
               <span>{employee.position}</span>
             </a>

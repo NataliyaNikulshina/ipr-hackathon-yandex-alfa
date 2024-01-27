@@ -55,24 +55,42 @@ const MyTask: FC = (): JSX.Element => {
           </h1>
         </span>
         <div className={styles.wrapper}>
-        <div className={styles.disabled}></div>
-            <div className={styles.listIpr}>
-              {mockDataIpr?.length
-                ? mockDataIpr.map((el) => (
+          {/* <div className={styles.disabled}></div> */}
+          <div className={styles.listIpr}>
+            <div className={styles.disabled}></div>
+            {mockDataIpr &&
+              mockDataIpr.map(
+                (el) =>
+                  el.id === 3 && (
+                    <Button
+                      color="ipr"
+                      width="244"
+                      heigth="48"
+                      onClick={onClick}
+                      disabled={true}
+                    >
+                      {el.title}
+                    </Button>
+                  )
+              )}
+            {mockDataIpr &&
+              mockDataIpr.map(
+                (el) =>
+                  el.id !== 3 && (
                     <Unpacker key={el.id}>
                       <Button
                         color="ipr"
                         width="244"
                         heigth="48"
                         onClick={onClick}
-                        disabled={el.id === 1 ? true : false}
+                        disabled={false}
                       >
                         {el.title}
                       </Button>
                     </Unpacker>
-                  ))
-                : "ИПР не существует"}
-            </div>
+                  )
+              )}
+          </div>
           <p className={styles.text}>Описание задачи</p>
         </div>
         <div className={styles.wrapper__button}>
