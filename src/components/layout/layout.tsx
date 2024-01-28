@@ -9,8 +9,6 @@ import Footer from "../../components/footer/footer";
 import Navigation from "../../components/navigation/navigation";
 import Button from "../../ui/buttons/button/button";
 
-import Rating from "../rating/rating"
-
 // Ссылки на проверочные константы (заглушки)
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 

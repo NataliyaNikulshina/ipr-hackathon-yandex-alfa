@@ -11,8 +11,23 @@
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 0;
+    border-radius: $l-border-radius;
+    width: 12px;
+    background-color: transparent;
   }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $l-border-radius;
+    background-color: #EF3124;
+    border: solid 4px #fff;
+  }
+
+  &::-webkit-scrollbar-track {
+    //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: $l-border-radius;
+    background-color: #fff;
+    margin: 30px;
+  } 
 }
 
 .list {
@@ -21,3 +36,24 @@
   @include indents(0, 0);
 }
 
+// /* стилизация скролла*/
+// .team-table__table::-webkit-scrollbar {
+//   border-radius: $l-border-radius;
+//   width: 6px;
+//   background-color: #f9f9fd;
+// }
+
+// .team-table__table::-webkit-scrollbar-thumb {
+//   border-radius: $l-border-radius;
+//   background-color: #EF3124;
+// }
+
+// .team-table__table::-webkit-scrollbar-track {
+//   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+//   border-radius: $l-border-radius;
+//   background-color: #f9f9fd;
+// }
+
+// @mixin name {
+  
+// }

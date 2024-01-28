@@ -5,7 +5,9 @@ import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
 import MyIpr from "./pages/myIpr/myIpr";
-import IprEmployee from "./pages/iprEmployee/iprEmployee";
+import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
+import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
+import EmployeeTask from "./pages/employeeTask/employeeTask";
 import MyTask from "./pages/myTask/myTask";
 import Layout from "./components/layout/layout";
 
@@ -22,7 +24,9 @@ export const routesUrl = {
   myIPR: "/myipr",
   myTask: "/myipr/my-task",
   signin: "/signin",
-  iprEmployee: "/employee-ipr",
+  employeeIpr: "employee-ipr",
+  employeeListTasks: "employee-ipr/list-tasks",
+  employeeTask: "employee-ipr/list-tasks/task",
   notFound: "*",
 };
 
@@ -36,7 +40,9 @@ const handlePopup = HandlePopup();
         <Route path={routesUrl.signin} element={<Signin />} />
         <Route path={routesUrl.homePage} element={ <Layout /> }>
           <Route path={routesUrl.homePage} element={<HomePage />} />
-          <Route path={routesUrl.iprEmployee} element={<IprEmployee />} />
+          <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />} />
+          <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />} />
+          <Route path={routesUrl.employeeTask} element={<EmployeeTask />} />
           <Route path={routesUrl.myTask} element={<MyTask />} />
           <Route path={routesUrl.myIPR} element={<MyIpr />} />
         </Route>

@@ -10,6 +10,7 @@ export interface Navigation {}
 const Crumb = ({ title, path, url }: any) => {
   const navigate = useNavigate();
   const { state, pathname } = useLocation();
+  console.log(state, pathname);
 
   const routeTo = (e:MouseEvent) => {
     e.preventDefault();

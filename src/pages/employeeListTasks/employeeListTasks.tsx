@@ -1,24 +1,26 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./iprEmployee.module.scss";
+import styles from "./employeeListTasks.module.scss";
 
 
 import Link from "../../ui/links/link";
-import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
-
-// Моковые данные
-import {
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
-
+import ListTask from "../../components/listTask/listTask";
 import Card from "../../components/card/card";
-// import Button from "../../ui/buttons/button/button";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
+// Моковые данные
+import {
+    mockDataTask,
+    mockDataIpr,
+  } from "../../ui/verificationConstants/verificationConstants";
 
-const IprEmployee: FC = (): JSX.Element => {
+// замоканный is_Boss
+const isBoss = true;
+
+
+const EmployeeListTasks: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -26,7 +28,7 @@ const IprEmployee: FC = (): JSX.Element => {
   useEffect(
     () => {
       if (state && !isContainRoute(state, url)) {
-        navigate('', { state: [...state, { path: pathname, url, title: "ИПР Сотрудника" }], replace: true });
+        navigate('', { state: [...state, { path: pathname, url, title: "Задачи ИПР" }], replace: true });
       }
     },
     [pathname, url, state]
@@ -65,17 +67,7 @@ const IprEmployee: FC = (): JSX.Element => {
         Алексеевич"
         appointment="Финансовый аналитик"
       />
-          <div className={styles.listIpr}>
-            {mockDataIpr?.length
-              ? mockDataIpr.map((el) => (
-                  <Unpacker key={el.id}>
-                    <Button color="ipr" width="570" heigth="48" position="left" onClick={onClick} >
-                      {el.title}
-                    </Button>
-                  </Unpacker>
-                ))
-              : "ИПР не существует"}
-          </div>
+          <ListTask tasks={mockDataTask} isBoss={isBoss} />
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="554" heigth="56" onClick={onClick}>
@@ -87,4 +79,4 @@ const IprEmployee: FC = (): JSX.Element => {
   );
 };
 
-export default IprEmployee;
+export default EmployeeListTasks;

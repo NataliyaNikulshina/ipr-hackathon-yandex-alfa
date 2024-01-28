@@ -25,11 +25,13 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
-  let initialBreadcrumb = [];
 
   const onClickMyTasks = () => {
-    initialBreadcrumb = [{ path: location.pathname, url, title: "Мои ИПР" }];
-    navigate("/myipr/my-task", { state: initialBreadcrumb });
+    navigate("/myipr/my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
+  };
+
+  const onClickEmployeeTasks = () => {
+    navigate("/employee-ipr/list-tasks/task", { state: location.state });
   };
 
   const onCrmChange = () => {
@@ -38,12 +40,12 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
 
   return (
     <li className={styleTask.item}>
-      <Checkbox checked={crm} onChange={onCrmChange} name="crm" value={title} />
+      {!isBoss && <Checkbox checked={crm} onChange={onCrmChange} name="crm" value={title} />}
       <Button
         color="transparent"
         width="456"
         heigth="35"
-        onClick={onClickMyTasks}
+        onClick={isBoss ? onClickEmployeeTasks : onClickMyTasks}
       >
         {title}
       </Button>
