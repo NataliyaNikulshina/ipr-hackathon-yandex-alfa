@@ -1,5 +1,9 @@
 import React from 'react';
 
+import darts from "../../images/darts.png";
+import telephoneOperator from "../../images/telephone-operator.png";
+import dartsTask from "../../images/darts-task.png";
+
 const HandlePopup = () => {
 
   const [isInfoPopupOpen, setIsInfoPopupOpen] =
@@ -36,16 +40,23 @@ const HandlePopup = () => {
         setIsPopup[1]({
           ...setIsPopup[0],
           tugle: true,
-          popupImg: props.newPopupImg ? props.newPopupImg : '',
+          popupImg: props.newPopupImg ? props.newPopupImg : dartsTask,
           arrTodayTasks: props.arrTodayTasks ? props.arrTodayTasks : [],
           arrThisWekTasks: props.arrThisWekTasks ? props.arrThisWekTasks : []
         });
-      } else {
+      } else if (props.popupAssignment === 'error') {
         setIsPopup[1]({
           ...setIsPopup[0],
           tugle: true,
-          popupText: props.newPopupText ? props.newPopupText : '',
-          popupImg: props.newPopupImg ? props.newPopupImg : ''
+          popupText: props.newPopupText ? props.newPopupText : 'Что-то пошло не так, проверьте подключение к интернету',
+          popupImg: props.newPopupImg ? props.newPopupImg : telephoneOperator
+        });
+      }else if (props.popupAssignment === 'info') {
+        setIsPopup[1]({
+          ...setIsPopup[0],
+          tugle: true,
+          popupText: props.newPopupText ? props.newPopupText : 'Комментарий отправлен сотруднику!',
+          popupImg: props.newPopupImg ? props.newPopupImg : darts
         });
       };
     };

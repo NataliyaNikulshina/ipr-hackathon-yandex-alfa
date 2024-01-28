@@ -17,8 +17,11 @@ import Card from "../../components/card/card";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
+export interface IIprEmployee {
+  handlePopup(editing: object): void;
+}
 
-const IprEmployee: FC = (): JSX.Element => {
+const IprEmployee: FC<IIprEmployee> = ({ handlePopup }): JSX.Element => {
   const {state, pathname} = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -64,6 +67,7 @@ const IprEmployee: FC = (): JSX.Element => {
         name="Соколов Михаил 
         Алексеевич"
         appointment="Финансовый аналитик"
+        handlePopup={handlePopup}
       />
           <div className={styles.listIpr}>
             {mockDataIpr?.length
