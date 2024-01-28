@@ -8,7 +8,7 @@ const HandlePopup = () => {
     React.useState({ popupAssignment: 'error', tugle: false, popupText: '', popupImg: '' });
   const [isTaskTrackingLogPopupOpen, setIsTaskTrackingLogPopupOpen] =
     React.useState({ popupAssignment: 'task', tugle: false, popupImg: '', arrTodayTasks: [], arrThisWekTasks: [] });
-  const [howManyOpenPoups, setHowManyOpenPoups] = React.useState(0);
+  const [howManyOpenPoups, setHowManyOpenPoups] = React.useState(10);
 
   const whatPopupHandle = (popupAssignment) => {
     let setIsPopup = [];
