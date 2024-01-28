@@ -80,6 +80,11 @@
   }
 }
 
+
+input:focus {
+  outline: none;
+}
+
 /* стилизация скролла*/
 .team-table__table::-webkit-scrollbar {
   border-radius: $l-border-radius;
