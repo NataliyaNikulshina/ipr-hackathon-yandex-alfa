@@ -8,9 +8,10 @@ interface TextareaProps {
     height?: string;
     value?: string;
     onChange?: (value: string) => void;
+    disabled?: boolean;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ placeholder, width, height, value, onChange }) => {
+const Textarea: React.FC<TextareaProps> = ({ placeholder, width, height, value, disabled, onChange }) => {
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         // внутренняя логика компонента
         console.log(e.target.value)
@@ -26,6 +27,7 @@ const Textarea: React.FC<TextareaProps> = ({ placeholder, width, height, value, 
             onChange={handleChange}
             placeholder={placeholder}
             style={{ height: height || '100px', width: width || '100%' }}
+            disabled={disabled}
         />
     );
 };
