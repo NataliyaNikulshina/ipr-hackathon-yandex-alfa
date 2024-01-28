@@ -50,7 +50,7 @@
 .text {
   @include font("Arial", 18px, $normal, #000000);
   line-height: 20px;
-  @include indents(0, 0);
+  @include indents(0 0 6px 0, 0);
 }
 
 .disabled {
@@ -58,4 +58,9 @@
   @include size(244px, 357px);
   @include position(absolute, $top:0, $left:0);
   z-index: 2;
+}
+
+.wrapper__task{
+  @include flex(column, start, start, 16px); 
+  width: 552px;
 }

@@ -4,6 +4,7 @@ import styles from "./myTask.module.scss";
 import Link from "../../ui/links/link";
 import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
+import Textarea from "../../ui/textarea/textarea";
 // Моковые данные
 import {
   mockDataTask,
@@ -91,7 +92,14 @@ const MyTask: FC = (): JSX.Element => {
                   )
               )}
           </div>
-          <p className={styles.text}>Описание задачи</p>
+          <div className={styles.wrapper__task}>
+            <p className={styles.text}>Описание задачи</p>
+            <Textarea
+              height="102px"
+              value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
+              disabled
+            />
+          </div>
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="281" heigth="56" onClick={onClick}>
