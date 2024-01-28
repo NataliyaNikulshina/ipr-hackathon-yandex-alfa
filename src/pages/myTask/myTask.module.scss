@@ -64,3 +64,8 @@
   @include flex(column, start, start, 16px); 
   width: 552px;
 }
+
+.rating__box {
+  inline-size: 522px;
+  align-self: center;
+}

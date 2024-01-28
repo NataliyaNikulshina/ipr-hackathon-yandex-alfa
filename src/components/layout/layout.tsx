@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Outlet, useMatch } from 'react-router';
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -9,6 +9,8 @@ import Footer from "../../components/footer/footer";
 import Navigation from "../../components/navigation/navigation";
 import Button from "../../ui/buttons/button/button";
 
+import Rating from "../rating/rating"
+
 // Ссылки на проверочные константы (заглушки)
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 
@@ -16,19 +18,19 @@ const Layout: FC = () => {
   // const matchChat = useMatch('/chat/:id');
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const onClickIPR = () => {
     navigate("/myipr");
   };
 
-   const onClickTeam = () => {
+  const onClickTeam = () => {
     navigate("/");
   };
 
   return (
     <div className={stylesLayout.layout}>
       <section className={stylesLayout.layout__nav}>
-      <Navigation /> 
+        <Navigation />
       </section>
       <div className={stylesLayout.layout__card}>
       <Card
@@ -51,7 +53,7 @@ const Layout: FC = () => {
         <Outlet />
       </main>
       <section className={stylesLayout.layout__footer}>
-      <Footer footerLinkList={footerLinkList} />
+        <Footer footerLinkList={footerLinkList} />
       </section>
     </div>
   );

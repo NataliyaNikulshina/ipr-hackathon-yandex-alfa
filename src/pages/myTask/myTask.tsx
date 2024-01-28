@@ -6,6 +6,8 @@ import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
+
+import Rating from "../../components/rating/rating"
 // Моковые данные
 import {
   mockDataTask,
@@ -35,6 +37,33 @@ const MyTask: FC = (): JSX.Element => {
 
   function onClick() {
     alert("Переход к определенному списку задач");
+  }
+
+  // Тригер закрытия задачи и переключения на поле оценки.
+  const [isClosingTask, setIsClosingTask] = useState(false);
+
+  // преключаемся на поле оценки.
+  const hanleClickClosingTask = () => {
+    setIsClosingTask(true);
+  };
+
+  // произведена оценка или нет.
+  // !!! для того, что бы пользователь не переголосовыва после перезагрузки
+  //  или перезахода стоит запрашивать с бэка состояние переменной голосования,
+  //  было оно уже или нет. !!!
+  const [isAssessment, setIsAssessment] = useState(false);
+  // Оценка возвращаеться в формате числа.
+  const [isActualRating, setIsActualRating] = useState(0);
+
+  const estimate = () => {
+    // Проверяем случилось ли оценивание.
+    if (isActualRating) {
+      // Тут нужно кудато послать наш рейтинг, видимо на бэк. 
+      alert(isActualRating);
+      // И если ответ с бэка положительный сказать спасибо за голосование.
+      setIsAssessment(true);
+      // а ести отрицатеольный вызвать попап с ерором.
+    }
   }
 
   return (
@@ -95,23 +124,47 @@ const MyTask: FC = (): JSX.Element => {
                   )
               )}
           </div>
-          <div className={styles.wrapper__task}>
-            <p className={styles.text}>Описание задачи</p>
-            <Textarea
-              height="102px"
-              value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
-              disabled
-            />
-            <DeadlineBlock deadline={'2024-01-30'} />
-          </div>
+
+          {!isClosingTask ?
+            <div className={styles.wrapper__task}>
+              <p className={styles.text}>Описание задачи</p>
+              <Textarea
+                height="102px"
+                value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
+                disabled
+              />
+              <DeadlineBlock deadline={'2024-01-30'} />
+            </div>
+            :
+            <div className={styles.rating__box}>
+              <Rating
+                titleOpening='Оцените, пожалуйста, организацию и прохождение ИПР.'
+                titleСlosing='Спасибо за оценку.'
+                isAssessment={isAssessment}
+                actualRating={setIsActualRating}
+              />
+            </div>
+          }
         </div>
         <div className={styles.wrapper__button}>
-          <Button color="red" width="281" heigth="56" onClick={onClick}>
-            Закрыть задачу
-          </Button>
-          <Button color="grey" width="281" heigth="56" onClick={onClick}>
-            Отмена
-          </Button>
+          {!isClosingTask
+            ?
+            <>
+              <Button color="red" width="281" heigth="56" onClick={hanleClickClosingTask}>
+                Закрыть задачу
+              </Button>
+              <Button color="grey" width="281" heigth="56" onClick={onClick}>
+                Отмена
+              </Button>
+            </>
+            : !isAssessment
+              ?
+              <Button color="red" width="522" heigth="56" onClick={estimate} disabled={!isActualRating ? true : false}>
+                Оценить ИПР
+              </Button>
+              :
+              <></>
+          }
         </div>
       </div>
     </section>
