@@ -33,7 +33,7 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/", { replace: true });
+    navigate("/employee-ipr/list-tasks", { replace: true, state: state.slice(0, 3)});
   };
 
   return (

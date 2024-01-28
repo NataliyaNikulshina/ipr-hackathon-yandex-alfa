@@ -26,8 +26,9 @@ const EmployeeIpr: FC = (): JSX.Element => {
     [pathname, url, state]
   );
 
-  function onClick() {
-    alert("Переход к созданию ИПР");
+  function onClick(e: any) {
+    e.preventDefault();
+    navigate("create-ipr",  { state: state, replace: true });
   }
 
   const routeTo = (e: any) => {

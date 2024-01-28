@@ -1,44 +1,33 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./employeeListTasks.module.scss";
+import styles from "./employeeIpr.module.scss";
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
-import ListTask from "../../components/listTask/listTask";
+
 import Card from "../../components/card/card";
 
-import { isContainRoute, removeRemainingCrumbs } from "../../utils/breadcrumbs";
+import { isContainRoute } from "../../utils/breadcrumbs";
 
-// Моковые данные
-import {
-  mockDataTask,
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
-
-// замоканный is_Boss
-const isBoss = true;
-
-const EmployeeListTasks: FC = (): JSX.Element => {
+const CreateIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
-  console.log(url);
 
   useEffect(() => {
     if (state && !isContainRoute(state, url)) {
       navigate("", {
-        state: [...state, { path: pathname, url, title: "Задачи ИПР" }],
+        state: [
+          ...state,
+          { path: pathname, url, title: "Создание нового ИПР" },
+        ],
         replace: true,
       });
     }
   }, [pathname, url, state]);
 
-  function onClick(e: any) {
-    e.preventDefault();
-    navigate("/employee-ipr/create-ipr/create-task", {
-      state: state,
-      replace: true,
-    });
+  function onClick() {
+    alert("Переход к определенному списку задач");
   }
 
   const routeTo = (e: any) => {
@@ -70,11 +59,14 @@ const EmployeeListTasks: FC = (): JSX.Element => {
         Алексеевич"
             appointment="Финансовый аналитик"
           />
-          <ListTask tasks={mockDataTask} isBoss={isBoss} />
+          <p>Здесь будет создание ИПР</p>
         </div>
         <div className={styles.wrapper__button}>
-          <Button color="red" width="554" heigth="56" onClick={onClick}>
-            Создать задачу
+          <Button color="red" width="281" heigth="56" onClick={onClick}>
+            Добавить задачу
+          </Button>
+          <Button color="grey" width="281" heigth="56" onClick={onClick}>
+            Отмена
           </Button>
         </div>
       </div>
@@ -82,4 +74,4 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   );
 };
 
-export default EmployeeListTasks;
+export default CreateIpr;
