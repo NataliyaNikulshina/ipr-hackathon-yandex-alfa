@@ -5,6 +5,7 @@ import Link from "../../ui/links/link";
 import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
+import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 // Моковые данные
 import {
   mockDataTask,
@@ -63,15 +64,17 @@ const MyTask: FC = (): JSX.Element => {
               mockDataIpr.map(
                 (el) =>
                   el.id === 3 && (
-                    <Button
-                      color="ipr"
-                      width="244"
-                      heigth="48"
-                      onClick={onClick}
-                      disabled={true}
-                    >
-                      {el.title}
-                    </Button>
+                    <Unpacker key={el.id}>
+                      <Button
+                        color="ipr"
+                        width="244"
+                        heigth="48"
+                        onClick={onClick}
+                        disabled={true}
+                      >
+                        {el.title}
+                      </Button>
+                    </Unpacker>
                   )
               )}
             {mockDataIpr &&
@@ -99,6 +102,7 @@ const MyTask: FC = (): JSX.Element => {
               value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
               disabled
             />
+            <DeadlineBlock deadline={'2024-01-30'} />
           </div>
         </div>
         <div className={styles.wrapper__button}>
