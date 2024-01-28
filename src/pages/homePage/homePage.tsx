@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
-import Button from "../../ui/buttons/button/button";
+import TeamTable from "../../components/TeamTable/TeamTable";
 
 const HomePage: FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -17,14 +17,7 @@ const HomePage: FC = (): JSX.Element => {
 
   return (
     <section className={stylesProfile.page}>
-          <Button
-            color="white"
-            width="304"
-            heigth="48"
-            onClick={onClickEmployee}
-          >
-            Будущая таблица сотрудников
-          </Button>
+          <TeamTable />
           <Statistics />
     </section>
   );

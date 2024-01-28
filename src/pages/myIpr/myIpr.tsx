@@ -50,7 +50,7 @@ const MyIpr: FC = (): JSX.Element => {
             {mockDataIpr?.length
               ? mockDataIpr.map((el) => (
                   <Unpacker key={el.id}>
-                    <Button color="ipr" width="244" heigth="48" onClick={onClick} disabled={el.id===1 ? true : false }>
+                    <Button color="ipr" width="244" heigth="48" onClick={onClick} disabled={el.id===3 ? true : false }>
                       {el.title}
                     </Button>
                   </Unpacker>

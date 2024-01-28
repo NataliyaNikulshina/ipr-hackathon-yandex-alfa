@@ -10,6 +10,14 @@
   border-radius: 12px;
 }
 
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
 .red {
   background-color: #ef3124;
   color: #fff;

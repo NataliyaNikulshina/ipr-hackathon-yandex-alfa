@@ -18,6 +18,7 @@
 
 .wrapper {
   @include flex (row, space-between, start, 42px);
+  position: relative;
 
   &__button{
     @include flex (row, space-between, start, 16px);
@@ -35,7 +36,36 @@
   }
 }
 
-.link{
-  @include flex(row, start, start); 
+.header{
+  @include flex(row, start, start, 202px); 
   @include indents(0, 0);
+}
+
+.title {
+  @include font("Arial", 24px, $bold, #0E0E0E);
+  line-height: 26px;
+  @include indents(0, 0);
+}
+
+.text {
+  @include font("Arial", 18px, $normal, #000000);
+  line-height: 20px;
+  @include indents(0 0 6px 0, 0);
+}
+
+.disabled {
+  background-color: rgba(255, 255, 255, 0.7);
+  @include size(244px, 357px);
+  @include position(absolute, $top:0, $left:0);
+  z-index: 2;
+}
+
+.wrapper__task{
+  @include flex(column, start, start, 16px); 
+  width: 552px;
+}
+
+.rating__box {
+  inline-size: 522px;
+  align-self: center;
 }

@@ -7,7 +7,7 @@ import light from "../../ui/icons/achievement/light.svg";
 import people from "../../ui/icons/achievement/people.svg";
 import timer from "../../ui/icons/achievement/timer.svg";
 import Popup from "../popup/popup";
-import dartsTask from "../../images/darts.png";
+import dartsTask from "../../images/darts-task.png";
 import HandlePopup from "../../utils/handlePopup/handlePopup";
 // Ссылки на проверочные константы (заглушки)
 import { arrTodayTasks, arrThisWekTasks } from '../../ui/verificationConstants/verificationConstants.js'

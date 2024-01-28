@@ -22,7 +22,7 @@ export const routesUrl = {
   myIPR: "/myipr",
   myTask: "/myipr/my-task",
   signin: "/signin",
-  iprEmployee: "/ipr-employee",
+  iprEmployee: "/employee-ipr",
   notFound: "*",
 };
 
