@@ -3,8 +3,9 @@
 
 .listIpr {
   @include flex(column, start, start, 8px);
-  overflow-y: scroll;
-  scrollbar-width: thin; /* "auto" или "thin" */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* "auto" или "thin" */
   scrollbar-color: #EF3124 #dee1e6;
 
   &::-webkit-scrollbar {
@@ -32,5 +33,14 @@
 
   &__small {
     @include size(266px, 357px);
+  }
+
+  &__title_empty {
+    margin: auto;
+    @include font($listIpr__title_empty-font-family,
+    $listIpr__title_empty-font-size,
+    $listIpr__title_empty-font-weight,
+    $listIpr__title_empty-font-color );
+    @include line-sizes($listIpr__title_empty-line-height);
   }
 }
