@@ -27,7 +27,7 @@ const CreateTask: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   function onClick() {
-    alert("Задача добавлена");
+    navigate("/employee-ipr/list-tasks/task", { replace: true, state: state}); 
   }
 
   const routeTo = (e: any) => {
