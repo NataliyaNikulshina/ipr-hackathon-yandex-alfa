@@ -37,14 +37,14 @@ export const routesUrl = {
 };
 
 const App = () => {
-const path = useLocation().pathname;
-const handlePopup = HandlePopup();
+  const path = useLocation().pathname;
+  const handlePopup = HandlePopup();
 
   return (
     <>
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.homePage} element={ <Layout /> }>
+        <Route path={routesUrl.homePage} element={<Layout handlePopup={handlePopup.open}/>}>
           <Route path={routesUrl.homePage} element={<HomePage />} />
           <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />} />
           <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />} />
@@ -61,7 +61,9 @@ const handlePopup = HandlePopup();
               type="button"
               onClick={() => {
                 const popupAssignment = 'info';
-                const text = 'Комментарий отправлен сотруднику!';
+                // const text = 'Комментарий отправлен сотруднику!';
+                // const text = 'Завтра вы отправляетесь в космос.';
+                const text = '';
                 handlePopup.open({ popupAssignment, newPopupText: text, newPopupImg: darts })
               }}
             >
@@ -72,14 +74,16 @@ const handlePopup = HandlePopup();
               type="button"
               onClick={() => {
                 const popupAssignment = 'error';
-                const text = 'Что-то пошло не так, проверьте подключение к интернету';
+                // const text = 'Что-то пошло не так, проверьте подключение к интернету';
+                const text = 'Он из лесу вышел и снова зашёл.';
                 handlePopup.open({ popupAssignment, newPopupText: text, newPopupImg: telephoneOperator })
               }}
             >
               Открыть popup error
-            </button> */}
-            <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
-            <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
+            </button>  */}
+      <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
     </>
   );
 };

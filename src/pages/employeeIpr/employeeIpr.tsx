@@ -11,6 +11,9 @@ import Card from "../../components/card/card";
 import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
 
+// export interface IIprEmployee {
+  
+// }
 
 const EmployeeIpr: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
@@ -59,6 +62,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
         name="Соколов Михаил 
         Алексеевич"
         appointment="Финансовый аналитик"
+
       />
           <ListIpr size='big' isBoss={true} />
         </div>

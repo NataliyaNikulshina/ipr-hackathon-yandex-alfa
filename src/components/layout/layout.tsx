@@ -12,7 +12,11 @@ import Button from "../../ui/buttons/button/button";
 // Ссылки на проверочные константы (заглушки)
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 
-const Layout: FC = () => {
+export interface ILayout {
+  handlePopup(editing: object): void;
+}
+
+const Layout: FC<ILayout> = ({ handlePopup }) => {
   // const matchChat = useMatch('/chat/:id');
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,6 +40,7 @@ const Layout: FC = () => {
             avatar="https://fs.znanio.ru/7ec5d2/d4/b5/750c4d0f7fe1f3fd9cba006fbfce6bc710.jpg"
             name="Антонова Екатерина Владимировна"
             appointment="Главный финансовый аналитик"
+            handlePopup={handlePopup}
           />
           <Button color="nav_white" width="304" heigth="48">
             Мои достижения
