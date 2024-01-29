@@ -15,14 +15,14 @@ export interface ICard {
   avatar?: string;
   name: string;
   appointment: string;
-  handlePopup(editing: object): void;
+  handlePopup?(editing: object): void;
 }
 
 const Card: FC<ICard> = ({ size, avatar, name, appointment, handlePopup }) => {
 
   function onClick() {
     const popupAssignment = "task";
-    handlePopup({ popupAssignment, arrTodayTasks, arrThisWekTasks });
+    handlePopup && handlePopup({ popupAssignment, arrTodayTasks, arrThisWekTasks });
   }
 
   const styleAll =

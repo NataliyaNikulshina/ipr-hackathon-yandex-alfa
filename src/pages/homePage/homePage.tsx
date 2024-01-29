@@ -12,7 +12,7 @@ const HomePage: FC = (): JSX.Element => {
 
   const onClickEmployee = () => {
     initialBreadcrumb = [{ path: "/", url: "/", title: "Моя команда" }];
-    navigate("/ipr-employee", { state: initialBreadcrumb });
+    navigate("/employee-ipr", { state: initialBreadcrumb });
   };
 
   return (

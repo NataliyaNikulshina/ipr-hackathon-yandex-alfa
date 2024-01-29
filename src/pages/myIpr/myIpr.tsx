@@ -2,7 +2,7 @@ import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import stylesMyIpr from "./myIpr.module.scss";
 import Link from "../../ui/links/link";
-import Unpacker from "../../ui/unpacker/unpacker";
+import { isContainRoute } from "../../utils/breadcrumbs";
 
 import ListTask from "../../components/listTask/listTask";
 import Button from "../../ui/buttons/button/button";
@@ -12,12 +12,24 @@ import {
   mockDataTask,
   mockDataIpr,
 } from "../../ui/verificationConstants/verificationConstants";
+import ListIpr from "../../components/listIpr/listIpr";
 
 // замоканный is_Boss
 const isBoss = false;
 
 const MyIpr: FC = (): JSX.Element => {
+  const {state, pathname} = useLocation();
   const navigate = useNavigate();
+  const url = window.location.href;
+
+  useEffect(
+    () => {
+      if (state && !isContainRoute(state, url)) {
+        navigate('', { state: [...state, { path: pathname, url, title: "Мои ИПР" }], replace: true });
+      }
+    },
+    [pathname, url, state]
+  );
 
   function onClick() {
     alert("Переход к определенному списку задач");
@@ -46,17 +58,7 @@ const MyIpr: FC = (): JSX.Element => {
           </Link>
         </span>
         <div className={stylesMyIpr.wrapper}>
-          <div className={stylesMyIpr.listIpr}>
-            {mockDataIpr?.length
-              ? mockDataIpr.map((el) => (
-                  <Unpacker key={el.id}>
-                    <Button color="ipr" width="244" heigth="48" onClick={onClick} disabled={el.id===3 ? true : false }>
-                      {el.title}
-                    </Button>
-                  </Unpacker>
-                ))
-              : "ИПР не существует"}
-          </div>
+          <ListIpr size='small'/>
           <ListTask tasks={mockDataTask} isBoss={isBoss} />
         </div>
         <div className={stylesMyIpr.wrapper__button}>

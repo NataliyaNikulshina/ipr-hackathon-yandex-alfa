@@ -2,6 +2,7 @@
 @use "../../stylesheets/mixins" as *;
 
 .page {
+  // @include flex(column, start, center, 10px);
   background-color: #FFFFFF;
   width: 100%;
 }
@@ -18,7 +19,6 @@
 
 .wrapper {
   @include flex (row, space-between, start, 42px);
-  position: relative;
 
   &__button{
     @include flex (row, space-between, start, 16px);
@@ -27,46 +27,16 @@
 }
 
 .listIpr {
- @include size(244px, 357px);
+ @include size(575px, 357px);
  @include flex (column, start, start, 8px);
  overflow-y: scroll;
- scrollbar-width: none; 
 
   &::-webkit-scrollbar {
     width: 0;
   }
 }
 
-.header{
-  @include flex(row, start, start, 202px); 
-  @include indents(0, 0);
-}
-
-.title {
-  @include font("Arial", 24px, $bold, #0E0E0E);
-  line-height: 26px;
-  @include indents(0, 0);
-}
-
-.text {
-  @include font("Arial", 18px, $normal, #000000);
-  line-height: 20px;
-  @include indents(0 0 6px 0, 0);
-}
-
-.disabled {
-  background-color: rgba(255, 255, 255, 0.7);
-  @include size(244px, 357px);
-  @include position(absolute, $top:0, $left:0);
-  z-index: 2;
-}
-
-.wrapper__task{
-  @include flex(column, start, start, 16px); 
-  width: 552px;
-}
-
-.rating__box {
-  inline-size: 522px;
-  align-self: center;
+.link{
+  @include flex(row, start, start); 
+  @include indents(5px 0 0, 0);
 }

@@ -1,27 +1,21 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./iprEmployee.module.scss";
+import styles from "./employeeIpr.module.scss";
 
 
 import Link from "../../ui/links/link";
-import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
 
-// Моковые данные
-import {
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
-
 import Card from "../../components/card/card";
-// import Button from "../../ui/buttons/button/button";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
+import ListIpr from "../../components/listIpr/listIpr";
 
-export interface IIprEmployee {
-  handlePopup(editing: object): void;
-}
+// export interface IIprEmployee {
+  
+// }
 
-const IprEmployee: FC<IIprEmployee> = ({ handlePopup }): JSX.Element => {
+const EmployeeIpr: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -35,8 +29,9 @@ const IprEmployee: FC<IIprEmployee> = ({ handlePopup }): JSX.Element => {
     [pathname, url, state]
   );
 
-  function onClick() {
-    alert("Переход к определенному списку задач");
+  function onClick(e: any) {
+    e.preventDefault();
+    navigate("create-ipr",  { state: state, replace: true });
   }
 
   const routeTo = (e: any) => {
@@ -67,19 +62,9 @@ const IprEmployee: FC<IIprEmployee> = ({ handlePopup }): JSX.Element => {
         name="Соколов Михаил 
         Алексеевич"
         appointment="Финансовый аналитик"
-        handlePopup={handlePopup}
+
       />
-          <div className={styles.listIpr}>
-            {mockDataIpr?.length
-              ? mockDataIpr.map((el) => (
-                  <Unpacker key={el.id}>
-                    <Button color="ipr" width="570" heigth="48" position="left" onClick={onClick} >
-                      {el.title}
-                    </Button>
-                  </Unpacker>
-                ))
-              : "ИПР не существует"}
-          </div>
+          <ListIpr size='big' isBoss={true} />
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="554" heigth="56" onClick={onClick}>
@@ -91,4 +76,4 @@ const IprEmployee: FC<IIprEmployee> = ({ handlePopup }): JSX.Element => {
   );
 };
 
-export default IprEmployee;
+export default EmployeeIpr;

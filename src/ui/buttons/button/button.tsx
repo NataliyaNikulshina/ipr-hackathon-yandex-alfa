@@ -8,7 +8,7 @@ export interface IButton {
   color?: "red" | "black" | "grey" | "white" | "nav_white" | "ipr" | "transparent";
   position?: "left" | "right" | "center";
   buttonHtmlType?: "button" | "submit" | "reset";
-  onClick?: VoidFunction;
+  onClick?: VoidFunction | ((e: any) => void);
   disabled?: boolean;
   children?: React.ReactNode;
 }
