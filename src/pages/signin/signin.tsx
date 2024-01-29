@@ -4,9 +4,9 @@ import Button from "../../ui/buttons/button/button";
 import LogoIcon from "../../ui/icons/logo";
 import Input from "../../ui/inputs/input/input";
 import useForm from "../../utils/use-form";
+import { signinApi } from "../../api/auth";
 
 import stylesSignin from "./signin.module.scss";
-
 const handleSignin = (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   alert("Вы вошли");
@@ -22,6 +22,14 @@ const Signin: FC = (): JSX.Element => {
   useEffect(() => {
     (values.email.valueValid && values.password.valueValid) ? setButtonDisabled(false) : setButtonDisabled(true);
   }, [values]);
+
+  const handleSignin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signinApi({
+        email: values.email.value,
+        password: values.password.value,
+      });
+  };
 
   const clearInput = () => {
     setValues({
