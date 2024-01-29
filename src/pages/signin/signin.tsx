@@ -7,10 +7,6 @@ import useForm from "../../utils/use-form";
 import { signinApi } from "../../api/auth";
 
 import stylesSignin from "./signin.module.scss";
-const handleSignin = (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  alert("Вы вошли");
-}
 
 const Signin: FC = (): JSX.Element => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
