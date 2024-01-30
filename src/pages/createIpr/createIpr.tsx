@@ -33,7 +33,7 @@ const CreateIpr: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/employee-ipr", { replace: true });
+    navigate("/employee-ipr", { replace: true, state: state.slice(0, 2)});
   };
 
   return (

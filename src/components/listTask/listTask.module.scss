@@ -9,23 +9,25 @@
     2px 2px 5px 0px rgba(95, 99, 104, 0.15);
   @include indents(8px, 0);
   overflow-y: scroll;
+  scrollbar-width: thin; /* "auto" или "thin" */
+  scrollbar-color: #EF3124 #dee1e6;
 
   &::-webkit-scrollbar {
     border-radius: $l-border-radius;
-    width: 12px;
+    width: 8px;
     background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: $l-border-radius;
     background-color: #EF3124;
-    border: solid 4px #fff;
+    // border: solid 4px #dee1e6;
   }
 
   &::-webkit-scrollbar-track {
     //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
     border-radius: $l-border-radius;
-    background-color: #fff;
+    background-color: #dee1e6;
     margin: 30px;
   } 
 }

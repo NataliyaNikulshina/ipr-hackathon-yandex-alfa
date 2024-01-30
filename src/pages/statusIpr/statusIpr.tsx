@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./employeeIpr.module.scss";
+import styles from "./statusIpr.module.scss";
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
@@ -9,7 +9,7 @@ import Card from "../../components/card/card";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
-const CreateIpr: FC = (): JSX.Element => {
+const StatusIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -17,22 +17,22 @@ const CreateIpr: FC = (): JSX.Element => {
   useEffect(() => {
     if (state && !isContainRoute(state, url)) {
       navigate("", {
-        state: [
-          ...state,
-          { path: pathname, url, title: "Создание нового ИПР" },
-        ],
+        state: [...state, { path: pathname, url, title: "Статус выполнения ИПР" }],
         replace: true,
       });
     }
   }, [pathname, url, state]);
 
   function onClick() {
-    alert("Переход к определенному списку задач");
+    alert("Оценка ИПР");
   }
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/employee-ipr", { replace: true, state: state.slice(0, 2)});
+    navigate("/employee-ipr/list-tasks", {
+      replace: true,
+      state: state.slice(0, 3),
+    });
   };
 
   return (
@@ -59,19 +59,16 @@ const CreateIpr: FC = (): JSX.Element => {
         Алексеевич"
             appointment="Финансовый аналитик"
           />
-          <p>Здесь будет создание ИПР</p>
+          <p>Здесь будет статус выполнения ИПР</p>
         </div>
         <div className={styles.wrapper__button}>
-          <Button color="red" width="281" heigth="56" onClick={onClick}>
-            Добавить задачу
-          </Button>
-          <Button color="grey" width="281" heigth="56" onClick={onClick}>
-            Отмена
-          </Button>
+        <Button color="red" width="522" heigth="56" onClick={onClick} disabled={false}>
+                Оценить ИПР
+              </Button>
         </div>
       </div>
     </section>
   );
 };
 
-export default CreateIpr;
+export default StatusIpr;
