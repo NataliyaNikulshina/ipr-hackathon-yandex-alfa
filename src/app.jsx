@@ -13,6 +13,7 @@ import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
 import MyTask from "./pages/myTask/myTask";
 import Layout from "./components/layout/layout";
+import Loader from "./components/loader/loader"
 
 // функция управления popup
 import HandlePopup from './utils/handlePopup/handlePopup';
@@ -39,6 +40,8 @@ export const routesUrl = {
 const App = () => {
   const path = useLocation().pathname;
   const handlePopup = HandlePopup();
+
+  const [isLoader, setIsLoader] = useState(false);
 
   return (
     <>
@@ -84,6 +87,7 @@ const App = () => {
       <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
+      <Loader isOpen={isLoader}/>
     </>
   );
 };
