@@ -1,0 +1,93 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.calendar {
+    align-self: flex-start;
+    position: relative;
+    width: 304px;
+
+    &__input {
+        background-color: #E7E8EA;
+        border-radius: 8px;
+        padding: 14px 24px;
+        width: 304px;
+        height: 52px;
+        border: none;
+        color: #0E0E0E;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    &__button {
+        @include button-style-reset;
+        position: absolute;
+        top: 18px;
+        right: 18px;
+    }
+
+    .react-datepicker {
+        width: 360px;
+        height: 400px;
+        border: none;
+        border-radius: 16px;
+        background-color: #fff;
+        box-shadow: -8px -8px 40px 0px rgba(95, 99, 104, 0.10), 16px 16px 40px 0px rgba(95, 99, 104, 0.10);
+
+        &-popper {
+            transform: translate(324px, 0px) !important;
+        }
+
+        &__month-container {
+            float: none;
+        }
+
+        &__current-month {
+            margin-bottom: 20px;
+        }
+
+        &__header {
+            margin-top: 20px;
+            background-color: #fff;
+            border-bottom: none;
+        }
+
+        &__navigation {
+            top: 22px;
+        }
+
+        &__triangle {
+            display: none;
+        }
+
+        &__day {
+            width: 40px;
+            height: 40px;
+            line-height: 2.4rem;
+        }
+
+        &__day:hover {
+            border-radius: 100px;
+        }
+
+        &__day--selected,
+        &__day--keyboard-selected {
+            background-color: #EF3124;
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+        }
+
+        &__day-name {
+            text-transform: uppercase;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        &__day--outside-month {
+            color: #6A6B74;
+            pointer-events: none;
+        }
+    }
+
+}
