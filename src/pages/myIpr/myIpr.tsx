@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import stylesMyIpr from "./myIpr.module.scss";
 import Link from "../../ui/links/link";
 import { isContainRoute } from "../../utils/breadcrumbs";
+import { Outlet } from 'react-router';
 
 import ListTask from "../../components/listTask/listTask";
 import Button from "../../ui/buttons/button/button";
@@ -19,6 +20,7 @@ const isBoss = false;
 
 const MyIpr: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
+  console.log(pathname);
   const navigate = useNavigate();
   const url = window.location.href;
 
@@ -44,7 +46,9 @@ const MyIpr: FC = (): JSX.Element => {
   return (
     <section className={stylesMyIpr.page}>
       <div className={stylesMyIpr.container}>
-        <span className={stylesMyIpr.link}>
+        {pathname==="/myipr" ? (
+          <>
+          <span className={stylesMyIpr.link}>
           <Link
             href={"/myipr"}
             onClick={routeTo}
@@ -58,7 +62,8 @@ const MyIpr: FC = (): JSX.Element => {
           </Link>
         </span>
         <div className={stylesMyIpr.wrapper}>
-          <ListIpr size='small'/>
+          
+          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.'/>
           <ListTask tasks={mockDataTask} isBoss={isBoss} />
         </div>
         <div className={stylesMyIpr.wrapper__button}>
@@ -69,6 +74,10 @@ const MyIpr: FC = (): JSX.Element => {
             Отмена
           </Button>
         </div>
+          </>
+        )
+        : 
+        <Outlet /> }    
       </div>
     </section>
   );

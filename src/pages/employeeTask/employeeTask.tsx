@@ -4,6 +4,8 @@ import styles from "./employeeTask.module.scss";
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
+import Textarea from "../../ui/textarea/textarea";
+import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 
 import Card from "../../components/card/card";
 
@@ -47,7 +49,7 @@ const EmployeeTask: FC = (): JSX.Element => {
   return (
     <section className={styles.page}>
       <div className={styles.container}>
-        <span className={styles.link}>
+        <span className={styles.header}>
           <Link
             href={"/myipr"}
             onClick={routeTo}
@@ -59,7 +61,11 @@ const EmployeeTask: FC = (): JSX.Element => {
           >
             Назад
           </Link>
+          <h1 className={styles.title}>
+            Тест на знание корпоративной культуры
+          </h1>
         </span>
+
         <div className={styles.wrapper}>
           <Card
             size="small"
@@ -68,7 +74,16 @@ const EmployeeTask: FC = (): JSX.Element => {
         Алексеевич"
             appointment="Финансовый аналитик"
           />
-          <p>Здесь будет задача</p>
+
+          <div className={styles.wrapper__task}>
+            <p className={styles.text}>Описание задачи</p>
+            <Textarea
+              height="102px"
+              value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
+              disabled
+            />
+            <DeadlineBlock deadline={'2024-01-30'} />
+          </div>
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>

@@ -20,23 +20,23 @@
 .wrapper {
   @include flex (row, space-between, start, 42px);
 
-  &__button{
+  &__button {
     @include flex (row, space-between, start, 16px);
     padding-left: 286px;
   }
 }
 
 .listIpr {
- @include size(575px, 357px);
- @include flex (column, start, start, 8px);
- overflow-y: scroll;
+  @include size(575px, 357px);
+  @include flex (column, start, start, 8px);
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 0;
   }
 }
 
-.link{
-  @include flex(row, start, start); 
+.link {
+  @include flex(row, start, start);
   @include indents(5px 0 0, 0);
 }

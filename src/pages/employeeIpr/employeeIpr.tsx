@@ -12,11 +12,17 @@ import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
 
 // export interface IIprEmployee {
-  
+
 // }
 
+// Моковые данные
+import {
+  mockDataTask,
+  mockDataIpr,
+} from "../../ui/verificationConstants/verificationConstants";
+
 const EmployeeIpr: FC = (): JSX.Element => {
-  const {state, pathname} = useLocation();
+  const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
 
@@ -31,7 +37,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
 
   function onClick(e: any) {
     e.preventDefault();
-    navigate("create-ipr",  { state: state, replace: true });
+    navigate("create-ipr", { state: state, replace: true });
   }
 
   const routeTo = (e: any) => {
@@ -41,7 +47,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
 
   return (
     <section className={styles.page}>
-            <div className={styles.container}>
+      <div className={styles.container}>
         <span className={styles.link}>
           <Link
             href={"/myipr"}
@@ -55,16 +61,15 @@ const EmployeeIpr: FC = (): JSX.Element => {
             Назад
           </Link>
         </span>
-        <div className={styles.wrapper}>
-        <Card
-        size="small"
-        // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-        name="Соколов Михаил 
-        Алексеевич"
-        appointment="Финансовый аналитик"
 
-      />
-          <ListIpr size='big' isBoss={true} />
+        <div className={styles.wrapper}>
+          <Card
+            size="small"
+            // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
+            name="Соколов Михаил Алексеевич"
+            appointment="Финансовый аналитик"
+          />
+          <ListIpr size='big' isBoss={true} iprList={mockDataIpr} titleEmpty='ИПР пока нет.'/>
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="554" heigth="56" onClick={onClick}>

@@ -2,12 +2,16 @@ import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./myTask.module.scss";
 import Link from "../../ui/links/link";
-import Unpacker from "../../ui/unpacker/unpacker";
+// import Unpacker from "../../ui/unpacker/unpacker";
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 
 import Rating from "../../components/rating/rating"
+
+
+
+import ListIpr from "../../components/listIpr/listIpr";
 // Моковые данные
 import {
   mockDataTask,
@@ -67,8 +71,7 @@ const MyTask: FC = (): JSX.Element => {
   }
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
+      <>
         <span className={styles.header}>
           <Link
             href={"/myipr"}
@@ -86,8 +89,9 @@ const MyTask: FC = (): JSX.Element => {
           </h1>
         </span>
         <div className={styles.wrapper}>
-          {/* <div className={styles.disabled}></div> */}
-          <div className={styles.listIpr}>
+
+          {/* Моя инициатива - Павел */}
+          {/* <div className={styles.listIpr}>
             <div className={styles.disabled}></div>
             {mockDataIpr &&
               mockDataIpr.map(
@@ -123,7 +127,10 @@ const MyTask: FC = (): JSX.Element => {
                     </Unpacker>
                   )
               )}
-          </div>
+          </div> */}
+
+          {/* Моя инициатива - Павел */}
+          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.' disabled={true} />
 
           {!isClosingTask ?
             <div className={styles.wrapper__task}>
@@ -166,8 +173,7 @@ const MyTask: FC = (): JSX.Element => {
               <></>
           }
         </div>
-      </div>
-    </section>
+      </>
   );
 };
 
