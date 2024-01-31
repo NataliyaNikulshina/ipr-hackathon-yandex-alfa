@@ -58,7 +58,7 @@ const MyIpr: FC = (): JSX.Element => {
           </Link>
         </span>
         <div className={stylesMyIpr.wrapper}>
-          <ListIpr size='small'/>
+          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.'/>
           <ListTask tasks={mockDataTask} isBoss={isBoss} />
         </div>
         <div className={stylesMyIpr.wrapper__button}>
