@@ -4,14 +4,22 @@ import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
+
+
 import MyIpr from "./pages/myIpr/myIpr";
+
+
 import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
 import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
 import EmployeeTask from "./pages/employeeTask/employeeTask";
 import CreateIpr from "./pages/createIpr/createIpr";
 import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
+
+
 import MyTask from "./pages/myTask/myTask";
+
+
 import Layout from "./components/layout/layout";
 import Loader from "./components/loader/loader"
 

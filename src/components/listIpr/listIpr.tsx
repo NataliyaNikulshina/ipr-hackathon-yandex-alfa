@@ -5,10 +5,10 @@ import Unpacker from "../../ui/unpacker/unpacker";
 
 import Button from "../../ui/buttons/button/button";
 
-import {
-  mockDataTask,
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
+// import {
+//   mockDataTask,
+//   mockDataIpr,
+// } from "../../ui/verificationConstants/verificationConstants";
 
 export interface IListIpr {
   size?: "big" | "small";
@@ -18,13 +18,15 @@ export interface IListIpr {
     title: string;
   }[];
   titleEmpty?: string;
+  disabled?: boolean;
 }
 
 const ListIpr: FC<IListIpr> = ({
   size = "big",
   isBoss = false,
-  iprList = mockDataIpr,
-  titleEmpty = 'Пока задач нет.'
+  iprList = [],
+  titleEmpty = 'Пока задач нет.',
+  disabled = false,
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
@@ -47,24 +49,27 @@ const ListIpr: FC<IListIpr> = ({
   const widthButton = size === "big" ? "560" : "244";
 
   return (
-    <div className={styleAll}>
-      {iprList?.length
-        ? iprList.map((el) => (
-          <Unpacker key={el.id}>
-            <Button
-              color="ipr"
-              width={widthButton}
-              heigth="48"
-              onClick={isBoss ? onClickBoss : onClick}
-              position="left"
-              disabled={isBoss ? false : el.id === 3 ? true : false}
-            >
-              {el.title}
-            </Button>
-          </Unpacker>
-        ))
-        : <p className={styles.listIpr__title_empty}>{titleEmpty}</p>
-      }
+    <div className={styles.wrapper}>
+      <div className={disabled ? styles.disabled : ''}></div>
+      <div className={`${styleAll} ${disabled ? styles.disabled__scroll : ''}`}>
+        {iprList?.length
+          ? iprList.map((el) => (
+            <Unpacker key={el.id}>
+              <Button
+                color="ipr"
+                width={widthButton}
+                heigth="48"
+                onClick={isBoss ? onClickBoss : onClick}
+                position="left"
+                disabled={isBoss ? false : el.id === 3 ? true : false}
+              >
+                {el.title}
+              </Button>
+            </Unpacker>
+          ))
+          : <p className={styles.listIpr__title_empty}>{titleEmpty}</p>
+        }
+      </div>
     </div>
   );
 };
