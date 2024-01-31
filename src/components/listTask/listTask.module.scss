@@ -36,8 +36,12 @@
   @include flex (column, $gap: 6px);
   list-style: none;
   @include indents(0, 0);
+  height: 100%;
 }
 
+.title__empty {
+  margin: auto;
+}
 // /* стилизация скролла*/
 // .team-table__table::-webkit-scrollbar {
 //   border-radius: $l-border-radius;
