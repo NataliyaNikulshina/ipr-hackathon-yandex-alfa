@@ -22,7 +22,7 @@ const Textarea: React.FC<TextareaProps> = ({ placeholder, width, height, value, 
     };
     return (
         <textarea
-            className='textarea'
+            className='textarea placeholder'
             value={value}
             onChange={handleChange}
             placeholder={placeholder}

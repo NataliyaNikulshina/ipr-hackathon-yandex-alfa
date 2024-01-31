@@ -9,8 +9,29 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 16px;
-    scrollbar-width: thin; /* "auto" или "thin" */
+    scrollbar-width: thin;
+    /* "auto" или "thin" */
     scrollbar-color: #00000033 #dee1e6;
+
+    &:hover {
+        background-color: #f3f4f5;
+    }
+
+    &:disabled {
+        background-color: #f3f4f5;
+    }
+
+    &:focus {
+        background-color: #fff;
+        border: 1px solid #86868a;
+    }
+
+    &:focus-within {
+        .placeholder {
+            transform: scale(0.85);
+            top: 4px;
+        }
+    }
 }
 
 /* стилизация скролла*/
