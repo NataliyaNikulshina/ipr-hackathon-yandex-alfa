@@ -4,25 +4,29 @@ import Signin from "./pages/signin/signin";
 import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
+
 import MyIpr from "./pages/myIpr/myIpr";
+
 import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
 import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
 import EmployeeTask from "./pages/employeeTask/employeeTask";
 import CreateIpr from "./pages/createIpr/createIpr";
 import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
+
 import MyTask from "./pages/myTask/myTask";
+
 import Layout from "./components/layout/layout";
+import Loader from "./components/loader/loader";
 
 import ProtectedRoute from './routes/protected-route';
 
 // функция управления popup
-import HandlePopup from './utils/handlePopup/handlePopup';
+import HandlePopup from "./utils/handlePopup/handlePopup";
 
 //  Ссылки на картинки инфо попапа
 import darts from "./images/darts.png";
 import telephoneOperator from "./images/telephone-operator.png";
-
 
 export const routesUrl = {
   homePage: "/",
@@ -42,6 +46,8 @@ const App = () => {
   const path = useLocation().pathname;
   const handlePopup = HandlePopup();
 
+  const [isLoader, setIsLoader] = useState(false);
+
   return (
     <>
       <Routes>
@@ -54,8 +60,9 @@ const App = () => {
           <Route path={routesUrl.createIpr} element={<ProtectedRoute><CreateIpr /></ProtectedRoute>} />
           <Route path={routesUrl.createTask} element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
           <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
-          <Route path={routesUrl.myTask} element={<ProtectedRoute><MyTask /></ProtectedRoute>} />
-          <Route path={routesUrl.myIPR} element={<ProtectedRoute><MyIpr /></ProtectedRoute>} />
+          <Route path={routesUrl.myIPR} element={<ProtectedRoute><MyIpr /></ProtectedRoute>} >
+            <Route path={routesUrl.myTask} element={<ProtectedRoute><MyTask /></ProtectedRoute>} />
+          </Route>
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
@@ -83,9 +90,10 @@ const App = () => {
             >
               Открыть popup error
             </button>  */}
-      <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
-      <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
-      <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen="isTaskTrackingLogPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isInfoPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isErrorPopupOpen" handlePopup={handlePopup} />
+      <Loader isOpen={isLoader} />
     </>
   );
 };

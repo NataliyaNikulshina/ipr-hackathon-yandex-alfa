@@ -54,12 +54,12 @@
   @include indents(0 0 6px 0, 0);
 }
 
-.disabled {
-  background-color: rgba(255, 255, 255, 0.7);
-  @include size(244px, 357px);
-  @include position(absolute, $top:0, $left:0);
-  z-index: 2;
-}
+// .disabled {
+//   background-color: rgba(255, 255, 255, 0.7);
+//   @include size(244px, 357px);
+//   @include position(absolute, $top:0, $left:0);
+//   z-index: 2;
+// }
 
 .wrapper__task{
   @include flex(column, start, start, 16px); 

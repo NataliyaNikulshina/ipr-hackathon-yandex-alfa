@@ -8,7 +8,7 @@ import Task, { ITasks } from "../task/task";
 
 
 export interface IListTask {
-  tasks: ITasks[];
+  tasks?: ITasks[];
   isBoss: boolean;
 }
 
@@ -19,11 +19,12 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss }) => {
       <ul className={styleTask.list}>
         {tasks?.length
           ? tasks.map((el) => (
-              <Unpacker key={el.id}>
-                  <Task title={el.title} checkbox={el.checkbox} status={el.status} isBoss={isBoss} />
-              </Unpacker>
-            ))
-          : "Задач не существует"}
+            <Unpacker key={el.id}>
+              <Task title={el.title} checkbox={el.checkbox} status={el.status} isBoss={isBoss} />
+            </Unpacker>
+          ))
+          : <li className={styleTask.title__empty}>Задач не существует</li>
+        }
         {/* <li className={styleTask.item}>
           <input type="checkbox">{tasks.checkbox}</input>
           <Button color="transparent" width="456" heigth="20" onClick={onClick}>
