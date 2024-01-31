@@ -5,9 +5,7 @@ import Popup from "./components/popup/popup";
 import HomePage from "./pages/homePage/homePage";
 import NotFound from "./pages/not-found/not-found";
 
-
 import MyIpr from "./pages/myIpr/myIpr";
-
 
 import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
 import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
@@ -16,20 +14,17 @@ import CreateIpr from "./pages/createIpr/createIpr";
 import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
 
-
 import MyTask from "./pages/myTask/myTask";
 
-
 import Layout from "./components/layout/layout";
-import Loader from "./components/loader/loader"
+import Loader from "./components/loader/loader";
 
 // функция управления popup
-import HandlePopup from './utils/handlePopup/handlePopup';
+import HandlePopup from "./utils/handlePopup/handlePopup";
 
 //  Ссылки на картинки инфо попапа
 import darts from "./images/darts.png";
 import telephoneOperator from "./images/telephone-operator.png";
-
 
 export const routesUrl = {
   homePage: "/",
@@ -55,7 +50,7 @@ const App = () => {
     <>
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.homePage} element={<Layout handlePopup={handlePopup.open}/>}>
+        <Route path={routesUrl.homePage} element={<Layout handlePopup={handlePopup.open} />}>
           <Route path={routesUrl.homePage} element={<HomePage />} />
           <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />} />
           <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />} />
@@ -63,8 +58,9 @@ const App = () => {
           <Route path={routesUrl.createIpr} element={<CreateIpr />} />
           <Route path={routesUrl.createTask} element={<CreateTask />} />
           <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
-          <Route path={routesUrl.myTask} element={<MyTask />} />
-          <Route path={routesUrl.myIPR} element={<MyIpr />} />
+          <Route path={routesUrl.myIPR} element={<MyIpr />} >
+            <Route path={routesUrl.myTask} element={<MyTask />} />
+          </Route>
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
@@ -92,10 +88,10 @@ const App = () => {
             >
               Открыть popup error
             </button>  */}
-      <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
-      <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
-      <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
-      <Loader isOpen={isLoader}/>
+      <Popup isOpen="isTaskTrackingLogPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isInfoPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isErrorPopupOpen" handlePopup={handlePopup} />
+      <Loader isOpen={isLoader} />
     </>
   );
 };

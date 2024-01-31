@@ -71,8 +71,7 @@ const MyTask: FC = (): JSX.Element => {
   }
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
+      <>
         <span className={styles.header}>
           <Link
             href={"/myipr"}
@@ -174,8 +173,7 @@ const MyTask: FC = (): JSX.Element => {
               <></>
           }
         </div>
-      </div>
-    </section>
+      </>
   );
 };
 
