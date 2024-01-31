@@ -47,6 +47,7 @@ const App = () => {
   const handlePopup = HandlePopup();
 
   const [isLoader, setIsLoader] = useState(false);
+  
 
   return (
     <>

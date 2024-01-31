@@ -8,6 +8,7 @@ import { signinApi } from "../../api/auth";
 import { saveAccessToken, saveRefreshToken } from "../../utils/authService";
 
 import stylesSignin from "./signin.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Signin: FC = (): JSX.Element => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
@@ -15,6 +16,7 @@ const Signin: FC = (): JSX.Element => {
     email: { value: "", valueValid: false },
     password: { value: "", valueValid: false },
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     (values.email.valueValid && values.password.valueValid) ? setButtonDisabled(false) : setButtonDisabled(true);
@@ -29,6 +31,7 @@ const Signin: FC = (): JSX.Element => {
     .then((res) => {
       saveAccessToken(res.access);
       saveRefreshToken(res.refresh);
+      navigate('/');
     })
 
   };

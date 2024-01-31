@@ -5,10 +5,10 @@ export interface IUserSigninState {
   password: string;
 }
 
-export interface IUserResponse extends TUser {}
+export interface IUserSigninResponse extends TUserSignin {}
 
 // типизация данных пользователя
-export type TUser = {
+export type TUserSignin = {
     email: string;
     access: string;
     refresh: string;
@@ -16,7 +16,7 @@ export type TUser = {
 
 // запрос авторизации
 function signinApi(userInfo: IUserSigninState) {
-  return postReq<IUserResponse>({ uri: "api/v1/auth/jwt/create/", data: userInfo });
+  return postReq<IUserSigninResponse>({ uri: "api/v1/auth/jwt/create/", data: userInfo });
 }
 
 
