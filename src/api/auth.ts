@@ -10,8 +10,8 @@ export interface IUserResponse extends TUser {}
 // типизация данных пользователя
 export type TUser = {
     email: string;
-    accessToken: string;
-    refreshToken: string;
+    access: string;
+    refresh: string;
 };
 
 // запрос авторизации

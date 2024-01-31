@@ -5,6 +5,7 @@ import LogoIcon from "../../ui/icons/logo";
 import Input from "../../ui/inputs/input/input";
 import useForm from "../../utils/use-form";
 import { signinApi } from "../../api/auth";
+import { saveAccessToken, saveRefreshToken } from "../../utils/authService";
 
 import stylesSignin from "./signin.module.scss";
 
@@ -24,7 +25,12 @@ const Signin: FC = (): JSX.Element => {
     signinApi({
         email: values.email.value,
         password: values.password.value,
-      });
+      })
+    .then((res) => {
+      saveAccessToken(res.access);
+      saveRefreshToken(res.refresh);
+    })
+
   };
 
   const clearInput = () => {

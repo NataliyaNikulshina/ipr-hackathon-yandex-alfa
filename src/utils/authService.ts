@@ -5,6 +5,7 @@
  * @param accessToken сохраняемый токен
  */
  const saveAccessToken = (accessToken: string) => {
+  // console.log(accessToken);
   localStorage.setItem('accessToken', accessToken);
 };
 
@@ -13,6 +14,7 @@
  */
 const getAccessToken = (): string | null => {
   const accessToken = localStorage.getItem('accessToken');
+  // console.log(accessToken);
   return accessToken ?? null;
 };
 
@@ -28,6 +30,7 @@ const removeAccessToken = (): void => {
  * @param refreshToken сохраняемый токен
  */
 const saveRefreshToken = (refreshToken: string) => {
+  // console.log(refreshToken);
   localStorage.setItem('refreshToken', refreshToken);
 };
 
@@ -46,17 +49,6 @@ const removeRefreshToken = (): void => {
   localStorage.removeItem('refreshToken');
 };
 
-const saveSocial = (social: string) => {
-  localStorage.setItem('social', social);
-};
-
-const getSocial = () => {
-  return localStorage.getItem('social');
-};
-
-const removeSocial = (): void => {
-  localStorage.removeItem('social');
-};
 
 export {
   saveAccessToken,
@@ -65,7 +57,4 @@ export {
   getRefreshToken,
   removeAccessToken,
   removeRefreshToken,
-  saveSocial,
-  getSocial,
-  removeSocial,
 };

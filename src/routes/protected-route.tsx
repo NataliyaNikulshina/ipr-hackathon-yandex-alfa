@@ -1,9 +1,9 @@
-import { useEffect, FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useEffect, FC } from "react";
+import { Navigate } from "react-router-dom";
 
-import { getAccessToken } from '../utils/authService';
+import { getAccessToken, getRefreshToken, removeAccessToken, removeRefreshToken } from "../utils/authService";
 
-import {routesUrl} from '../app';
+import { routesUrl } from "../app";
 
 type TProtectedRoute = {
   children: JSX.Element;
@@ -16,13 +16,17 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 }): JSX.Element => {
 
   const token = getAccessToken();
+  console.log(token);
+
+  // для выхода из профиля
+  // removeAccessToken();
+  // removeRefreshToken();
 
   // useEffect(() => {
-  //   if (token) {
-  //     dispatch(getUserInfoAction());
-  //     dispatch(getBotsAction());
+  //   if (!token) {
+  //     getRefreshToken();
   //   }
-  // }, [dispatch]);
+  // }, [token]);
 
   if (token && notAuth) {
     return <Navigate to={routesUrl.homePage} />;
