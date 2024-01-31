@@ -1,7 +1,7 @@
 import { getReq } from './api';
 
 // типизация данных пользователя
-export type IUserMeResponse = {
+export type IUserMe = {
   id: number,
   email: string,
   username: string,
@@ -15,6 +15,8 @@ export type IUserMeResponse = {
   userpic: string,
   team: number
 };
+
+export interface IUserMeResponse extends IUserMe {}
 
 // Запрос на получение данных пользователя
 function getUserInfoApi() {

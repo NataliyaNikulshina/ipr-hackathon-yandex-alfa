@@ -22,12 +22,12 @@ const HomePage: FC = (): JSX.Element => {
     [pathname, url, state]
   );
 
-  useEffect(() => {
-    getUserInfoApi()
-    .then((res) => {
-      console.log(res);
-    })
-  }, [])
+  // useEffect(() => {
+  //   getUserInfoApi()
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  // }, [])
 
   return (
     <section className={stylesProfile.page}>
