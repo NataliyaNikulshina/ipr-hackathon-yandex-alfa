@@ -3,7 +3,7 @@
 
 .page {
   // @include flex(column, start, center, 10px);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
   @include style-text-reset;
 }
@@ -19,14 +19,14 @@
 }
 
 .head {
-  @include flex (row, start, start, 300px);
+  @include flex(row, start, start, 300px);
 }
 
 .wrapper {
-  @include flex (row, space-between, start, 42px);
+  @include flex(row, space-between, start, 42px);
 
   &__button {
-    @include flex (row, space-between, start, 16px);
+    @include flex(row, space-between, start, 16px);
     padding-left: 286px;
   }
 }
@@ -44,18 +44,12 @@
 }
 
 .nameIpr {
-  @include flex (row, space-between, center, 80px);
-}
-
-.skillsIpr {
-  @include flex (row, start, center);
-
-  border-radius: 4px;
+  @include flex(row, space-between, center, 80px);
 }
 
 .listIpr {
   width: 575px;
-  @include flex (column, start, start, 20px);
+  @include flex(column, start, start, 20px);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -68,24 +62,10 @@
 }
 
 .dateIpr {
-  @include flex (column, start, start, 20px);
+  @include flex(column, start, start, 20px);
 }
 
 .link {
   @include flex(row, start, start);
   @include indents(5px 0 0, 0);
-}
-
-button[name='skill'] {
-  border: none;
-  border-radius: 0;
-  border: 1px solid #6A6B74;
-}
-
-button[value='soft'] {
-  border-radius: 0 4px 4px 0;
-}
-
-button[value='hard'] {
-  border-radius: 4px 0 0 4px;
 }
