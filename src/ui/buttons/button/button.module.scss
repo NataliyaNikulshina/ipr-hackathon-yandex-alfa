@@ -75,6 +75,14 @@
     background-color: #D3D5D6;
   }
 }
+.darkGrey {
+  background-color: #6A6B74;
+  color: #FFFFFF;
+
+  &:not([disabled]):hover {
+    opacity: .8;
+  }
+}
 
 .nav_white {
   color: #000;
