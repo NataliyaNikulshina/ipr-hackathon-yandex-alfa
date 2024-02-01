@@ -5,6 +5,7 @@
   // @include flex(column, start, center, 10px);
   background-color: #FFFFFF;
   width: 100%;
+  @include style-text-reset;
 }
 
 .container {
@@ -26,13 +27,29 @@
   }
 }
 
+.head {
+  @include flex(row, start, start, 300px);
+}
+
+.title {
+  font-size: $xl-font-size;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.autorIpr {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+}
+
 .nameIpr {
   @include flex(row, space-between, center, 80px);
 }
 
 .listIpr {
   width: 575px;
-  @include flex (column, start, start, 8px);
+  @include flex (column, start, start, 20px);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -71,6 +88,5 @@ button[value='hard'] {
 
 .skillsIpr {
   @include flex (row, start, center);
-
   border-radius: 4px;
 }
