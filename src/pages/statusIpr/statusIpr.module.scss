@@ -5,6 +5,7 @@
   // @include flex(column, start, center, 10px);
   background-color: #FFFFFF;
   width: 100%;
+  @include style-text-reset;
 }
 
 .container {
@@ -25,18 +26,25 @@
     padding-left: 286px;
   }
 }
-
-.listIpr {
- @include size(575px, 357px);
- @include flex (column, start, start, 8px);
- overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
+.head {
+  @include flex(row, start, start, 200px);
 }
-
+.listIpr {
+ width: 575px;
+ @include flex (column, start, start, 18px);
+ 
+}
+.title {
+  font-size: $xl-font-size;
+  font-weight: 700;
+  line-height: 26px;
+}
+.subtitle {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+}
 .link{
-  @include flex(row, start, start); 
-  @include indents(5px 0 0, 0);
+  @include flex(row, start, start);
+  @include indents(5px 0 0 0);
 }

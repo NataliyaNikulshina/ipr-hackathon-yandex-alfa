@@ -25,7 +25,9 @@
     padding-left: 286px;
   }
 }
-
+.head {
+  @include flex(row, start, start, 200px);
+}
 .listIpr {
  @include size(575px, 357px);
  @include flex (column, start, start, 8px);
@@ -37,8 +39,9 @@
 }
 
 .header{
-  @include flex(row, start, start, 202px); 
+  @include flex(row, start, start, 202px);
   @include indents(0, 0);
+  padding-top: 5px;
 }
 
 .title {
@@ -48,7 +51,7 @@
 }
 
 .wrapper__task{
-  @include flex(column, start, start, 16px); 
+  @include flex(column, start, start, 16px);
   width: 552px;
 }
 
