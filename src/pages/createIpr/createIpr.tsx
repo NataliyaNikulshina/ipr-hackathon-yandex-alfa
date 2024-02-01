@@ -76,7 +76,7 @@ const CreateIpr: FC = (): JSX.Element => {
             </div>
             <Textarea
               width="522px"
-              height="172px"
+              height="164px"
               placeholder="Введите описание ИПР"
             />
             <div className={styles.dateIprWrapp}>

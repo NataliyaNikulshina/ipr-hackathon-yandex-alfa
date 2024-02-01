@@ -58,11 +58,11 @@
 
 .dateIprWrapp {
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 
 .dateIpr {
-  @include flex(column, start, start, 20px);
+  @include flex(column, start, start, 18px);
 }
 
 .link {

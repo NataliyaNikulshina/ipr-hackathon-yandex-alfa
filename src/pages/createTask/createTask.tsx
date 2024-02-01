@@ -101,7 +101,7 @@ const CreateTask: FC = (): JSX.Element => {
             </div>
             <Textarea
               width="522px"
-              height="172px"
+              height="202px"
               placeholder="Введите описание задачи"
             />
             <div className={styles.dateIprWrapp}>
