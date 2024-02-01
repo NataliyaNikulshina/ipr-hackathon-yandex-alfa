@@ -16,27 +16,21 @@ import Popup from "./components/popup/popup";
 
 import NotFound from "./pages/not-found/not-found";
 
-
-
-
+import MyIpr from "./pages/myIpr/myIpr";
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
 
-import MyIpr from "./pages/myIpr/myIpr";
 import MyTask from "./pages/myTask/myTask";
-
-
 
 import Loader from "./components/loader/loader";
 
 // функция управления popup
-import HandlePopup from './utils/handlePopup/handlePopup';
+import HandlePopup from "./utils/handlePopup/handlePopup";
 
 //  Ссылки на картинки инфо попапа
 import darts from "./images/darts.png";
 import telephoneOperator from "./images/telephone-operator.png";
-
 
 export const routesUrl = {
   signin: "/signin",
@@ -69,9 +63,7 @@ const App = () => {
       <Routes>
         <Route path={routesUrl.signin} element={<Signin />} />
         <Route path={routesUrl.layout} element={<Layout handlePopup={handlePopup.open} />}>
-
           <Route path={routesUrl.homePage} element={<HomePage />}>
-
             <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />}>
               {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
               <Route path={routesUrl.createIpr} element={<CreateIpr />} />    
@@ -92,8 +84,6 @@ const App = () => {
           <Route path={routesUrl.myIPR} element={<MyIpr />}>
             <Route path={routesUrl.myTask} element={<MyTask />} />
           </Route>
-
-
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
@@ -124,6 +114,9 @@ const App = () => {
       <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen="isTaskTrackingLogPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isInfoPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen="isErrorPopupOpen" handlePopup={handlePopup} />
       <Loader isOpen={isLoader} />
     </>
   );
