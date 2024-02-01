@@ -12,13 +12,14 @@ const TeamTable = () => {
   const [filterType, setFilterType] = useState("name");
   const dispatch = useAppDispatch();
   const { usersTeam } = useAppSelector((state) => state.usersTeam);
+  const url = window.location.href;
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
 
   // показать список всех пользователей
-  console.log(usersTeam);
+  // console.log(usersTeam);
 
   // моковые данные для верстки
   const [employees, setEmployees] = useState([
@@ -54,7 +55,8 @@ const TeamTable = () => {
   const navigate = useNavigate();
   const routeTo = (e) => {
     e.preventDefault();
-    navigate("/employee-ipr", { state: [{ path: "/", url: "/", title: "Моя команда" }] });
+    console.log(url);
+    navigate("/employee-ipr", { state: [{ path: "/", url: url, title: "Моя команда" }] });
   };
 
   return (

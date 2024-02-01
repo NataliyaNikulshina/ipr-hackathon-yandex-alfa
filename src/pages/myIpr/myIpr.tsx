@@ -27,7 +27,7 @@ const MyIpr: FC = (): JSX.Element => {
 
   useEffect(
     () => {
-      if (state && !isContainRoute(state, url)) {
+      if (pathname === "/myipr" && state && !isContainRoute(state, url)) {
         navigate('', {
           state: [...state, { path: pathname, url, title: "Мои ИПР" }],
           replace: true

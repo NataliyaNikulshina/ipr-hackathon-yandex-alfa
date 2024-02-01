@@ -3,15 +3,11 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import styles from "./employeeTask.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
-import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 
-import Card from "../../components/card/card";
-
 import { isContainRoute } from "../../utils/breadcrumbs";
-import ListIpr from "../../components/listIpr/listIpr";
 
 const EmployeeTask: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
@@ -19,17 +15,13 @@ const EmployeeTask: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname === '/employee-ipr/list-tasks/task' && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задача" }],
         replace: true,
       });
     }
   }, [pathname, url, state]);
-
-  function onClick() {
-    alert("Повторить задачу");
-  }
 
   function handleRouteStatusIpr(e: any) {
     e.preventDefault();
@@ -38,7 +30,7 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   function editTask(e: any) {
     e.preventDefault();
-    navigate("edit-task");
+    navigate("edit-task", { state: state });
   };
 
   return (

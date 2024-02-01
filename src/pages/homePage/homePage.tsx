@@ -11,17 +11,15 @@ const HomePage: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
-  let initialBreadcrumb = [];
 
   // const onClickEmployee = () => {
   //   initialBreadcrumb = [{ path: "/", url: "/", title: "Моя команда" }];
   //   navigate("/employee-ipr", { state: initialBreadcrumb });
   // };
 
-
   useEffect(
     () => {
-      if (state && !isContainRoute(state, url)) {
+      if (pathname==="/" && state && !isContainRoute(state, url)) {
         navigate('', { state: [...state, { path: pathname, url, title: "Моя команда" }], replace: true });
       }
     },

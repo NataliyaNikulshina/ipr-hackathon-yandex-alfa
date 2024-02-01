@@ -15,7 +15,7 @@ const MyTask: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname === "/myipr/my-task" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задача" }],
         replace: true

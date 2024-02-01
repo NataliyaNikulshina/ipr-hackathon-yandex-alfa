@@ -3,9 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./statusIpr.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
-import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
-import Card from "../../components/card/card";
 import { isContainRoute } from "../../utils/breadcrumbs";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import Rating from "../../components/rating/rating";
@@ -17,7 +15,7 @@ const StatusIpr: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname==="/employee-ipr/list-tasks/status-ipr" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [
           ...state,
@@ -31,11 +29,6 @@ const StatusIpr: FC = (): JSX.Element => {
   function onClick() {
     alert("Оценка ИПР");
   }
-
-  const routeTo = (e: any) => {
-    e.preventDefault();
-    navigate(-1);
-  };
 
   return (
        <>
