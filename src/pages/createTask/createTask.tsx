@@ -30,12 +30,15 @@ const CreateTask: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   function onClick() {
-    navigate("/employee-ipr/list-tasks/task", { replace: true, state: state}); 
+    navigate("/employee-ipr/list-tasks/task", { replace: true, state: state });
   }
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/employee-ipr/create-ipr", { replace: true, state: state.slice(0, 3)});
+    navigate("/employee-ipr/create-ipr", {
+      replace: true,
+      state: state.slice(0, 3),
+    });
   };
   function handleChange(e: any) {
     console.log(e.target.value);
@@ -47,19 +50,22 @@ const CreateTask: FC = (): JSX.Element => {
   return (
     <section className={styles.page}>
       <div className={styles.container}>
-        <span className={styles.link}>
-          <Link
-            href={"/myipr"}
-            onClick={routeTo}
-            color="black"
-            size="16"
-            weight="700"
-            underline={false}
-            arrow
-          >
-            Назад
-          </Link>
-        </span>
+        <div className={styles.head}>
+          <span className={styles.link}>
+            <Link
+              href={"/myipr"}
+              onClick={routeTo}
+              color="black"
+              size="16"
+              weight="700"
+              underline={false}
+              arrow
+            >
+              Назад
+            </Link>
+          </span>
+          <h2 className={styles.title}>Создание новой задачи</h2>
+        </div>
         <div className={styles.wrapper}>
           <Card
             size="small"
@@ -96,7 +102,7 @@ const CreateTask: FC = (): JSX.Element => {
             <Textarea
               width="522px"
               height="172px"
-              placeholder="Введите описание ИПР"
+              placeholder="Введите описание задачи"
             />
             <div className={styles.dateIprWrapp}>
               <div className={styles.dateIpr}>
