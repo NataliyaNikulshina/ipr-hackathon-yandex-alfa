@@ -20,6 +20,7 @@
 
 .link {
   @include flex(row, start, start);
-  @include indents(5px 0 0, 0);
+  // @include indents(5px 0 0, 0);
   height: 26px;
+  @include indents(5px 0 3px 0);
 }

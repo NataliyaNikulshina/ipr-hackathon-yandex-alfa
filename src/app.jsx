@@ -25,6 +25,8 @@ import MyTask from "./pages/myTask/myTask";
 
 import Loader from "./components/loader/loader";
 
+import ProtectedRoute from './routes/protected-route';
+
 // функция управления popup
 import HandlePopup from "./utils/handlePopup/handlePopup";
 
@@ -57,6 +59,7 @@ const App = () => {
   const handlePopup = HandlePopup();
 
   const [isLoader, setIsLoader] = useState(false);
+  
 
   return (
     <>
@@ -114,9 +117,6 @@ const App = () => {
       <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
-      <Popup isOpen="isTaskTrackingLogPopupOpen" handlePopup={handlePopup} />
-      <Popup isOpen="isInfoPopupOpen" handlePopup={handlePopup} />
-      <Popup isOpen="isErrorPopupOpen" handlePopup={handlePopup} />
       <Loader isOpen={isLoader} />
     </>
   );

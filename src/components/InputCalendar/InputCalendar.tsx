@@ -5,7 +5,10 @@ import './InputCalendar.scss';
 import CalendarIcon from '../../ui/icons/calendar';
 import russianLocale from './calendar-config';
 
-const InputCalendar: React.FC = () => {
+interface InputCalendarProps {
+  icon?: boolean;
+}
+const InputCalendar: React.FC<InputCalendarProps> = ({ icon }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const datePickerRef = useRef<DatePicker>(null);
 
@@ -30,7 +33,7 @@ const InputCalendar: React.FC = () => {
         className="calendar__input"
         ref={datePickerRef}
       />
-      <button className="calendar__button" onClick={handleButtonClick}>
+      <button className={icon ? 'calendar__button activ' : 'calendar__button'} onClick={handleButtonClick}>
         <CalendarIcon />
       </button>
 

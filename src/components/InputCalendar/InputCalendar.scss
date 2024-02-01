@@ -4,13 +4,13 @@
 .calendar {
     align-self: flex-start;
     position: relative;
-    width: 304px;
+    width: 280px;
 
     &__input {
         background-color: #E7E8EA;
         border-radius: 8px;
         padding: 14px 24px;
-        width: 304px;
+        width: 280px;
         height: 52px;
         border: none;
         color: #0E0E0E;
@@ -34,7 +34,7 @@
         box-shadow: -8px -8px 40px 0px rgba(95, 99, 104, 0.10), 16px 16px 40px 0px rgba(95, 99, 104, 0.10);
 
         &-popper {
-            transform: translate(324px, 0px) !important;
+            transform: translate(-60px, 70px) !important;
         }
 
         &__month-container {

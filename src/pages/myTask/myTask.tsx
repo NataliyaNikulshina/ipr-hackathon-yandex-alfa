@@ -47,7 +47,7 @@ const MyTask: FC = (): JSX.Element => {
                 value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
                 disabled
               />
-              <DeadlineBlock deadline={'2024-01-30'} />
+              <DeadlineBlock deadline={'2024-02-05T12:00:00.000Z'} />
             </div>
       </div>
       <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>

@@ -1,15 +1,18 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
+
 .title {
   @include font("Arial", 24px, $bold, #0E0E0E);
   line-height: 26px;
   @include indents(0, 0);
 }
 
-.wrapper{
-  width: 552px;
-  display: flex
+.page {
+  // @include flex(column, start, center, 10px);
+  background-color: #FFFFFF;
+  width: 100%;
+  @include style-text-reset;
 }
 
 .text {
@@ -18,6 +21,78 @@
   @include indents(0 0 6px 0, 0);
 }
 
-.wrapper_button{
-    @include flex (row, space-between, start, 16px);
+
+.wrapper {
+  // width: 552px;
+  // display: flex
+  @include flex(row, space-between, start, 42px);
+
+  &__button {
+    @include flex(row, space-between, start, 16px);
+    padding-left: 286px;
   }
+}
+
+.head {
+  @include flex(row, start, start, 300px);
+}
+
+.title {
+  font-size: $xl-font-size;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.autorIpr {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+}
+
+.nameIpr {
+  @include flex(row, space-between, center, 80px);
+}
+
+.listIpr {
+  width: 575px;
+  @include flex (column, start, start, 20px);
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+
+.dateIprWrapp {
+  display: flex;
+  gap: 20px;
+}
+
+.dateIpr {
+  @include flex(column, start, start, 20px);
+}
+
+
+.link {
+  @include flex(row, start, start);
+  @include indents(5px 0 0, 0);
+}
+
+button[name='skill'] {
+  border: none;
+  border-radius: 0;
+  border: 1px solid #6A6B74;
+}
+
+button[value='soft'] {
+  border-radius: 0 4px 4px 0;
+}
+
+button[value='hard'] {
+  border-radius: 4px 0 0 4px;
+}
+
+.skillsIpr {
+  @include flex (row, start, center);
+  border-radius: 4px;
+}
