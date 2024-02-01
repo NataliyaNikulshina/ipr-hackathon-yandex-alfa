@@ -2,6 +2,7 @@ import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./editEmployeeTask.module.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
+import { routesUrl } from "../../app";
 
 import Button from "../../ui/buttons/button/button";
 
@@ -13,7 +14,7 @@ const CreateTask: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname==="/employee-ipr/list-tasks/task/edit-task" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [
           ...state,

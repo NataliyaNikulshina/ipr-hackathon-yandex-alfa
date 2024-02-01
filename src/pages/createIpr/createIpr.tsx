@@ -7,8 +7,7 @@ import Button from "../../ui/buttons/button/button";
 import Input from "../../ui/inputs/input/input";
 import Textarea from "../../ui/textarea/textarea";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";
-import Link from "../../ui/links/link";
-import Card from "../../components/card/card";
+import { routesUrl } from "../../app";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
@@ -18,7 +17,7 @@ const CreateIpr: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname==="/employee-ipr/create-ipr" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [
           ...state,

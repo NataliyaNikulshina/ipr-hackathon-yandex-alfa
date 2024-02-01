@@ -23,7 +23,7 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname==="/employee-ipr/list-tasks" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задачи ИПР" }],
         replace: true
@@ -33,17 +33,17 @@ const EmployeeListTasks: FC = (): JSX.Element => {
 
   function createTask(e: any) {
     e.preventDefault();
-    navigate("create-task");
+    navigate("create-task", { state: state });
   }
 
   function editIpr(e: any) {
     e.preventDefault();
-    navigate("edit-ipr");
+    navigate("edit-ipr", { state: state });
   };
 
   function statusIpr(e: any) {
     e.preventDefault();
-    navigate("status-ipr");
+    navigate("status-ipr", { state: state });
   };
   
 

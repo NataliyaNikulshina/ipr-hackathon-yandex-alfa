@@ -11,6 +11,7 @@ import Card from "../../components/card/card";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
+import { routesUrl } from "../../app";
 
 // export interface IIprEmployee {
 
@@ -29,7 +30,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
 
   useEffect(
     () => {
-      if (state && !isContainRoute(state, url)) {
+      if (pathname==="/employee-ipr" && state && !isContainRoute(state, url)) {
         navigate('', { state: [...state, { path: pathname, url, title: "ИПР Сотрудника" }],
         replace: true});
       }
@@ -39,7 +40,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
 
   function createIpr(e: any) {
     e.preventDefault();
-    navigate("create-ipr");
+    navigate("create-ipr", { state: state });
   };
 
   const routeTo = (e: any) => {

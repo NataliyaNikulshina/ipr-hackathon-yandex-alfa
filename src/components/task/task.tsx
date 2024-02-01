@@ -64,8 +64,6 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
           (status === "cansel" && "Задача отменена") ||
           (status === "trail" && "Задача отстает")}
       </span>
-      {/* {status==="not_complete" && (<span className={styleTask.tool}>Подсказка</span>)} */}
-      {isBoss && <EditIcon />}
     </li>
   );
 };

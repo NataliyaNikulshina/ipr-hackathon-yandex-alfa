@@ -8,7 +8,7 @@ import Button from "../../ui/buttons/button/button";
 import Input from "../../ui/inputs/input/input";
 import Textarea from "../../ui/textarea/textarea";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";
-import Card from "../../components/card/card";
+import { routesUrl } from "../../app";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
@@ -19,7 +19,7 @@ const CreateTask: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (state && !isContainRoute(state, url)) {
+    if (pathname==="/employee-ipr/list-tasks/create-task" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [
           ...state,
