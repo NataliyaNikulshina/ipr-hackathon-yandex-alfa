@@ -13,6 +13,7 @@ import Button from "../../ui/buttons/button/button";
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUser } from "../../services/slice/userSlice";
+import { getIprApi, getUsersAllInfoApi } from "../../api/user";
 
 import Loader from "../loader/loader";
 
@@ -39,7 +40,13 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
     navigate("/");
   };
 
-  console.log(user);
+  // вывод данных юзера в консоль
+  // console.log(user);
+  // getUsersAllInfoApi().then((res) => console.log(res));
+  // if (user) { const ipr = getIprApi(user?.id);
+  // console.log(ipr); }
+
+  const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
 
   return (
     <div className={stylesLayout.layout}>
@@ -51,7 +58,7 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
           <Card
             size="big"
             avatar={user.userpic}
-            name={user.first_name}
+            name={nameAll}
             appointment={user.position}
             handlePopup={handlePopup}
           />

@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './TeamTable.scss';
 import FilterIcon from "../../ui/icons/filter";
 import ButtonTableMore from "../../ui/buttons/buttonTableMore/buttonTableMore";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchUsers } from "../../services/slice/usersTeamSlice";
 
 const TeamTable = () => {
   const table = React.createRef();
   const [filter, setFilter] = useState("");
   const [filterType, setFilterType] = useState("name");
+  const dispatch = useAppDispatch();
+  const { usersTeam } = useAppSelector((state) => state.usersTeam);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
+
+  // показать список всех пользователей
+  console.log(usersTeam);
+
   // моковые данные для верстки
   const [employees, setEmployees] = useState([
     { id: 1, name: "Чернявский Андрей Михайлович", position: "Менеджер по кредитованию" },

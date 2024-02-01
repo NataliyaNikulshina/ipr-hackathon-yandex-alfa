@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { IUserMe } from "../../api/user";
 import { AppDispatch } from "../store";
-import getUserInfoApi from "../../api/user";
+import { getUserInfoApi } from "../../api/user";
 
 export type TGetUserInfoState = {
     user: IUserMe | null;
