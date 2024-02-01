@@ -1,22 +1,28 @@
 import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+
 import Signin from "./pages/signin/signin";
+
+import Layout from "./components/layout/layout";
+  import HomePage from "./pages/homePage/homePage";
+    import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
+      import CreateIpr from "./pages/createIpr/createIpr";
+      import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
+      import EditIpr from "./pages/editIpr/editIpr";
+      import EmployeeTask from "./pages/employeeTask/employeeTask";
+        import EditEmployeeTask from "./pages/editEmployeeTask/editEmployeeTask";
+
 import Popup from "./components/popup/popup";
-import HomePage from "./pages/homePage/homePage";
+
 import NotFound from "./pages/not-found/not-found";
 
 import MyIpr from "./pages/myIpr/myIpr";
 
-import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
-import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
-import EmployeeTask from "./pages/employeeTask/employeeTask";
-import CreateIpr from "./pages/createIpr/createIpr";
 import StatusIpr from "./pages/statusIpr/statusIpr";
 import CreateTask from "./pages/createTask/createTask";
 
 import MyTask from "./pages/myTask/myTask";
 
-import Layout from "./components/layout/layout";
 import Loader from "./components/loader/loader";
 
 import ProtectedRoute from './routes/protected-route';
@@ -29,16 +35,22 @@ import darts from "./images/darts.png";
 import telephoneOperator from "./images/telephone-operator.png";
 
 export const routesUrl = {
-  homePage: "/",
-  myIPR: "/myipr",
-  myTask: "/myipr/my-task",
   signin: "/signin",
-  employeeIpr: "employee-ipr",
-  employeeListTasks: "employee-ipr/list-tasks",
-  employeeTask: "employee-ipr/list-tasks/task",
-  statusIpr: "employee-ipr/status-ipr",
-  createIpr: "employee-ipr/create-ipr",
-  createTask: "employee-ipr/create-ipr/create-task",
+
+  layout: "/",
+  homePage: "",
+    employeeIpr: "employee-ipr",
+      createIpr: "create-ipr",
+      employeeListTasks: "list-tasks",
+        editIpr: "edit-ipr",
+        statusIpr: "status-ipr",
+        createTask: "create-task",
+        employeeTask: "task",
+          editEmployeeTask: "edit-task",
+          
+  myIPR: "myipr",
+    myTask: "my-task",
+
   notFound: "*",
 };
 
@@ -52,17 +64,28 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path={routesUrl.signin} element={<ProtectedRoute notAuth><Signin /></ProtectedRoute>} />
-        <Route path={routesUrl.homePage} element={<ProtectedRoute><Layout handlePopup={handlePopup.open}/></ProtectedRoute>}>
-          <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-          <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>} />
-          <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>} />
-          <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} />
-          <Route path={routesUrl.createIpr} element={<ProtectedRoute><CreateIpr /></ProtectedRoute>} />
-          <Route path={routesUrl.createTask} element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
-          <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
-          <Route path={routesUrl.myIPR} element={<ProtectedRoute><MyIpr /></ProtectedRoute>} >
-            <Route path={routesUrl.myTask} element={<ProtectedRoute><MyTask /></ProtectedRoute>} />
+        <Route path={routesUrl.signin} element={<Signin />} />
+        <Route path={routesUrl.layout} element={<Layout handlePopup={handlePopup.open} />}>
+          <Route path={routesUrl.homePage} element={<HomePage />}>
+            <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />}>
+              {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
+              <Route path={routesUrl.createIpr} element={<CreateIpr />} />    
+              {/* И не нужно с это страницы переходить в создание задачи! */}
+              <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />}>
+                  <Route path={routesUrl.createTask} element={<CreateTask />} />
+                  {/* Редактировать ИПР, про неё забыли.!!! */}
+                  <Route path={routesUrl.editIpr} element={<EditIpr />} />
+                  <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
+                  <Route path={routesUrl.employeeTask} element={<EmployeeTask />} >
+                    <Route path={routesUrl.editEmployeeTask} element={<EditEmployeeTask />} />
+                  </Route> 
+              </Route>
+            </Route>
+
+          </Route>
+
+          <Route path={routesUrl.myIPR} element={<MyIpr />}>
+            <Route path={routesUrl.myTask} element={<MyTask />} />
           </Route>
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
@@ -91,9 +114,9 @@ const App = () => {
             >
               Открыть popup error
             </button>  */}
-      <Popup isOpen="isTaskTrackingLogPopupOpen" handlePopup={handlePopup} />
-      <Popup isOpen="isInfoPopupOpen" handlePopup={handlePopup} />
-      <Popup isOpen="isErrorPopupOpen" handlePopup={handlePopup} />
+      <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
+      <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
       <Loader isOpen={isLoader} />
     </>
   );

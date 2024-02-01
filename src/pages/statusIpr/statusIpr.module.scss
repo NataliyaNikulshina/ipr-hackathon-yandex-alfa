@@ -1,6 +1,15 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
+.title {
+  @include font("Arial", 24px, $bold, #0E0E0E);
+  line-height: 26px;
+  @include indents(0, 0);
+  // font-size: $xl-font-size;
+  // font-weight: 700;
+  // line-height: 26px;
+}
+
 .page {
   // @include flex(column, start, center, 10px);
   background-color: #FFFFFF;
@@ -8,42 +17,43 @@
   @include style-text-reset;
 }
 
-.container {
-  @include flex(column, start, start, 40px);
-  width: 950px;
-  min-height: 597px;
-  border-radius: $xl-border-radius;
-  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
-    2px 2px 5px 0px rgba(95, 99, 104, 0.15);
-  @include indents(42px, 0);
+.text {
+  @include font("Arial", 18px, $normal, #000000);
+  line-height: 20px;
+  @include indents(0 0 6px 0, 0);
 }
 
-.wrapper {
-  @include flex (row, space-between, start, 42px);
+.wrapper{
+  width: 552px;
+  display: flex
+}
 
-  &__button{
+.wrapper__task{
+  @include flex(column, start, start, 16px); 
+  width: 552px;
+}
+
+.wrapper_button{
     @include flex (row, space-between, start, 16px);
     padding-left: 286px;
-  }
 }
+
 .head {
   @include flex(row, start, start, 200px);
 }
+
 .listIpr {
  width: 575px;
  @include flex (column, start, start, 18px);
  
 }
-.title {
-  font-size: $xl-font-size;
-  font-weight: 700;
-  line-height: 26px;
-}
+
 .subtitle {
   font-size: $l-font-size;
   font-weight: $normal;
   line-height: 20px;
 }
+
 .link{
   @include flex(row, start, start);
   @include indents(5px 0 0 0);

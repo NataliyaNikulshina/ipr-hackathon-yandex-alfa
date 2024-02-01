@@ -1,13 +1,13 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./createIpr.module.scss";
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss";
 
-import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
 import Input from "../../ui/inputs/input/input";
 import Textarea from "../../ui/textarea/textarea";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";
-
+import Link from "../../ui/links/link";
 import Card from "../../components/card/card";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
@@ -31,9 +31,8 @@ const CreateIpr: FC = (): JSX.Element => {
 
   function onClick(e: any) {
     e.preventDefault();
-    navigate("create-task", { state: state, replace: true });
+    navigate(-1);
   }
-
   const routeTo = (e: any) => {
     e.preventDefault();
     navigate("/employee-ipr", { replace: true, state: state.slice(0, 2) });
@@ -42,31 +41,11 @@ const CreateIpr: FC = (): JSX.Element => {
     console.log(e.target.value);
   }
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
-        <div className={styles.head}>
-          <span className={styles.link}>
-            <Link
-              href={"/myipr"}
-              onClick={routeTo}
-              color="black"
-              size="16"
-              weight="700"
-              underline={false}
-              arrow
-            >
-              Назад
-            </Link>
-          </span>
-          <h2 className={styles.title}>Создание нового ИПР</h2>
-        </div>
-        <div className={styles.wrapper}>
-          <Card
-            size="small"
-            // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-            name="Соколов Михаил Алексеевич"
-            appointment="Финансовый аналитик"
-          />
+        <>
+          <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
+          Создание нового ИПР
+          </h2>
+          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
           <section className={styles.listIpr}>
             <p className={styles.autorIpr}>
               Автор ИПР: Антонова Екатерина Владимировна
@@ -74,11 +53,11 @@ const CreateIpr: FC = (): JSX.Element => {
             <div className={styles.nameIpr}>
               <Input onChange={handleChange} />
             </div>
-            <Textarea
+            {/* <Textarea
               width="522px"
               height="164px"
               placeholder="Введите описание ИПР"
-            />
+            /> */}
             <div className={styles.dateIprWrapp}>
               <div className={styles.dateIpr}>
                 <p className={styles.autorIpr}>Дата создания ИПР</p>
@@ -90,8 +69,8 @@ const CreateIpr: FC = (): JSX.Element => {
               </div>
             </div>
           </section>
-        </div>
-        <div className={styles.wrapper__button}>
+          </div>
+          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
           <Button color="red" width="281" heigth="56" onClick={onClick}>
             Создать ИПР
           </Button>
@@ -99,8 +78,7 @@ const CreateIpr: FC = (): JSX.Element => {
             Отмена
           </Button>
         </div>
-      </div>
-    </section>
+        </>
   );
 };
 

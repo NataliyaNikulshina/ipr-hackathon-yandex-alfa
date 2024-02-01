@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import stylesProfile from "./homePage.module.scss";
 
 import Statistics from "../../components/Statistics/Statistics";
@@ -12,6 +12,12 @@ const HomePage: FC = (): JSX.Element => {
   const navigate = useNavigate();
   const url = window.location.href;
   let initialBreadcrumb = [];
+
+  // const onClickEmployee = () => {
+  //   initialBreadcrumb = [{ path: "/", url: "/", title: "Моя команда" }];
+  //   navigate("/employee-ipr", { state: initialBreadcrumb });
+  // };
+
 
   useEffect(
     () => {
@@ -31,8 +37,13 @@ const HomePage: FC = (): JSX.Element => {
 
   return (
     <section className={stylesProfile.page}>
+      {pathname === '/' &&
+        <>
           <TeamTable />
           <Statistics />
+        </>
+      }
+      <Outlet />
     </section>
   );
 };
