@@ -1,6 +1,7 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import styles from "./employeeTask.module.scss";
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
@@ -32,50 +33,23 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   function handleRouteStatusIpr(e: any) {
     e.preventDefault();
-    navigate("/employee-ipr/status-ipr", {
-      state: state.slice(0, 2),
-      replace: true,
-    });
+    navigate(-1);
   }
 
-  const routeTo = (e: any) => {
+  function editTask(e: any) {
     e.preventDefault();
-    navigate("/employee-ipr/list-tasks", {
-      replace: true,
-      state: state.slice(0, 3),
-    });
+    navigate("edit-task");
   };
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
-        <span className={styles.header}>
-          <Link
-            href={"/myipr"}
-            onClick={routeTo}
-            color="black"
-            size="16"
-            weight="700"
-            underline={false}
-            arrow
-          >
-            Назад
-          </Link>
-          <h1 className={styles.title}>
-            Тест на знание корпоративной культуры
+    <>
+      {pathname === '/employee-ipr/list-tasks/task' &&
+        <>
+          <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
+            Название задачи
           </h1>
-        </span>
 
-        <div className={styles.wrapper}>
-          <Card
-            size="small"
-            // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-            name="Соколов Михаил 
-        Алексеевич"
-            appointment="Финансовый аналитик"
-          />
-
-          <div className={styles.wrapper__task}>
+          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
             <p className={styles.text}>Описание задачи</p>
             <Textarea
               height="102px"
@@ -84,17 +58,19 @@ const EmployeeTask: FC = (): JSX.Element => {
             />
             <DeadlineBlock deadline={'2024-01-30'} />
           </div>
-        </div>
-        <div className={styles.wrapper__button}>
-          <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>
-            Закрыть задачу
-          </Button>
-          <Button color="grey" width="281" heigth="56" onClick={onClick}>
-            Повторить задачу
-          </Button>
-        </div>
-      </div>
-    </section>
+
+          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+            <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>
+              Закрыть задачу
+            </Button>
+            <Button color="red" width="281" heigth="56" onClick={editTask}>
+              Редактировать задачу
+            </Button>
+          </div>
+        </>
+      }
+      <Outlet />
+    </>
   );
 };
 

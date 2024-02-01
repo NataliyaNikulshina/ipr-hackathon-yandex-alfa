@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./createIpr.module.scss";
+import styles from "./editIpr.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Button from "../../ui/buttons/button/button";
@@ -15,7 +15,8 @@ const CreateIpr: FC = (): JSX.Element => {
   useEffect(() => {
     if (state && !isContainRoute(state, url)) {
       navigate("", {
-        state: [...state, { path: pathname, url, title: "Создание нового ИПР" }],
+        state: [...state,
+        { path: pathname, url, title: "Редактирование ИПР" }],
         replace: true
       });
     }
@@ -29,14 +30,14 @@ const CreateIpr: FC = (): JSX.Element => {
   return (
     <>
       <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-        Создание нового ИПР
+        здесь будет заголовок
       </h1>
-      <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-        <p>Здесь будет создание ИПР</p>
+      <div className={`${gridAreasLayout.wrapper_work_info}`}>
+        <p>Здесь будет редактирование ИПР</p>
       </div>
       <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
         <Button color="red" width="281" heigth="56" onClick={onClick}>
-          Создать ИПР
+          Изменить ИПР
         </Button>
         <Button color="grey" width="281" heigth="56" onClick={onClick}>
           Отмена

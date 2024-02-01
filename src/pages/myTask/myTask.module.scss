@@ -1,47 +1,6 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
-.page {
-  background-color: #FFFFFF;
-  width: 100%;
-}
-
-.container {
-  @include flex(column, start, start, 40px);
-  width: 950px;
-  min-height: 597px;
-  border-radius: $xl-border-radius;
-  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
-    2px 2px 5px 0px rgba(95, 99, 104, 0.15);
-  @include indents(42px, 0);
-}
-
-.wrapper {
-  @include flex (row, space-between, start, 42px);
-  position: relative;
-
-  &__button{
-    @include flex (row, space-between, start, 16px);
-    padding-left: 286px;
-  }
-}
-
-.listIpr {
- @include size(244px, 357px);
- @include flex (column, start, start, 8px);
- overflow-y: scroll;
- scrollbar-width: none; 
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
-}
-
-.header{
-  @include flex(row, start, start, 202px); 
-  @include indents(0, 0);
-}
-
 .title {
   @include font("Arial", 24px, $bold, #0E0E0E);
   line-height: 26px;
@@ -54,12 +13,10 @@
   @include indents(0 0 6px 0, 0);
 }
 
-// .disabled {
-//   background-color: rgba(255, 255, 255, 0.7);
-//   @include size(244px, 357px);
-//   @include position(absolute, $top:0, $left:0);
-//   z-index: 2;
-// }
+.wrapper{
+  width: 552px;
+  display: flex
+}
 
 .wrapper__task{
   @include flex(column, start, start, 16px); 
@@ -67,6 +24,9 @@
 }
 
 .rating__box {
-  inline-size: 522px;
-  align-self: center;
+  @include flex(row, center, center);
 }
+
+.wrapper_button{
+    @include flex (row, space-between, start, 16px);
+  }

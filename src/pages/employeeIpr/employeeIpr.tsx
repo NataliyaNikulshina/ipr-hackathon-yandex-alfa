@@ -1,7 +1,8 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Outlet } from 'react-router';
 import styles from "./employeeIpr.module.scss";
-
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
@@ -29,26 +30,27 @@ const EmployeeIpr: FC = (): JSX.Element => {
   useEffect(
     () => {
       if (state && !isContainRoute(state, url)) {
-        navigate('', { state: [...state, { path: pathname, url, title: "ИПР Сотрудника" }], replace: true });
+        navigate('', { state: [...state, { path: pathname, url, title: "ИПР Сотрудника" }],
+        replace: true});
       }
     },
     [pathname, url, state]
   );
 
-  function onClick(e: any) {
+  function createIpr(e: any) {
     e.preventDefault();
-    navigate("create-ipr", { state: state, replace: true });
-  }
+    navigate("create-ipr");
+  };
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/", { replace: true });
+    navigate(-1);
   };
 
   return (
     <section className={styles.page}>
-      <div className={styles.container}>
-        <span className={styles.link}>
+      <div className={`${styles.container} ${gridAreasLayout.container}`}>
+        <span className={`${styles.link} ${gridAreasLayout.wrapper_link}`}>
           <Link
             href={"/myipr"}
             onClick={routeTo}
@@ -62,20 +64,27 @@ const EmployeeIpr: FC = (): JSX.Element => {
           </Link>
         </span>
 
-        <div className={styles.wrapper}>
+        <div className={gridAreasLayout.wrapper_main_info}>
           <Card
             size="small"
             // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
             name="Соколов Михаил Алексеевич"
             appointment="Финансовый аналитик"
           />
-          <ListIpr size='big' isBoss={true} iprList={mockDataIpr} titleEmpty='ИПР пока нет.'/>
         </div>
-        <div className={styles.wrapper__button}>
-          <Button color="red" width="554" heigth="56" onClick={onClick}>
-            Добавить ИПР
-          </Button>
-        </div>
+        {pathname === '/employee-ipr' &&
+          <>
+            <div className={gridAreasLayout.wrapper_work_info}>
+              <ListIpr size='big' isBoss={true} iprList={mockDataIpr} titleEmpty='ИПР пока нет.' />
+            </div>
+            <div className={`${styles.container__button} ${gridAreasLayout.wrapper_buttons}`}>
+              <Button color="red" width="554" heigth="56" onClick={createIpr}>
+                Добавить ИПР
+              </Button>
+            </div>
+          </>
+        }
+        <Outlet />
       </div>
     </section>
   );

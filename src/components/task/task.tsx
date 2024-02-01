@@ -23,11 +23,12 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
   const [crm, setCrm] = useState(checkbox);
 
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // функция принудительного перехода.
   const url = window.location.href;
 
   const onClickMyTasks = () => {
-    navigate("/myipr/my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
+    // navigate("/myipr/my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
+    navigate("my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
   };
 
   const onClickEmployeeTasks = () => {

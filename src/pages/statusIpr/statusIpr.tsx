@@ -1,6 +1,7 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./statusIpr.module.scss";
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Link from "../../ui/links/link";
 import Button from "../../ui/buttons/button/button";
@@ -29,45 +30,26 @@ const StatusIpr: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate("/employee-ipr/list-tasks", {
-      replace: true,
-      state: state.slice(0, 3),
-    });
+    navigate(-1);
   };
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
-        <span className={styles.link}>
-          <Link
-            href={"/myipr"}
-            onClick={routeTo}
-            color="black"
-            size="16"
-            weight="700"
-            underline={false}
-            arrow
-          >
-            Назад
-          </Link>
-        </span>
-        <div className={styles.wrapper}>
-          <Card
-            size="small"
-            // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-            name="Соколов Михаил 
-        Алексеевич"
-            appointment="Финансовый аналитик"
-          />
-          <p>Здесь будет статус выполнения ИПР</p>
-        </div>
-        <div className={styles.wrapper__button}>
-        <Button color="red" width="522" heigth="56" onClick={onClick} disabled={false}>
-                Оценить ИПР
-              </Button>
-        </div>
-      </div>
-    </section>
+       <>
+       <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
+         Название ИПР
+       </h1>
+       <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+         <p>Здесь будет статус ИПР</p>
+       </div>
+       <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+         <Button color="red" width="281" heigth="56" onClick={routeTo}>
+           Закрыть ИПР
+         </Button>
+         <Button color="grey" width="281" heigth="56" onClick={onClick}>
+           Оценить выполнение ИПР
+         </Button>
+       </div>
+     </>
   );
 };
 

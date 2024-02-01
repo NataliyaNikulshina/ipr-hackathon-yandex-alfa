@@ -34,7 +34,7 @@ const ListIpr: FC<IListIpr> = ({
 
   function onClickBoss(e: any) {
     e.preventDefault();
-    navigate("list-tasks", { state: state, replace: true });
+    navigate("list-tasks", { state: state });
   }
 
   function onClick() {
