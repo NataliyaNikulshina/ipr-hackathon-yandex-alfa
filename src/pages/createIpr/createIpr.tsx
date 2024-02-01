@@ -77,28 +77,6 @@ const CreateIpr: FC = (): JSX.Element => {
             </p>
             <div className={styles.nameIpr}>
               <Input onChange={handleChange} />
-              <div className={styles.skillsIpr}>
-                <Button
-                  name="skill"
-                  value="hard"
-                  color={skills === "hard" ? "darkGrey" : "white"}
-                  width="98"
-                  heigth="40"
-                  onClick={handleSkillsChange}
-                >
-                  Hard skill
-                </Button>
-                <Button
-                  name="skill"
-                  value="soft"
-                  color={skills === "soft" ? "darkGrey" : "white"}
-                  width="98"
-                  heigth="40"
-                  onClick={handleSkillsChange}
-                >
-                  Soft Skill
-                </Button>
-              </div>
             </div>
             <Textarea
               width="522px"
@@ -119,7 +97,7 @@ const CreateIpr: FC = (): JSX.Element => {
         </div>
         <div className={styles.wrapper__button}>
           <Button color="red" width="281" heigth="56" onClick={onClick}>
-            Добавить задачу
+            Создать ИПР
           </Button>
           <Button color="grey" width="281" heigth="56" onClick={onClick}>
             Отмена
