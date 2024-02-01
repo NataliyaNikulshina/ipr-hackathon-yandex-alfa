@@ -14,7 +14,6 @@ import { isContainRoute } from "../../utils/breadcrumbs";
 
 const CreateIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
-  const [skills, setSkills] = useState("hard");
   const navigate = useNavigate();
   const url = window.location.href;
 
@@ -41,9 +40,6 @@ const CreateIpr: FC = (): JSX.Element => {
   };
   function handleChange(e: any) {
     console.log(e.target.value);
-  }
-  function handleSkillsChange(e: any) {
-    setSkills(e.target.value);
   }
   return (
     <section className={styles.page}>
