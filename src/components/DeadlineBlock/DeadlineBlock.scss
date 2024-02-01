@@ -4,17 +4,17 @@
 .deadline {
     @include style-text-reset;
     @include flex(column, flex-end, center, 31px);
-    padding-bottom: 14px;
+    padding: 14px;
     position: relative;
-    width: 304px;
-    height: 168px;
+    min-width: 314px;
+    min-height: 168px;
     border-radius: 10px;
     box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07), 2px 2px 5px 0px rgba(95, 99, 104, 0.15);
 
     &__title {
         color: #0E0E0E;
         text-align: center;
-        font-size: 54px;
+        font-size: 64px;
         font-weight: 700;
         line-height: 66px;
     }

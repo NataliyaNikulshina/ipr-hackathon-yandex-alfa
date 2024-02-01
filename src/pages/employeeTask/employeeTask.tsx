@@ -49,23 +49,24 @@ const EmployeeTask: FC = (): JSX.Element => {
   return (
     <section className={styles.page}>
       <div className={styles.container}>
-        <span className={styles.header}>
-          <Link
-            href={"/myipr"}
-            onClick={routeTo}
-            color="black"
-            size="16"
-            weight="700"
-            underline={false}
-            arrow
-          >
-            Назад
-          </Link>
-          <h1 className={styles.title}>
+        <div className={styles.head}>
+          <span className={styles.header}>
+            <Link
+              href={"/myipr"}
+              onClick={routeTo}
+              color="black"
+              size="16"
+              weight="700"
+              underline={false}
+              arrow
+            >
+              Назад
+            </Link>
+          </span>
+          <h2 className={styles.title}>
             Тест на знание корпоративной культуры
-          </h1>
-        </span>
-
+          </h2>
+        </div>
         <div className={styles.wrapper}>
           <Card
             size="small"
@@ -82,11 +83,16 @@ const EmployeeTask: FC = (): JSX.Element => {
               value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
               disabled
             />
-            <DeadlineBlock deadline={'2024-02-05T12:00:00.000Z'} />
+            <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"} />
           </div>
         </div>
         <div className={styles.wrapper__button}>
-          <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>
+          <Button
+            color="red"
+            width="281"
+            heigth="56"
+            onClick={handleRouteStatusIpr}
+          >
             Закрыть задачу
           </Button>
           <Button color="grey" width="281" heigth="56" onClick={onClick}>
