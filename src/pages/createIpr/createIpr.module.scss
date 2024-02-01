@@ -3,8 +3,9 @@
 
 .page {
   // @include flex(column, start, center, 10px);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
+  @include style-text-reset;
 }
 
 .container {
@@ -17,26 +18,54 @@
   @include indents(42px, 0);
 }
 
-.wrapper {
-  @include flex (row, space-between, start, 42px);
+.head {
+  @include flex(row, start, start, 300px);
+}
 
-  &__button{
-    @include flex (row, space-between, start, 16px);
+.wrapper {
+  @include flex(row, space-between, start, 42px);
+
+  &__button {
+    @include flex(row, space-between, start, 16px);
     padding-left: 286px;
   }
 }
 
+.title {
+  font-size: $xl-font-size;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.autorIpr {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+}
+
+.nameIpr {
+  @include flex(row, space-between, center, 80px);
+}
+
 .listIpr {
- @include size(575px, 357px);
- @include flex (column, start, start, 8px);
- overflow-y: scroll;
+  width: 575px;
+  @include flex(column, start, start, 20px);
 
   &::-webkit-scrollbar {
     width: 0;
   }
 }
 
-.link{
-  @include flex(row, start, start); 
+.dateIprWrapp {
+  display: flex;
+  gap: 20px;
+}
+
+.dateIpr {
+  @include flex(column, start, start, 20px);
+}
+
+.link {
+  @include flex(row, start, start);
   @include indents(5px 0 0, 0);
 }

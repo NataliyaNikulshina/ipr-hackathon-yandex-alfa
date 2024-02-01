@@ -1,3 +1,40 @@
+@import "../../stylesheets/variables";
+@import "../../stylesheets/mixins";
+
+@mixin placeholder($color) {
+    @include position(absolute, $top: 14px, $left: 24px);
+    @include font("Arial", $m-font-size, $normal, $color);
+    pointer-events: none;
+    transform-origin: left;
+    transition: top 0.5s, transform 0.5s;
+}
+
+.wrapper {
+    max-width: 304px;
+    position: relative;
+    width: 100%;
+
+    .placeholder {
+        @include placeholder(#6a6b74);
+    }
+
+    .placeholder_active {
+        transform: scale(0.85);
+        top: 4px;
+    }
+
+    .placeholder_disabled {
+        @include placeholder(#aaaaad);
+    }
+
+    &:focus-within {
+        .placeholder {
+            transform: scale(0.85);
+            top: 4px;
+        }
+    }
+}
+
 .textarea {
     overflow: auto;
     background-color: #E7E8EA;
@@ -8,8 +45,23 @@
     color: #0E0E0E;
     font-size: 16px;
     font-weight: 400;
-    scrollbar-width: thin; /* "auto" или "thin" */
+    line-height: 16px;
+    scrollbar-width: thin;
+    /* "auto" или "thin" */
     scrollbar-color: #00000033 #dee1e6;
+
+    &:hover {
+        background-color: #f3f4f5;
+    }
+
+    &:disabled {
+        background-color: #f3f4f5;
+    }
+
+    &:focus {
+        background-color: #fff;
+        border: 1px solid #86868a;
+    }
 }
 
 /* стилизация скролла*/
