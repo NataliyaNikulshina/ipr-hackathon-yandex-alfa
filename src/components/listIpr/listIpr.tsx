@@ -46,7 +46,7 @@ const ListIpr: FC<IListIpr> = ({
       ? styles.listIpr + " " + styles.listIpr__big
       : styles.listIpr + " " + styles.listIpr__small;
 
-  const widthButton = size === "big" ? "560" : "244";
+  const widthButton = size === "big" ? "555" : "244";
 
   return (
     <div className={styles.wrapper}>

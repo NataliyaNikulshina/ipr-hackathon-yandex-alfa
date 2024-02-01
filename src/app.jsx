@@ -19,6 +19,8 @@ import MyTask from "./pages/myTask/myTask";
 import Layout from "./components/layout/layout";
 import Loader from "./components/loader/loader";
 
+import ProtectedRoute from './routes/protected-route';
+
 // функция управления popup
 import HandlePopup from "./utils/handlePopup/handlePopup";
 
@@ -45,21 +47,22 @@ const App = () => {
   const handlePopup = HandlePopup();
 
   const [isLoader, setIsLoader] = useState(false);
+  
 
   return (
     <>
       <Routes>
-        <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.homePage} element={<Layout handlePopup={handlePopup.open} />}>
-          <Route path={routesUrl.homePage} element={<HomePage />} />
-          <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />} />
-          <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />} />
-          <Route path={routesUrl.employeeTask} element={<EmployeeTask />} />
-          <Route path={routesUrl.createIpr} element={<CreateIpr />} />
-          <Route path={routesUrl.createTask} element={<CreateTask />} />
-          <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
-          <Route path={routesUrl.myIPR} element={<MyIpr />} >
-            <Route path={routesUrl.myTask} element={<MyTask />} />
+        <Route path={routesUrl.signin} element={<ProtectedRoute notAuth><Signin /></ProtectedRoute>} />
+        <Route path={routesUrl.homePage} element={<ProtectedRoute><Layout handlePopup={handlePopup.open}/></ProtectedRoute>}>
+          <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>} />
+          <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>} />
+          <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} />
+          <Route path={routesUrl.createIpr} element={<ProtectedRoute><CreateIpr /></ProtectedRoute>} />
+          <Route path={routesUrl.createTask} element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
+          <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
+          <Route path={routesUrl.myIPR} element={<ProtectedRoute><MyIpr /></ProtectedRoute>} >
+            <Route path={routesUrl.myTask} element={<ProtectedRoute><MyTask /></ProtectedRoute>} />
           </Route>
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />

@@ -1,8 +1,8 @@
-import { FC, useState, useEffect } from 'react';
-import { Outlet, useMatch } from 'react-router';
+import { FC, useState, useEffect } from "react";
+import { Outlet, useMatch } from "react-router";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import stylesLayout from './layout.module.scss';
+import stylesLayout from "./layout.module.scss";
 
 import Card from "../../components/card/card";
 import Footer from "../../components/footer/footer";
@@ -11,6 +11,11 @@ import Button from "../../ui/buttons/button/button";
 
 // Ссылки на проверочные константы (заглушки)
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchUser } from "../../services/slice/userSlice";
+import { getIprApi, getUsersAllInfoApi } from "../../api/user";
+
+import Loader from "../loader/loader";
 
 export interface ILayout {
   handlePopup(editing: object): void;
@@ -20,14 +25,28 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   // const matchChat = useMatch('/chat/:id');
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
 
   const onClickIPR = () => {
     navigate("/myipr");
   };
 
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   const onClickTeam = () => {
     navigate("/");
   };
+
+  // вывод данных юзера в консоль
+  // console.log(user);
+  // getUsersAllInfoApi().then((res) => console.log(res));
+  // if (user) { const ipr = getIprApi(user?.id);
+  // console.log(ipr); }
+
+  const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
 
   return (
     <div className={stylesLayout.layout}>
@@ -35,22 +54,36 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
         <Navigation />
       </section>
       <div className={stylesLayout.layout__card}>
-      <Card
+        {user ? (
+          <Card
             size="big"
-            avatar="https://fs.znanio.ru/7ec5d2/d4/b5/750c4d0f7fe1f3fd9cba006fbfce6bc710.jpg"
-            name="Антонова Екатерина Владимировна"
-            appointment="Главный финансовый аналитик"
+            avatar={user.userpic}
+            name={nameAll}
+            appointment={user.position}
             handlePopup={handlePopup}
           />
-          <Button color="nav_white" width="304" heigth="48">
-            Мои достижения
-          </Button>
-          <Button color="nav_white" width="304" heigth="48" onClick={onClickTeam} disabled={!location.pathname.includes('/myipr') ? true : false}>
-            Моя команда
-          </Button>
-          <Button color="nav_white" width="304" heigth="48" onClick={onClickIPR} disabled={location.pathname.includes('/myipr') ? true : false}>
-            Мои ИПР
-          </Button>
+        ) : (<Loader />)}
+        <Button color="nav_white" width="304" heigth="48">
+          Мои достижения
+        </Button>
+        <Button
+          color="nav_white"
+          width="304"
+          heigth="48"
+          onClick={onClickTeam}
+          disabled={!location.pathname.includes("/myipr") ? true : false}
+        >
+          Моя команда
+        </Button>
+        <Button
+          color="nav_white"
+          width="304"
+          heigth="48"
+          onClick={onClickIPR}
+          disabled={location.pathname.includes("/myipr") ? true : false}
+        >
+          Мои ИПР
+        </Button>
       </div>
       <main className={stylesLayout.layout__page}>
         <Outlet />

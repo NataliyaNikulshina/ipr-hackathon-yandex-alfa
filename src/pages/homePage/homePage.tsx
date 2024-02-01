@@ -5,6 +5,7 @@ import stylesProfile from "./homePage.module.scss";
 import Statistics from "../../components/Statistics/Statistics";
 import TeamTable from "../../components/TeamTable/TeamTable";
 import { isContainRoute } from "../../utils/breadcrumbs";
+// import getUserInfoApi from "../../api/user";
 
 const HomePage: FC = (): JSX.Element => {
   const {state, pathname} = useLocation();
@@ -20,6 +21,13 @@ const HomePage: FC = (): JSX.Element => {
     },
     [pathname, url, state]
   );
+
+  // useEffect(() => {
+  //   getUserInfoApi()
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  // }, [])
 
   return (
     <section className={stylesProfile.page}>
