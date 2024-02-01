@@ -66,8 +66,7 @@ const EmployeeListTasks: FC = (): JSX.Element => {
           <Card
             size="small"
             // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-            name="Соколов Михаил 
-        Алексеевич"
+            name="Соколов Михаил Алексеевич"
             appointment="Финансовый аналитик"
           />
           <ListTask tasks={mockDataTask} isBoss={isBoss} />
