@@ -41,10 +41,10 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   };
 
   // вывод данных юзера в консоль
-  // console.log(user);
+  console.log(user);
   // getUsersAllInfoApi().then((res) => console.log(res));
-  // if (user) { const ipr = getIprApi(user?.id);
-  // console.log(ipr); }
+  // if (user) { getIprApi(user?.id).then((res)=>console.log(res));}
+  getIprApi(4).then((res)=>console.log(res));
 
   const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
 

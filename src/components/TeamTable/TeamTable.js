@@ -71,7 +71,7 @@ const mockData = [
 const TeamTable = () => {
   const table = React.createRef();
   const [filter, setFilter] = useState("");
-  const [filterType, setFilterType] = useState("name");
+  const [filterType, setFilterType] = useState("nameAll");
   const [employees, setEmployees] = useState([]);
   const dispatch = useAppDispatch();
   const { usersTeam } = useAppSelector((state) => state.usersTeam);
@@ -95,15 +95,24 @@ const TeamTable = () => {
       }));
     };
     return initSelect().filter((employee) =>
-      filterType === "name"
-        ? employee.nameAll.toLowerCase().includes(filter.toLowerCase())
-        : employee[filterType].toLowerCase().includes(filter.toLowerCase())
-    );
+      employee[filterType].toLowerCase().includes(filter.toLowerCase()))
+        .sort((a, b) => { 
+      const aStartsWith = a[filterType].toLowerCase().startsWith(filter.toLowerCase()); 
+      const bStartsWith = b[filterType].toLowerCase().startsWith(filter.toLowerCase()); 
+   
+      if (aStartsWith && !bStartsWith) { 
+        return -1; 
+      } else if (!aStartsWith && bStartsWith) { 
+        return 1; 
+      } else { 
+        return 0; 
+      } 
+    });
   }
 
   const handleFilterChangeType = () => {
     console.log("click");
-    filterType === "name" ? setFilterType("position") : setFilterType("name");
+    filterType === "nameAll" ? setFilterType("position") : setFilterType("nameAll");
   };
 
   const navigate = useNavigate();
