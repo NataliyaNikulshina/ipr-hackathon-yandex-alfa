@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { IUserMe } from "../../api/user";
+import { IUsers } from "../../api/user";
 import { AppDispatch } from "../store";
 import { getUsersAllInfoApi } from "../../api/user";
 
 export type TGetUsersTeamInfoState = {
-    usersTeam: IUserMe[] | null;
+    usersTeam: IUsers[] | null;
     isLoading: boolean;
     hasError: boolean;
   };
