@@ -25,21 +25,21 @@ const Signin: FC = (): JSX.Element => {
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signinApi({
-        email: values.email.value,
-        password: values.password.value,
-      })
-    .then((res) => {
-      saveAccessToken(res.access);
-      saveRefreshToken(res.refresh);
-      navigate('/');
+      email: values.email.value,
+      password: values.password.value,
     })
+      .then((res) => {
+        saveAccessToken(res.access);
+        saveRefreshToken(res.refresh);
+        navigate('/');
+      })
 
   };
 
   const clearInput = () => {
     setValues({
       email: { value: "", valueValid: false },
-      password: { value: values.password.value , valueValid: values.password.valueValid },
+      password: { value: values.password.value, valueValid: values.password.valueValid },
     });
   }
 
@@ -82,12 +82,12 @@ const Signin: FC = (): JSX.Element => {
           Войти
         </Button>
         <Link
-        href={"#"}
-        color='blue'
-        size='18'
-      >
-        Забыли пароль?
-      </Link>
+          href={"#"}
+          color='blue'
+          size='18'
+        >
+          Забыли пароль?
+        </Link>
       </form>
     </section>
   );

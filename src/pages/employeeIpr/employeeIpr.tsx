@@ -13,10 +13,6 @@ import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
 import { routesUrl } from "../../app";
 
-// export interface IIprEmployee {
-
-// }
-
 // Моковые данные
 import {
   mockDataTask,
@@ -68,7 +64,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
         <div className={gridAreasLayout.wrapper_main_info}>
           <Card
             size="small"
-            // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
+            avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
             name="Соколов Михаил Алексеевич"
             appointment="Финансовый аналитик"
           />

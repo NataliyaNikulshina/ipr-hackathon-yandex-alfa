@@ -3,57 +3,30 @@
 
 
 .title {
-  @include font("Arial", 24px, $bold, #0E0E0E);
+  @include font("Arial", $xl-font-size, 700, #0E0E0E);
   line-height: 26px;
   @include indents(0, 0);
 }
 
-.page {
-  // @include flex(column, start, center, 10px);
-  background-color: #FFFFFF;
-  width: 100%;
-  @include style-text-reset;
-}
-
-.text {
-  @include font("Arial", 18px, $normal, #000000);
-  line-height: 20px;
-  @include indents(0 0 6px 0, 0);
-}
-
-
 .wrapper {
-  // width: 552px;
-  // display: flex
   @include flex(row, space-between, start, 42px);
 
   &__button {
     @include flex(row, space-between, start, 16px);
-    padding-left: 286px;
   }
 }
 
-.head {
-  @include flex(row, start, start, 300px);
-}
-
-.title {
-  font-size: $xl-font-size;
-  font-weight: 700;
-  line-height: 26px;
-}
-
-.autorIpr {
+.autorTask {
   font-size: $l-font-size;
   font-weight: $normal;
   line-height: 20px;
 }
 
-.nameIpr {
+.nameTask {
   @include flex(row, space-between, center, 80px);
 }
 
-.listIpr {
+.listTask {
   width: 575px;
   @include flex (column, start, start, 20px);
 
@@ -62,20 +35,13 @@
   }
 }
 
-
-.dateIprWrapp {
+.dateTaskWrapp {
   display: flex;
   gap: 20px;
 }
 
-.dateIpr {
+.dateTask {
   @include flex(column, start, start, 20px);
-}
-
-
-.link {
-  @include flex(row, start, start);
-  @include indents(5px 0 0, 0);
 }
 
 button[name='skill'] {
@@ -92,7 +58,7 @@ button[value='hard'] {
   border-radius: 4px 0 0 4px;
 }
 
-.skillsIpr {
+.skillsTask {
   @include flex (row, start, center);
   border-radius: 4px;
 }

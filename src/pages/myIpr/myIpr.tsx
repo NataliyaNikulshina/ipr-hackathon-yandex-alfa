@@ -20,8 +20,7 @@ import ListIpr from "../../components/listIpr/listIpr";
 const isBoss = false;
 
 const MyIpr: FC = (): JSX.Element => {
-  const {state, pathname} = useLocation();
-  console.log(pathname);
+  const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
 
@@ -49,12 +48,6 @@ const MyIpr: FC = (): JSX.Element => {
   // Тригер закрытия задачи и переключения на поле оценки.
   const [isClosingTask, setIsClosingTask] = useState(false);
 
-  // преключаемся на поле оценки.
-  const hanleClickClosingTask = () => {
-    setIsClosingTask(true);
-    setIsAssessment(false);
-  };
-
   // произведена оценка или нет.
   // !!! для того, что бы пользователь не переголосовыва после перезагрузки
   //  или перезахода стоит запрашивать с бэка состояние переменной голосования,
@@ -62,6 +55,16 @@ const MyIpr: FC = (): JSX.Element => {
   const [isAssessment, setIsAssessment] = useState(false);
   // Оценка возвращаеться в формате числа.
   const [isActualRating, setIsActualRating] = useState(0);
+
+  // преключаемся на поле оценки.
+  const hanleClickClosingTask = () => {
+    // Закрываем ИПРы оверлеем.
+    setIsClosingTask(true);
+    // Говорим что ИПР ещё не оценивалсяю
+    setIsAssessment(false);
+    // Сбрасываем уровень рейтинга
+    setIsActualRating(0);
+  };
 
   const estimate = () => {
     // Проверяем случилось ли оценивание.
@@ -78,7 +81,6 @@ const MyIpr: FC = (): JSX.Element => {
 
   return (
     <section>
-
       <div className={`${stylesMyIpr.container} ${gridAreasLayout.container}`}>
         <span className={`${stylesMyIpr.link} ${gridAreasLayout.wrapper_link}`}>
           <Link
@@ -94,7 +96,7 @@ const MyIpr: FC = (): JSX.Element => {
           </Link>
         </span>
         <div className={gridAreasLayout.wrapper_main_info}>
-          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.' disabled={ ((pathname !== '/myipr') || isClosingTask) ? true : false } />
+          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.' disabled={((pathname !== '/myipr') || isClosingTask) ? true : false} />
         </div>
         {pathname === '/myipr' &&
           <>
@@ -117,7 +119,7 @@ const MyIpr: FC = (): JSX.Element => {
                 <div className={`${stylesMyIpr.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
                   <div className={stylesMyIpr.rating__box}>
                     <Rating
-                      titleOpening='Оцените, пожалуйста, организацию и прохождение ИПР.'
+                      titleOpening='Оцените пожалуйста организацию и прохождение ИПР.'
                       titleСlosing='Спасибо за оценку.'
                       isAssessment={isAssessment}
                       actualRating={setIsActualRating}
