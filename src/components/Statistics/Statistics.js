@@ -1,13 +1,10 @@
 import './Statistics.scss';
-import { Chart as ChartJS, ArcElement, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-
-ChartJS.register(ArcElement, Legend);
+import Doughnut from '../../ui/Doughnut/Doughnut';
 
 const statistics = {
   total: {
     name: 'Вовлечённость',
-    count: 70,
+    count: 68,
   },
   items: [
     {
@@ -48,37 +45,22 @@ const statistics = {
   ],
 };
 
-const data = {
-  datasets: [
-    {
-      data: [statistics.total.count, 100 - statistics.total.count],
-      backgroundColor: ['#EF3124', '#DEE1E6'],
-    },
-  ],
-};
 function Statistics() {
   return (
     <section className="statistics">
-      <div className="statistics__container container">
-        <div className="statistics__total">
+      <ul className="statistics__list">
+        <li className="statistics__item">
           <p className="statistics__title">{statistics.total.name}</p>
-          <Doughnut data={data} className="statistics__doughnut" />
-          <span className="statistics__total-count">
-            {statistics.total.count}%
-          </span>
-        </div>
-        <div className="statistics__items">
-          <ul className="statistics__list">
-            {statistics.items.map((item) => (
-              <li className="statistics__item" key={item.id}>
-                <p className="statistics__title">{item.name}</p>
-                <span className="statistics__count">{item.count}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
+          <Doughnut percentage={statistics.total.count} />
+        </li>
+        {statistics.items.map((item) => (
+          <li className="statistics__item" key={item.id}>
+            <p className="statistics__title">{item.name}</p>
+            <span className="statistics__count">{item.count}</span>
+          </li>
+        ))}
+      </ul>
+    </section >
   );
 }
 
