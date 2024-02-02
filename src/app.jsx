@@ -73,7 +73,7 @@ const App = () => {
                 role='create' 
                 heading='Создание нового ИПР'
                 submitButtonText='Создать ИПР'
-                resetButtonText='Отмена'
+                resetButtonText='Очистить'
               />} />    
               {/* И не нужно с это страницы переходить в создание задачи! */}
               <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />}>
@@ -81,14 +81,14 @@ const App = () => {
                     role='create' 
                     heading='Создание новой задачи'
                     submitButtonText='Добавить задачу'
-                    resetButtonText='Отмена'
+                    resetButtonText='Очистить'
                   />} />
                   {/* Редактировать ИПР, про неё забыли.!!! */}
                   <Route path={routesUrl.editIpr} element={<IprCreateOrEdit 
                     role='edit' 
                     heading='Редактирование ИПР'
                     submitButtonText='Изменить ИПР'
-                    resetButtonText='Отмена'
+                    resetButtonText='Очистить'
                   />} />
                   <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
                   <Route path={routesUrl.employeeTask} element={<EmployeeTask />} >
@@ -96,7 +96,7 @@ const App = () => {
                       role='edit' 
                       heading='Редактирование задачи'
                       submitButtonText='Редактировать задачу'
-                      resetButtonText='Отмена'
+                      resetButtonText='Очистить'
                     />} />
                   </Route> 
               </Route>
