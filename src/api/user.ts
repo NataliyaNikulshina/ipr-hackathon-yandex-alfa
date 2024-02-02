@@ -16,7 +16,15 @@ export type IUserMe = {
   team: number
 };
 
+export type IUsers = {
+count: number,
+next: string, 
+previous: string,
+results:IUserMe[]
+}
+
 export interface IUserMeResponse extends IUserMe {}
+export interface IUsersResponse extends IUsers {}
 
 // типизация данных пользователя
 export type IIprMe = {
@@ -43,7 +51,7 @@ export function getUserInfoApi() {
 
 // Запрос на получение данных всех пользователей
 export function getUsersAllInfoApi() {
-  return getReq<IUserMeResponse[]>({ uri: 'api/v1/users/', auth: true });
+  return getReq<IUsersResponse[]>({ uri: 'api/v1/users/', auth: true });
 }
 
 // Запрос на получение данных ИПР отпределенного пользователя
