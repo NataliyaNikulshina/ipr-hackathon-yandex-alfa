@@ -5,43 +5,13 @@
   @include font("Arial", 24px, $bold, #0E0E0E);
   line-height: 26px;
   @include indents(0, 0);
-  // font-size: $xl-font-size;
-}
-
-.page {
-  // @include flex(column, start, center, 10px);
-  background-color: #ffffff;
-  width: 100%;
-  @include style-text-reset;
-}
-
-.text {
-  @include font("Arial", 18px, $normal, #000000);
-  line-height: 20px;
-  @include indents(0 0 6px 0, 0);
-}
-
-.wrapper__task{
-  @include flex(column, start, start, 16px); 
-  width: 552px;
-}
-
-.wrapper_button{
-    @include flex (row, space-between, start, 16px);
-  }
-
-.head {
-  @include flex(row, start, start, 300px);
 }
 
 .wrapper {
-  // width: 552px;
-  // display: flex
   @include flex(row, space-between, start, 42px);
 
-  &__button {
+  &_button {
     @include flex(row, space-between, start, 16px);
-    padding-left: 286px;
   }
 }
 
@@ -71,9 +41,4 @@
 
 .dateIpr {
   @include flex(column, start, start, 18px);
-}
-
-.link {
-  @include flex(row, start, start);
-  @include indents(5px 0 0, 0);
 }

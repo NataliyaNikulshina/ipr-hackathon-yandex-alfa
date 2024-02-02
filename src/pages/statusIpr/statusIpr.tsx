@@ -15,7 +15,7 @@ const StatusIpr: FC = (): JSX.Element => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (pathname==="/employee-ipr/list-tasks/status-ipr" && state && !isContainRoute(state, url)) {
+    if (pathname === "/employee-ipr/list-tasks/status-ipr" && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [
           ...state,
@@ -27,81 +27,88 @@ const StatusIpr: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   function onClick() {
-    alert("Оценка ИПР");
+    alert("Закрыть ИПР");
+  }
+
+  // Тригер закрытия задачи и переключения на поле оценки.
+  const [isClosingTask, setIsClosingTask] = useState(false);
+
+  // произведена оценка или нет.
+  // !!! для того, что бы пользователь не переголосовыва после перезагрузки
+  //  или перезахода стоит запрашивать с бэка состояние переменной голосования,
+  //  было оно уже или нет. !!!
+  const [isAssessment, setIsAssessment] = useState(false);
+  // Оценка возвращаеться в формате числа.
+  const [isActualRating, setIsActualRating] = useState(0);
+
+  // преключаемся на поле оценки.
+  const hanleClickClosingTask = () => {
+    // Переключаемся на поле оценки.
+    setIsClosingTask(true);
+    // Говорим что ИПР ещё не оценивалсяю
+    setIsAssessment(false);
+    // Сбрасываем уровень рейтинга
+    setIsActualRating(0);
+  };
+
+  const estimate = () => {
+    // Проверяем случилось ли оценивание.
+    if (isActualRating) {
+      // Тут нужно кудато послать наш рейтинг, видимо на бэк. 
+      alert(isActualRating);
+      // И если ответ с бэка положительный сказать спасибо за голосование.
+      setIsAssessment(true);
+      // А лучше вернуться назад.
+      setIsClosingTask(false);
+      // а ести отрицатеольный вызвать попап с ерором.
+    }
   }
 
   return (
-       <>
-          <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>Повышения уровня квалификации</h2>
+    <>
+      <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>Повышение уровня квалификации</h2>
+      {!isClosingTask ?
+        <>
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-          <section className={styles.listIpr}>
-            <p className={styles.subtitle}>Статус выполнения ИПР</p>
-            <ProgressBar percentage={80}/>
-            <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"}/>
-            <p>Оценить выполнение ИПР</p>
-            <Rating />
-          </section>
-       </div>
-        <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-          <Button
-            color="red"
-            width="522"
-            heigth="56"
-            onClick={onClick}
-            disabled={false}
-          >
-            Оценить ИПР
-          </Button>
-        </div>
+            <section className={styles.wrapper_ipr}>
+              <p className={styles.subtitle}>Статус выполнения ИПР</p>
+              <ProgressBar percentage={80} />
+              <p className={styles.subtitle}>ИПР выполнен в срок</p>
+              <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"} />
+            </section>
+          </div>
+          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+            <Button color="red" width="281" heigth="56" onClick={onClick}>
+              Закрыть ИПР
+            </Button>
+            <Button color="grey" width="281" heigth="56" onClick={hanleClickClosingTask}>
+              Оценить исполнение ИПР
+            </Button>
+          </div>
         </>
+        :
+        <>
+          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+            <div className={styles.rating__box}>
+              <Rating
+                titleOpening='Оцените пожалуйста организацию и прохождение ИПР.'
+                titleСlosing='Спасибо за оценку.'
+                isAssessment={isAssessment}
+                actualRating={setIsActualRating}
+              />
+            </div>
+          </div>
+          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+            {!isAssessment &&
+              <Button color="red" width="522" heigth="56" onClick={estimate} disabled={!isActualRating ? true : false}>
+                Оценить качество ИПР
+              </Button>
+            }
+          </div>
+        </>
+      }
 
-    // <section className={styles.page}>
-    //   <div className={styles.container}>
-    //     <div className={styles.head}>
-    //       <span className={styles.link}>
-    //         <Link
-    //           href={"/myipr"}
-    //           onClick={routeTo}
-    //           color="black"
-    //           size="16"
-    //           weight="700"
-    //           underline={false}
-    //           arrow
-    //         >
-    //           Назад
-    //         </Link>
-    //       </span>
-    //       <h2 className={styles.title}>Повышения уровня квалификации</h2>
-    //     </div>
-
-    //     <div className={styles.wrapper}>
-    //       <Card
-    //         size="small"
-    //         // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-    //         name="Соколов Михаил Алексеевич"
-    //         appointment="Финансовый аналитик"
-    //       />
-    //       <section className={styles.listIpr}>
-    //         <p className={styles.subtitle}>Статус выполнения ИПР</p>
-    //         <ProgressBar percentage={80}/>
-    //         <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"}/>
-    //         <p>Оценить выполнение ИПР</p>
-    //         <Rating />
-    //       </section>
-    //     </div>
-    //     <div className={styles.wrapper__button}>
-    //       <Button
-    //         color="red"
-    //         width="522"
-    //         heigth="56"
-    //         onClick={onClick}
-    //         disabled={false}
-    //       >
-    //         Оценить ИПР
-    //       </Button>
-    //     </div>
-    //   </div>
-    // </section>
+    </>
   );
 };
 

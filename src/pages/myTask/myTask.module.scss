@@ -23,10 +23,6 @@
   width: 552px;
 }
 
-.rating__box {
-  @include flex(row, center, center);
-}
-
 .wrapper_button{
     @include flex (row, space-between, start, 16px);
   }

@@ -18,16 +18,7 @@
   display: flex
 }
 
-.wrapper__task{
-  @include flex(column, start, start, 16px); 
-  width: 552px;
-}
-
 .wrapper_button{
-    @include flex (column, space-between, start, 16px);
+    @include flex (row, space-between, start, 16px);
+    flex-wrap: wrap;
   }
-
-.link{
-  @include flex(row, start, start); 
-  @include indents(5px 0 3px 0);
-}

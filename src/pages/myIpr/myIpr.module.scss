@@ -1,48 +1,27 @@
 @use "../../stylesheets/variables" as *;
 @use "../../stylesheets/mixins" as *;
 
-.page {
-  background-color: #fff;
-  width: 100%;
-}
-
 .container {
   width: 950px;
   border-radius: $xl-border-radius;
   box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
     2px 2px 5px 0px rgba(95, 99, 104, 0.15);
   @include indents(42px, 0);
-
-  &__button{
-    @include flex (row, space-between, start, 16px);
-  }
 }
 
-.link{
-  @include flex(row, start, start); 
+.link {
+  @include flex(row, start, start);
   @include indents(5px 0 0, 0);
   height: 26px;
 }
 
-.title {
-  @include font("Arial", 24px, $bold, #0E0E0E);
-  line-height: 26px;
-  @include indents(0, 0);
-}
-
-.text {
-  @include font("Arial", 18px, $normal, #000000);
-  line-height: 20px;
-  @include indents(0 0 6px 0, 0);
-}
-
-.wrapper{
+.wrapper {
   width: 552px;
   display: flex
 }
 
-.wrapper__task{
-  @include flex(column, start, start, 16px); 
+.wrapper__task {
+  @include flex(column, start, start, 16px);
   width: 552px;
 }
 
@@ -50,6 +29,6 @@
   @include flex(row, center, center);
 }
 
-.wrapper_button{
-    @include flex (row, space-between, start, 16px);
-  }
+.wrapper_button {
+  @include flex (row, space-between, start, 16px);
+}

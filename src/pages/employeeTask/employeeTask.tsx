@@ -40,6 +40,7 @@ const EmployeeTask: FC = (): JSX.Element => {
           <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
           Тест на знание корпоративной культуры
           </h2>
+
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
           <p className={styles.text}>Описание задачи</p>
             <Textarea
@@ -49,6 +50,7 @@ const EmployeeTask: FC = (): JSX.Element => {
             />
             <DeadlineBlock deadline={'2024-02-31T16:41:29.065Z'} />
           </div>
+
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>
               Закрыть задачу
@@ -61,61 +63,6 @@ const EmployeeTask: FC = (): JSX.Element => {
       )}
       <Outlet />
     </>
-     
-
-
-
-
-
-    // {/* <section className={styles.page}>
-    //   <div className={styles.container}>
-    //     <div className={styles.head}>
-    //       <span className={styles.header}>
-    //         <Link
-    //           href={"/myipr"}
-    //           onClick={routeTo}
-    //           color="black"
-    //           size="16"
-    //           weight="700"
-    //           underline={false}
-    //           arrow
-    //         >
-    //           Назад
-    //         </Link>
-    //       </span>
-    //       <h2 className={styles.title}>
-    //         Тест на знание корпоративной культуры
-    //       </h2>
-    //     </div>
-    //     <div className={styles.wrapper}>
-    //       <Card
-    //         size="small"
-    //         // avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-    //         name="Соколов Михаил 
-    //     Алексеевич"
-    //         appointment="Финансовый аналитик"
-    //       />
-
-    //       <div className={styles.wrapper__task}> */}
-
-            
-
-    //     </div>
-    //     <div className={styles.wrapper__button}>
-    //       <Button
-    //         color="red"
-    //         width="281"
-    //         heigth="56"
-    //         onClick={handleRouteStatusIpr}
-    //       >
-    //         Закрыть задачу
-    //       </Button>
-    //       <Button color="grey" width="281" heigth="56" onClick={onClick}>
-    //         Повторить задачу
-    //       </Button>
-    //     </div>
-    //   </div>
-    // </section>
   );
 };
 

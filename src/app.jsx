@@ -6,11 +6,10 @@ import Signin from "./pages/signin/signin";
 import Layout from "./components/layout/layout";
   import HomePage from "./pages/homePage/homePage";
     import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
-      import CreateIpr from "./pages/createIpr/createIpr";
+      import IprCreateOrEdit from "./pages/iprCreateOrEdit/iprCreateOrEdit";
       import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
-      import EditIpr from "./pages/editIpr/editIpr";
       import EmployeeTask from "./pages/employeeTask/employeeTask";
-        import EditEmployeeTask from "./pages/editEmployeeTask/editEmployeeTask";
+        import TaskCreateOrEdit from "./pages/taskCreateOrEdit/taskCreateOrEdit";
 
 import Popup from "./components/popup/popup";
 
@@ -19,7 +18,8 @@ import NotFound from "./pages/not-found/not-found";
 import MyIpr from "./pages/myIpr/myIpr";
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
-import CreateTask from "./pages/createTask/createTask";
+
+
 
 import MyTask from "./pages/myTask/myTask";
 
@@ -68,13 +68,16 @@ const App = () => {
         <Route path={routesUrl.layout} element={<ProtectedRoute><Layout handlePopup={handlePopup.open} /></ProtectedRoute>}>
           <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>}>
             <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>}>
-              <Route path={routesUrl.createIpr} element={<ProtectedRoute><CreateIpr /></ProtectedRoute>} />    
+              {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
+              <Route path={routesUrl.createIpr} element={<ProtectedRoute><IprCreateOrEdit role='create'/></ProtectedRoute>} />    
+              {/* И не нужно с это страницы переходить в создание задачи! */}
               <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>}>
-                  <Route path={routesUrl.createTask} element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
-                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><EditIpr /></ProtectedRoute>} />
+                  <Route path={routesUrl.createTask} element={<ProtectedRoute><TaskCreateOrEdit role='create' /></ProtectedRoute>} />
+                  {/* Редактировать ИПР, про неё забыли.!!! */}
+                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><IprCreateOrEdit role='edit' /></ProtectedRoute>} />
                   <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
                   <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} >
-                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><EditEmployeeTask /></ProtectedRoute>} />
+                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><TaskCreateOrEdit role='edit' /> </ProtectedRoute>} />
                   </Route> 
               </Route>
             </Route>

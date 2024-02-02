@@ -5,56 +5,30 @@
   @include font("Arial", 24px, $bold, #0E0E0E);
   line-height: 26px;
   @include indents(0, 0);
-  // font-size: $xl-font-size;
-  // font-weight: 700;
-  // line-height: 26px;
-}
-
-.page {
-  // @include flex(column, start, center, 10px);
-  background-color: #FFFFFF;
-  width: 100%;
-  @include style-text-reset;
-}
-
-.text {
-  @include font("Arial", 18px, $normal, #000000);
-  line-height: 20px;
-  @include indents(0 0 6px 0, 0);
-}
-
-.wrapper{
-  width: 552px;
-  display: flex
-}
-
-.wrapper__task{
-  @include flex(column, start, start, 16px); 
-  width: 552px;
-}
-
-.wrapper_button{
-    @include flex (row, space-between, start, 16px);
-    padding-left: 286px;
-}
-
-.head {
-  @include flex(row, start, start, 200px);
-}
-
-.listIpr {
- width: 575px;
- @include flex (column, start, start, 18px);
- 
 }
 
 .subtitle {
   font-size: $l-font-size;
   font-weight: $normal;
   line-height: 20px;
+  margin: 0;
 }
 
-.link{
-  @include flex(row, start, start);
-  @include indents(5px 0 0 0);
+.wrapper {
+  width: 578px;
+  display: flex
+}
+
+.wrapper_button {
+  width: 578px;
+  @include flex (row, space-between, start, 16px);
+}
+
+.wrapper_ipr {
+  width: 578px;
+  @include flex (column, start, start, 18px);
+}
+
+.rating__box {
+  @include flex(row, center, center);
 }
