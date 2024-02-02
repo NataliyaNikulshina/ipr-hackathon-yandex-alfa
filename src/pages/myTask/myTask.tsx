@@ -23,16 +23,10 @@ const MyTask: FC = (): JSX.Element => {
     }
   }, [pathname, url, state]);
 
-  function onClick() {
-    alert("Переход к определенному списку задач");
-  }
-
   const routeTo = (e: any) => {
     e.preventDefault();
     navigate(-1);
   };
-
-  
 
   return (
     <>

@@ -6,11 +6,10 @@ import Signin from "./pages/signin/signin";
 import Layout from "./components/layout/layout";
   import HomePage from "./pages/homePage/homePage";
     import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
-      import CreateIpr from "./pages/createIpr/createIpr";
+      import IprCreateOrEdit from "./pages/iprCreateOrEdit/iprCreateOrEdit";
       import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
-      import EditIpr from "./pages/editIpr/editIpr";
       import EmployeeTask from "./pages/employeeTask/employeeTask";
-        import EditEmployeeTask from "./pages/editEmployeeTask/editEmployeeTask";
+        import TaskCreateOrEdit from "./pages/taskCreateOrEdit/taskCreateOrEdit";
 
 import Popup from "./components/popup/popup";
 
@@ -19,7 +18,8 @@ import NotFound from "./pages/not-found/not-found";
 import MyIpr from "./pages/myIpr/myIpr";
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
-import CreateTask from "./pages/createTask/createTask";
+
+
 
 import MyTask from "./pages/myTask/myTask";
 
@@ -69,15 +69,35 @@ const App = () => {
           <Route path={routesUrl.homePage} element={<HomePage />}>
             <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />}>
               {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
-              <Route path={routesUrl.createIpr} element={<CreateIpr />} />    
+              <Route path={routesUrl.createIpr} element={<IprCreateOrEdit
+                role='create' 
+                heading='Создание нового ИПР'
+                submitButtonText='Создать ИПР'
+                resetButtonText='Отмена'
+              />} />    
               {/* И не нужно с это страницы переходить в создание задачи! */}
               <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />}>
-                  <Route path={routesUrl.createTask} element={<CreateTask />} />
+                  <Route path={routesUrl.createTask} element={<TaskCreateOrEdit 
+                    role='create' 
+                    heading='Создание новой задачи'
+                    submitButtonText='Добавить задачу'
+                    resetButtonText='Отмена'
+                  />} />
                   {/* Редактировать ИПР, про неё забыли.!!! */}
-                  <Route path={routesUrl.editIpr} element={<EditIpr />} />
+                  <Route path={routesUrl.editIpr} element={<IprCreateOrEdit 
+                    role='edit' 
+                    heading='Редактирование ИПР'
+                    submitButtonText='Изменить ИПР'
+                    resetButtonText='Отмена'
+                  />} />
                   <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
                   <Route path={routesUrl.employeeTask} element={<EmployeeTask />} >
-                    <Route path={routesUrl.editEmployeeTask} element={<EditEmployeeTask />} />
+                    <Route path={routesUrl.editEmployeeTask} element={<TaskCreateOrEdit 
+                      role='edit' 
+                      heading='Редактирование задачи'
+                      submitButtonText='Редактировать задачу'
+                      resetButtonText='Отмена'
+                    />} />
                   </Route> 
               </Route>
             </Route>

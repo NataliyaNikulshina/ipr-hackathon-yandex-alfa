@@ -19,8 +19,8 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
   console.log(token);
 
   // для выхода из профиля
-  // removeAccessToken();
-  // removeRefreshToken();
+  removeAccessToken();
+  removeRefreshToken();
 
   // useEffect(() => {
   //   if (!token) {
