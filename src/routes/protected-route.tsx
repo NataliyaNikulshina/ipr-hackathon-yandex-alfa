@@ -29,7 +29,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
   // }, [token]);
 
   if (token && notAuth) {
-    return <Navigate to={routesUrl.homePage} />;
+    return <Navigate to={routesUrl.layout} />;
   }
 
   if (!notAuth && !token) {

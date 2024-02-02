@@ -64,20 +64,17 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.layout} element={<Layout handlePopup={handlePopup.open} />}>
-          <Route path={routesUrl.homePage} element={<HomePage />}>
-            <Route path={routesUrl.employeeIpr} element={<EmployeeIpr />}>
-              {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
-              <Route path={routesUrl.createIpr} element={<CreateIpr />} />    
-              {/* И не нужно с это страницы переходить в создание задачи! */}
-              <Route path={routesUrl.employeeListTasks} element={<EmployeeListTasks />}>
-                  <Route path={routesUrl.createTask} element={<CreateTask />} />
-                  {/* Редактировать ИПР, про неё забыли.!!! */}
-                  <Route path={routesUrl.editIpr} element={<EditIpr />} />
-                  <Route path={routesUrl.statusIpr} element={<StatusIpr />} />
-                  <Route path={routesUrl.employeeTask} element={<EmployeeTask />} >
-                    <Route path={routesUrl.editEmployeeTask} element={<EditEmployeeTask />} />
+        <Route path={routesUrl.signin} element={<ProtectedRoute notAuth><Signin /></ProtectedRoute>} />
+        <Route path={routesUrl.layout} element={<ProtectedRoute><Layout handlePopup={handlePopup.open} /></ProtectedRoute>}>
+          <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>}>
+            <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>}>
+              <Route path={routesUrl.createIpr} element={<ProtectedRoute><CreateIpr /></ProtectedRoute>} />    
+              <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>}>
+                  <Route path={routesUrl.createTask} element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
+                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><EditIpr /></ProtectedRoute>} />
+                  <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
+                  <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} >
+                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><EditEmployeeTask /></ProtectedRoute>} />
                   </Route> 
               </Route>
             </Route>
