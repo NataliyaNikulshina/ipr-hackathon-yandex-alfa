@@ -7,7 +7,8 @@ interface TextareaProps {
   width?: string;
   height?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  name?:string;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   disabled?: boolean;
 }
 
@@ -16,17 +17,11 @@ const Textarea: React.FC<TextareaProps> = ({
   width,
   height,
   value,
+  name,
   disabled,
   onChange,
 }) => {
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    // внутренняя логика компонента
-    console.log(e.target.value);
-    // + если функция передана пропсом
-    if (onChange) {
-      onChange(e.target.value);
-    }
-  };
+
   return (
     <div className="wrapper">
       <span
@@ -43,7 +38,8 @@ const Textarea: React.FC<TextareaProps> = ({
       <textarea
         className="textarea"
         value={value}
-        onChange={handleChange}
+        name={name}
+        onChange={onChange}
         style={{ height: height || "100px", width: width || "100%" }}
         disabled={disabled}
       />

@@ -7,6 +7,7 @@ import Button from "../../ui/buttons/button/button";
 import Input from "../../ui/inputs/input/input";
 import Textarea from "../../ui/textarea/textarea";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";
+import useForm from "../../utils/use-form";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
@@ -20,6 +21,12 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const { values, handleChange, setValues } = useForm({
+    name: { value: "", valueValid: false },
+    description: { value: "", valueValid: false },
+  });
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   useEffect(() => {
     if (pathname === "/employee-ipr/list-tasks/task/edit-task" && state && !isContainRoute(state, url)) {
@@ -46,9 +53,29 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
     navigate(-1);
   }
 
-  function handleChange(e: any) {
-    console.log(e.target.value);
+  const clearInput = () => {
+    setValues({
+      name: { value: "", valueValid: false },
+      description: { value: "", valueValid: false },
+    });
+    setStartDate(null);
+    setEndDate(null);
   }
+
+  const handleDateChangeStart = (date: Date | null) => {
+    setStartDate(date);
+    console.log(date?.toLocaleDateString());
+  };
+
+  const handleDateChangeEnd = (date: Date | null) => {
+    setEndDate(date);
+    console.log(date?.toLocaleDateString());
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   function handleSkillsChange(e: any) {
     setSkills(e.target.value);
   }
@@ -58,10 +85,13 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
       {role === "create" ? "Создание новой задачи" : "Редактирование задачи"}
       </h2>
-      <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+      <form
+        className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
+        onSubmit={handleSubmit}
+      >
         <section className={styles.listTask}>
           <div className={styles.nameTask}>
-            <Input onChange={handleChange} />
+            <Input onChange={handleChange} name="name" value={values.name.value} placeholder="Введите название"/>
             <div className={styles.skillsTask}>
               <Button
                 name="skill"
@@ -89,27 +119,30 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
             width="522px"
             height="202px"
             placeholder="Введите описание задачи"
+            name="description"
+            value={values.description.value}
+            onChange={handleChange}
           />
           <div className={styles.dateTaskWrapp}>
-            <div className={styles.dateTask}>
+            <div className={styles.labelTask}>
               <p className={styles.autorTask}>Дата создания задачи</p>
-              <InputCalendar icon={true} />
+              <InputCalendar icon={true} name="dataCreator" value={startDate} onChange={handleDateChangeStart}/>
             </div>
-            <div className={styles.dateTask}>
+            <div className={styles.labelTask}>
               <p className={styles.autorTask}>Дата закрытия задачи</p>
-              <InputCalendar icon={true} />
+              <InputCalendar icon={true} name="dataCreator" value={endDate} onChange={handleDateChangeEnd}/>
             </div>
           </div>
         </section>
-      </div>
-      <div className={`${styles.wrapper__button} ${gridAreasLayout.wrapper_buttons}`}>
-        <Button color="red" width="281" heigth="56" onClick={onClick}>
+      <div className={`${styles.wrapper__button}`}>
+        <Button color="red" width="281" heigth="56" onClick={handleSubmit}>
         {role === "create" ? "Добавить задачу" : "Редактировать задачу"}
         </Button>
-        <Button color="grey" width="281" heigth="56" onClick={onClick}>
+        <Button color="grey" width="281" heigth="56" onClick={clearInput}>
         {role === "create" ? "Очистить" : "Отмена"}
         </Button>
       </div>
+      </form>
     </>
   );
 };
