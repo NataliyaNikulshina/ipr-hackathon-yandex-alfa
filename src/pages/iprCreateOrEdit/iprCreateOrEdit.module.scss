@@ -8,7 +8,7 @@
 }
 
 .wrapper {
-  @include flex(row, space-between, start, 42px);
+  @include flex(column, space-between, start, 42px);
 
   &_button {
     @include flex(row, space-between, start, 16px);
@@ -21,8 +21,9 @@
   line-height: 20px;
 }
 
-.nameIpr {
-  @include flex(row, space-between, center, 80px);
+.labelIpr {
+  @include flex(column, start, start);
+  width: 100%;
 }
 
 .listIpr {
