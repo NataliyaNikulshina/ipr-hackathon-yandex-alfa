@@ -69,35 +69,15 @@ const App = () => {
           <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>}>
             <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>}>
               {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
-              <Route path={routesUrl.createIpr} element={<ProtectedRoute><IprCreateOrEdit
-                role='create' 
-                heading='Создание нового ИПР'
-                submitButtonText='Создать ИПР'
-                resetButtonText='Отмена'
-              /></ProtectedRoute>} />    
+              <Route path={routesUrl.createIpr} element={<ProtectedRoute><IprCreateOrEdit role='create'/></ProtectedRoute>} />    
               {/* И не нужно с это страницы переходить в создание задачи! */}
               <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>}>
-                  <Route path={routesUrl.createTask} element={<ProtectedRoute><TaskCreateOrEdit
-                    role='create' 
-                    heading='Создание новой задачи'
-                    submitButtonText='Добавить задачу'
-                    resetButtonText='Отмена'
-                  /></ProtectedRoute>} />
+                  <Route path={routesUrl.createTask} element={<ProtectedRoute><TaskCreateOrEdit role='create' /></ProtectedRoute>} />
                   {/* Редактировать ИПР, про неё забыли.!!! */}
-                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><IprCreateOrEdit 
-                    role='edit' 
-                    heading='Редактирование ИПР'
-                    submitButtonText='Изменить ИПР'
-                    resetButtonText='Отмена'
-                  /></ProtectedRoute>} />
+                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><IprCreateOrEdit role='edit' /></ProtectedRoute>} />
                   <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
                   <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} >
-                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><TaskCreateOrEdit 
-                      role='edit' 
-                      heading='Редактирование задачи'
-                      submitButtonText='Редактировать задачу'
-                      resetButtonText='Отмена'
-                    /> </ProtectedRoute>} />
+                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><TaskCreateOrEdit role='edit' /> </ProtectedRoute>} />
                   </Route> 
               </Route>
             </Route>

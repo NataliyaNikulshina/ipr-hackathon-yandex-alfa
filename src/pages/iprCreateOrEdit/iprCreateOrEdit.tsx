@@ -6,25 +6,26 @@ import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scs
 import Button from "../../ui/buttons/button/button";
 import Input from "../../ui/inputs/input/input";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";
-import { routesUrl } from "../../app";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 export interface IIprCreateOrEdit {
   role: string;
-  heading?: string;
-  submitButtonText?: string;
-  resetButtonText?: string;
   ipr?: object;
 }
 
-const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, heading, submitButtonText, resetButtonText, ipr }): JSX.Element => {
+const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
 
+
   useEffect(() => {
-    if (pathname === "/employee-ipr/create-ipr" && state && !isContainRoute(state, url)) {
+    if (
+      pathname === "/employee-ipr/create-ipr" &&
+      state &&
+      !isContainRoute(state, url)
+    ) {
       navigate("", {
         state: [
           ...state,
@@ -32,11 +33,14 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, heading, submitButtonText
         ],
         replace: true,
       });
-    } else if (pathname === "/employee-ipr/list-tasks/edit-ipr" && state && !isContainRoute(state, url)) {
+    } else if (
+      pathname === "/employee-ipr/list-tasks/edit-ipr" &&
+      state &&
+      !isContainRoute(state, url)
+    ) {
       navigate("", {
-        state: [...state,
-        { path: pathname, url, title: "Редактирование ИПР" }],
-        replace: true
+        state: [...state, { path: pathname, url, title: "Редактирование ИПР" }],
+        replace: true,
       });
     }
   }, [pathname, url, state]);
@@ -53,7 +57,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, heading, submitButtonText
   return (
     <>
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-        {heading || 'ИПР создание или редактирование'}
+        {role === "create" ? "Создание нового ИПР" : "Редактирование ИПР"}
       </h2>
       <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
         <section className={styles.listIpr}>
@@ -61,7 +65,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, heading, submitButtonText
             Автор ИПР: Антонова Екатерина Владимировна
           </p>
           <div className={styles.nameIpr}>
-            <Input onChange={handleChange} placeholder='Введите название ИПР' />
+            <Input onChange={handleChange} placeholder="Введите название ИПР" />
           </div>
           <div className={styles.dateIprWrapp}>
             <div className={styles.dateIpr}>
@@ -75,12 +79,14 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, heading, submitButtonText
           </div>
         </section>
       </div>
-      <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+      <div
+        className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+      >
         <Button color="red" width="281" heigth="56" onClick={onClick}>
-          {submitButtonText || 'submit'}
+        {role === "create" ? "Создать ИПР" : "Изменить ИПР"}
         </Button>
         <Button color="grey" width="281" heigth="56" onClick={onClick}>
-          {resetButtonText || 'reset'}
+        {role === "create" ? "Очистить" : "Отмена"}
         </Button>
       </div>
     </>

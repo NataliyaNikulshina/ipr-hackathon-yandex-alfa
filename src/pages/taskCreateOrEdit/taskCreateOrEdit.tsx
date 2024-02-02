@@ -12,13 +12,10 @@ import { isContainRoute } from "../../utils/breadcrumbs";
 
 export interface ITaskCreateOrEdit {
   role: string;
-  heading?: string;
-  submitButtonText?: string;
-  resetButtonText?: string;
   task: object;
 }
 
-const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, heading, submitButtonText, resetButtonText, task }): JSX.Element => {
+const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element => {
   const [skills, setSkills] = useState("hard");
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
@@ -59,7 +56,7 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, heading, submitButtonTe
   return (
     <>
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-        {heading || 'Задача создание или редактирование'}
+      {role === "create" ? "Создание новой задачи" : "Редактирование задачи"}
       </h2>
       <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
         <section className={styles.listTask}>
@@ -107,10 +104,10 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, heading, submitButtonTe
       </div>
       <div className={`${styles.wrapper__button} ${gridAreasLayout.wrapper_buttons}`}>
         <Button color="red" width="281" heigth="56" onClick={onClick}>
-          {submitButtonText || 'submit'}
+        {role === "create" ? "Добавить задачу" : "Редактировать задачу"}
         </Button>
         <Button color="grey" width="281" heigth="56" onClick={onClick}>
-          {resetButtonText || 'reset'}
+        {role === "create" ? "Очистить" : "Отмена"}
         </Button>
       </div>
     </>
