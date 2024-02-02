@@ -82,11 +82,11 @@ const TeamTable = () => {
     dispatch(fetchUsers());
   }, []);
 
-  //console.log(usersTeam.results);
+  console.log(usersTeam.results);
 
   function filteredItems() {
     const filteredEmployees = usersTeam.results.filter(
-      (employee) => employee.team === user.ruled_team
+      (employee) => employee.team === user.ruled_team && employee.team !== null
     );
     const initSelect = () => {
       return filteredEmployees.map((item) => ({
