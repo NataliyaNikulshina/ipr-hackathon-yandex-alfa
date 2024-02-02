@@ -82,10 +82,10 @@ const TeamTable = () => {
     dispatch(fetchUsers());
   }, []);
 
-  console.log(usersTeam.results);
+  // console.log(usersTeam);
 
   function filteredItems() {
-    const filteredEmployees = usersTeam.results.filter(
+    const filteredEmployees = usersTeam.filter(
       (employee) => employee.team === user.ruled_team && employee.team !== null
     );
     const initSelect = () => {
@@ -145,7 +145,7 @@ const TeamTable = () => {
           <span>ДОЛЖНОСТЬ</span>
         </div>
         <div className="team-table__body">
-          {usersTeam.results &&
+          {usersTeam &&
             filteredItems().map((employee) => (
               <a href="/employee-ipr" onClick={routeTo} key={employee.id}>
                 <span>{employee.nameAll}</span>

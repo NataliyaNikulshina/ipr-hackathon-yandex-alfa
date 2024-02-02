@@ -16,12 +16,8 @@ export type IUserMe = {
   team: number
 };
 
-export type IUsers = {
-count: number,
-next: string, 
-previous: string,
-results:IUserMe[]
-}
+export type IUsers = 
+IUserMe[];
 
 export interface IUserMeResponse extends IUserMe {}
 export interface IUsersResponse extends IUsers {}
