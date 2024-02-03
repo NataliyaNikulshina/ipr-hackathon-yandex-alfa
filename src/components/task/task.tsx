@@ -8,18 +8,12 @@ import CompleteIcon from "../../ui/icons/statusTask/complete";
 import CanselIcon from "../../ui/icons/statusTask/cansel";
 import TrailIcon from "../../ui/icons/statusTask/trail";
 import EditIcon from "../../ui/icons/edit";
+import { ITask } from "../../api/ipr";
 
 import styleTask from "./task.module.scss";
 
-export interface ITasks {
-  id?: number;
-  title: string;
-  status: string;
-  checkbox: boolean;
-  isBoss?: boolean;
-}
 
-const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
+const Task: FC<ITask> = ({ name, checkbox, status, isBoss }) => {
   const [crm, setCrm] = useState(checkbox);
 
   const location = useLocation();
@@ -41,14 +35,14 @@ const Task: FC<ITasks> = ({ title, checkbox, status, isBoss }) => {
 
   return (
     <li className={styleTask.item}>
-      {!isBoss && <Checkbox checked={crm} onChange={onCrmChange} name="crm" value={title} />}
+      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} />}
       <Button
         color="transparent"
         width="456"
         heigth="35"
         onClick={isBoss ? onClickEmployeeTasks : onClickMyTasks}
       >
-        {title}
+        {name}
       </Button>
       <div className={styleTask.status}>
         {status === "not_complete" && <NotCompletedIcon />}

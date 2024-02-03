@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { IUsers } from "../../api/user";
 import { AppDispatch } from "../store";
 import { getUsersAllInfoApi } from "../../api/user";
+import { RootState } from "../store";
 
 export type TGetUsersTeamInfoState = {
     usersTeam: IUsers[] | null;
@@ -48,6 +49,6 @@ export const usersTeamSlice = createSlice({
 
 //export const { userFetching, userFetchingSuccess, userFetchingError } = userSlice.actions;
 
-// export const selectUser = (state:TGetUserInfoState) => state.user;
+export const selectUsersTeam = (state:RootState) => state.usersTeam;
 
 export default usersTeamSlice.reducer;
