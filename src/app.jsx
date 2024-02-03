@@ -42,11 +42,11 @@ export const routesUrl = {
   homePage: "",
     employeeIpr: "employee-ipr/:id",
       createIpr: "create-ipr",
-      employeeListTasks: "list-tasks",
+      employeeListTasks: "list-tasks/:idIpr",
         editIpr: "edit-ipr",
         statusIpr: "status-ipr",
         createTask: "create-task",
-        employeeTask: "task",
+        employeeTask: "task/:idTask",
           editEmployeeTask: "edit-task",
           
   myIPR: "myipr",

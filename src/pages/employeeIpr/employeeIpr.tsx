@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, FormEvent } from "react";
+import { FC, useState, useEffect, FormEvent, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Outlet, useParams } from 'react-router';
 import styles from "./employeeIpr.module.scss";
@@ -13,9 +13,9 @@ import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
-import { selectEmployee } from "../../services/slice/employeeSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
 import { fetchEmployee } from "../../services/slice/employeeSlice";
+import { selectEmployee } from "../../services/slice/employeeSlice";
 
 // Моковые данные
 import {
@@ -28,7 +28,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
-  const { employee } = useAppSelector(selectEmployee);
+  const { employee, isLoading } = useAppSelector(selectEmployee);
   const { ipr } = useAppSelector(selectIpr);
   const param = useParams();
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ const EmployeeIpr: FC = (): JSX.Element => {
     employee && dispatch(fetchIpr(Number(param!.id)));
   }, [employee]);
 
-  console.log(employee)
+  // console.log(employee)
   console.log(ipr)
 
   useEffect(
@@ -83,17 +83,17 @@ const EmployeeIpr: FC = (): JSX.Element => {
         </span>
 
         <div className={gridAreasLayout.wrapper_main_info}>
-         {employee && (<Card
+         {employee && !isLoading && (<Card
             size="small"
             avatar={employee.userpic}
             name={`${employee.last_name} ${employee.first_name} ${employee.patronymic}`}
             appointment={employee.position}
           />)}
         </div>
-        {pathname === `/employee-ipr/${param!.id}` &&
+        {pathname === `/employee-ipr/${param!.id}` && employee && !isLoading &&
           <>
             <div className={gridAreasLayout.wrapper_work_info}>
-              {ipr && (
+              {ipr &&(
                  <ListIpr size='big' isBoss={true} iprList={ipr} titleEmpty='ИПР пока нет.' />
               )}
             </div>

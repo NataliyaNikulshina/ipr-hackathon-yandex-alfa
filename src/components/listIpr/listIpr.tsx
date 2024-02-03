@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./listIpr.module.scss";
 import Unpacker from "../../ui/unpacker/unpacker";
 
@@ -26,22 +26,22 @@ const ListIpr: FC<IListIpr> = ({
   isBoss = false,
   iprList = [],
   titleEmpty = 'Пока задач нет.',
-  disabled = false,
+  disabled = false
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  // const param = useParams();
 
-  function onClickBoss(e: any) {
-    e.preventDefault();
-    navigate("list-tasks", { state: state });
-  }
+  // function onClickBoss(id:any) {
+  //   console.log(id);
+  //   navigate(`list-tasks/${1}` , { state: state });
+  // }
 
   function onClick() {
     alert('Показать нужный список задач')
   }
 
-  console.log(iprList);
   const styleAll =
     size === "big"
       ? styles.listIpr + " " + styles.listIpr__big
@@ -54,13 +54,13 @@ const ListIpr: FC<IListIpr> = ({
       <div className={disabled ? styles.disabled : ''}></div>
       <div className={`${styleAll} ${disabled ? styles.disabled__scroll : ''}`}>
         {iprList?.length
-          ? iprList.map((el) => (
+          ? iprList.map((el, index) => (
             <Unpacker key={el.id}>
               <Button
                 color="ipr"
                 width={widthButton}
                 heigth="48"
-                onClick={isBoss ? onClickBoss : onClick}
+                onClick={isBoss ? ()=>navigate(`list-tasks/${index}` , { state: state }) : onClick}
                 position="left"
                 disabled={isBoss ? false : el.id === 3 ? true : false}
               >
