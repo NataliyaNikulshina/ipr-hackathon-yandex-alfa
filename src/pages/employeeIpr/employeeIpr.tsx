@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Outlet } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 import styles from "./employeeIpr.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
@@ -11,7 +11,11 @@ import Card from "../../components/card/card";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
-import { routesUrl } from "../../app";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { selectUser } from "../../services/slice/userSlice";
+import { selectEmployee } from "../../services/slice/employeeSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
+import { fetchEmployee } from "../../services/slice/employeeSlice";
 
 // Моковые данные
 import {
@@ -19,14 +23,26 @@ import {
   mockDataIpr,
 } from "../../ui/verificationConstants/verificationConstants";
 
+
 const EmployeeIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const { employee } = useAppSelector(selectEmployee);
+  const { ipr } = useAppSelector(selectIpr);
+  const param = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // console.log(param!.id)
+    dispatch(fetchEmployee(Number(param!.id)));
+  }, []);
+
+  console.log(employee)
 
   useEffect(
     () => {
-      if (pathname==="/employee-ipr" && state && !isContainRoute(state, url)) {
+      if (pathname===`/employee-ipr/${param!.id}` && state && !isContainRoute(state, url)) {
         navigate('', { state: [...state, { path: pathname, url, title: "ИПР Сотрудника" }],
         replace: true});
       }
@@ -62,12 +78,12 @@ const EmployeeIpr: FC = (): JSX.Element => {
         </span>
 
         <div className={gridAreasLayout.wrapper_main_info}>
-          <Card
+         {employee && (<Card
             size="small"
-            avatar="https://i.pinimg.com/originals/2f/b8/61/2fb861e3a0060ae2ce593877cff4edab.jpg"
-            name="Соколов Михаил Алексеевич"
-            appointment="Финансовый аналитик"
-          />
+            avatar={employee.userpic}
+            name={`${employee.last_name} ${employee.first_name} ${employee.patronymic}`}
+            appointment={employee.position}
+          />)}
         </div>
         {pathname === '/employee-ipr' &&
           <>

@@ -19,19 +19,26 @@ export type IUserMe = {
 export type IUsers = 
 IUserMe[];
 
+export interface IUser extends IUserMe {}
 export interface IUserMeResponse extends IUserMe {}
 export interface IUsersResponse extends IUsers {}
+export interface IUserResponse extends IUser {}
 
 
 
 // Запрос на получение данных пользователя
-export function getUserInfoApi() {
+export function getUserMeInfoApi() {
   return getReq<IUserMeResponse>({ uri: 'api/v1/users/me/', auth: true });
 }
 
 // Запрос на получение данных всех пользователей
 export function getUsersAllInfoApi() {
   return getReq<IUsersResponse[]>({ uri: 'api/v1/users/', auth: true });
+}
+
+// Запрос на получение данных всех пользователей
+export function getUserInfoApi(id:number) {
+  return getReq<IUserResponse>({ uri: `api/v1/users/${id}`, auth: true });
 }
 
 

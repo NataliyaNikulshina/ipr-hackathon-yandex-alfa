@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from './slice/userSlice';
 import usersTeamReduser from "./slice/usersTeamSlice";
 import iprReduser from './slice/iprSlice';
+import employeeReduser from './slice/employeeSlice'
 import {
     TypedUseSelectorHook,
     useSelector,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers( {
     user: userReducer,
     usersTeam: usersTeamReduser,
     ipr: iprReduser,
+    employee: employeeReduser,
 });
 
 export const store = configureStore({

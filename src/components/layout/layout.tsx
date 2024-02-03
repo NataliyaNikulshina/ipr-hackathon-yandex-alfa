@@ -29,6 +29,10 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(selectUser);
 
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   const onClickIPR = () => {
     navigate("/myipr");
   };
