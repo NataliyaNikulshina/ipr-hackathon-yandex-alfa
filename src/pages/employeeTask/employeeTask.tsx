@@ -1,21 +1,33 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { useNavigate, useLocation, Outlet, useParams } from "react-router-dom";
 import styles from "./employeeTask.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
-
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 const EmployeeTask: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
+  const param = useParams();
   const url = window.location.href;
+  const dispatch = useAppDispatch();
+  const { ipr } = useAppSelector(selectIpr);
+  let task = null;
 
   useEffect(() => {
-    if (pathname === '/employee-ipr/list-tasks/task' && state && !isContainRoute(state, url)) {
+    dispatch(fetchIpr(Number(param!.id)));
+  }, []);
+
+  if (ipr?.length) task = ipr![Number(param!.idIpr)].tasks[Number(param!.idTask)];
+
+  useEffect(() => {
+    if (pathname === `/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${param.idTask}` && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задача" }],
         replace: true,
@@ -35,20 +47,20 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   return (
     <>
-      {pathname === '/employee-ipr/list-tasks/task' && (
+      {pathname === `/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${param.idTask}` && task &&(
         <>
           <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-          Тест на знание корпоративной культуры
+          {task.name}
           </h2>
 
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
           <p className={styles.text}>Описание задачи</p>
             <Textarea
               height="142px"
-              value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
+              value={task.description}
               disabled
             />
-            <DeadlineBlock deadline={'2024-02-31T16:41:29.065Z'} />
+            <DeadlineBlock deadline={task.end_date} />
           </div>
 
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>

@@ -22,6 +22,7 @@ export type ITask = {
   status: string;
   checkbox?: boolean;
   isBoss?: boolean;
+  onClick?: VoidFunction | ((e: any) => void);
 };
 
 export type IIpr = {

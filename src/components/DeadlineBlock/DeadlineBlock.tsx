@@ -5,7 +5,7 @@ import Time from '../../ui/icons/time'
 import './DeadlineBlock.scss'
 
 interface DeadlineBlockProps {
-  deadline: string;
+  deadline: string | undefined;
 }
 
 const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline }) => {
@@ -13,7 +13,7 @@ const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline }) => {
 
   function calculateTimeRemaining(): number {
     const now = new Date();
-    const deadlineDate = new Date(deadline);
+    const deadlineDate = new Date(deadline!);
     const timeDiff = deadlineDate.getTime() - now.getTime();
 
     if (timeDiff <= 0) {
@@ -40,7 +40,7 @@ const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline }) => {
   return (
     <div className='deadline'>
       <span className='deadline__title'>{formatTime(timeRemaining)}</span>
-      <p className='deadline__description'>Готовность: {formatDate(deadline)}г.</p>
+      <p className='deadline__description'>Готовность: {formatDate(deadline!)}г.</p>
       <div className='deadline__icon'>
         <Time />
       </div>
