@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { IUserMe } from "../../api/user";
 import { AppDispatch } from "../store";
-import { getUserInfoApi } from "../../api/user";
+import { getUserMeInfoApi } from "../../api/user";
 import { RootState } from "../store";
 
 export type TGetUserInfoState = {
@@ -28,7 +28,7 @@ const initialState:TGetUserInfoState = {
 // }
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-    const responce = await getUserInfoApi();
+    const responce = await getUserMeInfoApi();
     return responce
 })
 
