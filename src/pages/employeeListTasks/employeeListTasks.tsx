@@ -27,7 +27,7 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { ipr } = useAppSelector(selectIpr);
 
-  console.log(param,  ipr)
+  // console.log(param,  ipr)
   useEffect(() => {
     dispatch(fetchIpr(Number(param!.id)));
   }, []);

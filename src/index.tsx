@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 );
 
 store.dispatch(fetchUser());
-// store.dispatch(fetchUsers());
+store.dispatch(fetchUsers());
 
 root.render(
   <React.StrictMode>

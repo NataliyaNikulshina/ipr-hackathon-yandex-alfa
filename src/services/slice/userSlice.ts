@@ -27,7 +27,7 @@ const initialState:TGetUserInfoState = {
 //     }
 // }
 
-export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
+export const fetchUser = createAsyncThunk('user/fetch', async () => {
     const responce = await getUserMeInfoApi();
     return responce
 })

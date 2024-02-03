@@ -19,13 +19,14 @@ import {
   mockDataTask,
   mockDataIpr,
 } from "../../ui/verificationConstants/verificationConstants";
+import Loader from "../../components/loader/loader";
 
 const MyIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector(selectUser);
+  const { user, isLoading } = useAppSelector(selectUser);
   const { ipr } = useAppSelector(selectIpr);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const MyIpr: FC = (): JSX.Element => {
   }, [user]);
 
   // вывод ИПР в консоль
-  console.log(user, ipr);
+  // console.log(user, ipr);
 
   useEffect(() => {
     if (pathname === "/myipr" && state && !isContainRoute(state, url)) {
@@ -107,7 +108,7 @@ const MyIpr: FC = (): JSX.Element => {
           {ipr && ipr.length !== 0 ? (
             <>
               <div className={gridAreasLayout.wrapper_main_info}>
-                {ipr && (
+                {ipr && !isLoading && (
                   <ListIpr
                     size="small"
                     iprList={ipr}

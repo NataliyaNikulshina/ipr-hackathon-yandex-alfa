@@ -18,7 +18,7 @@ const initialState:TGetEmployeeInfoState = {
 }
 
 
-export const fetchEmployee = createAsyncThunk('employee/fetchUser', async (id:number) => {
+export const fetchEmployee = createAsyncThunk('employee/fetch', async (id:number) => {
     const responce = await getUserInfoApi(id);
     return responce
 })

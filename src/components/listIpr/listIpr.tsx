@@ -26,7 +26,7 @@ const ListIpr: FC<IListIpr> = ({
   isBoss = false,
   iprList = [],
   titleEmpty = 'Пока задач нет.',
-  disabled = false,
+  disabled = false
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
@@ -42,7 +42,6 @@ const ListIpr: FC<IListIpr> = ({
     alert('Показать нужный список задач')
   }
 
-  console.log(iprList);
   const styleAll =
     size === "big"
       ? styles.listIpr + " " + styles.listIpr__big
