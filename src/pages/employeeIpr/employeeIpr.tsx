@@ -12,7 +12,7 @@ import Card from "../../components/card/card";
 import { isContainRoute } from "../../utils/breadcrumbs";
 import ListIpr from "../../components/listIpr/listIpr";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { selectUser } from "../../services/slice/userSlice";
+import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectEmployee } from "../../services/slice/employeeSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
 import { fetchEmployee } from "../../services/slice/employeeSlice";
@@ -38,7 +38,12 @@ const EmployeeIpr: FC = (): JSX.Element => {
     dispatch(fetchEmployee(Number(param!.id)));
   }, []);
 
+  useEffect(() => {
+    employee && dispatch(fetchIpr(Number(param!.id)));
+  }, [employee]);
+
   console.log(employee)
+  console.log(ipr)
 
   useEffect(
     () => {
@@ -85,10 +90,12 @@ const EmployeeIpr: FC = (): JSX.Element => {
             appointment={employee.position}
           />)}
         </div>
-        {pathname === '/employee-ipr' &&
+        {pathname === `/employee-ipr/${param!.id}` &&
           <>
             <div className={gridAreasLayout.wrapper_work_info}>
-              <ListIpr size='big' isBoss={true} iprList={mockDataIpr} titleEmpty='ИПР пока нет.' />
+              {ipr && (
+                 <ListIpr size='big' isBoss={true} iprList={ipr} titleEmpty='ИПР пока нет.' />
+              )}
             </div>
             <div className={`${styles.container__button} ${gridAreasLayout.wrapper_buttons}`}>
               <Button color="red" width="554" heigth="56" onClick={createIpr}>
