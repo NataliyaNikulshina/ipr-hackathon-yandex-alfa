@@ -5,6 +5,8 @@ import FilterIcon from "../../ui/icons/filter";
 import ButtonTableMore from "../../ui/buttons/buttonTableMore/buttonTableMore";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUsers } from "../../services/slice/usersTeamSlice";
+import { selectUsersTeam } from "../../services/slice/usersTeamSlice";
+import { selectUser } from "../../services/slice/userSlice";
 // моковые данные для верстки
 const mockData = [
   {
@@ -74,8 +76,8 @@ const TeamTable = () => {
   const [filterType, setFilterType] = useState("nameAll");
   const [employees, setEmployees] = useState([]);
   const dispatch = useAppDispatch();
-  const { usersTeam } = useAppSelector((state) => state.usersTeam);
-  const { user } = useAppSelector((state) => state.user);
+  const { usersTeam } = useAppSelector(selectUsersTeam);
+  const { user } = useAppSelector(selectUser);
   const url = window.location.href;
 
   useEffect(() => {
@@ -85,9 +87,10 @@ const TeamTable = () => {
   // console.log(usersTeam);
 
   function filteredItems() {
-    const filteredEmployees = usersTeam.filter(
-      (employee) => employee.team === user.ruled_team && employee.team !== null
-    );
+    let filteredEmployees = [];
+    (user.is_boss===true) ?
+      filteredEmployees = usersTeam.filter((employee) => employee.team === user.ruled_team && employee.team !== null)
+    : filteredEmployees = usersTeam.filter((employee) => (employee.team === user.team || employee.ruled_team === user.team) && employee.team !== null && employee.id !== user.id)
     const initSelect = () => {
       return filteredEmployees.map((item) => ({
         ...item,
@@ -145,7 +148,7 @@ const TeamTable = () => {
           <span>ДОЛЖНОСТЬ</span>
         </div>
         <div className="team-table__body">
-          {usersTeam &&
+          {usersTeam && user &&
             filteredItems().map((employee) => (
               <a href="/employee-ipr" onClick={routeTo} key={employee.id}>
                 <span>{employee.nameAll}</span>

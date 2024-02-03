@@ -19,7 +19,8 @@ import MyIpr from "./pages/myIpr/myIpr";
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
 
-
+import { selectUser } from "./services/slice/userSlice";
+import { useAppSelector } from "./services/store";
 
 import MyTask from "./pages/myTask/myTask";
 
@@ -57,8 +58,9 @@ export const routesUrl = {
 const App = () => {
   const path = useLocation().pathname;
   const handlePopup = HandlePopup();
+  const { isLoading } = useAppSelector(selectUser);
 
-  const [isLoader, setIsLoader] = useState(false);
+  // const [isLoader, setIsLoader] = useState(false);
   
 
   return (
@@ -114,7 +116,7 @@ const App = () => {
       <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
-      <Loader isOpen={isLoader} />
+      <Loader isOpen={isLoading} />
     </>
   );
 };

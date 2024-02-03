@@ -4,11 +4,12 @@ import Unpacker from "../../ui/unpacker/unpacker";
 import Checkbox from "../../ui/checkbox/checkbox";
 
 import styleTask from "./listTask.module.scss";
-import Task, { ITasks } from "../task/task";
+import Task  from "../task/task";
+import { ITask } from "../../api/ipr";
 
 
 export interface IListTask {
-  tasks?: ITasks[];
+  tasks?: ITask[];
   isBoss: boolean;
 }
 
@@ -20,7 +21,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss }) => {
         {tasks?.length
           ? tasks.map((el) => (
             <Unpacker key={el.id}>
-              <Task title={el.title} checkbox={el.checkbox} status={el.status} isBoss={isBoss} />
+              <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} />
             </Unpacker>
           ))
           : <li className={styleTask.title__empty}>Задач не существует</li>

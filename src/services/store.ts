@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from './slice/userSlice';
 import usersTeamReduser from "./slice/usersTeamSlice";
+import iprReduser from './slice/iprSlice';
 import {
     TypedUseSelectorHook,
     useSelector,
@@ -10,9 +11,8 @@ import {
 const rootReducer = combineReducers( {
     user: userReducer,
     usersTeam: usersTeamReduser,
+    ipr: iprReduser,
 });
-
-
 
 export const store = configureStore({
     reducer: rootReducer
