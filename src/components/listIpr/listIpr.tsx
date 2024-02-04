@@ -20,7 +20,6 @@ export interface IListIpr {
   titleEmpty?: string;
   disabled?: boolean;
   isSelectedIprId?: number;
-  handleSelectedIprId?(editing: number): void;
 }
 
 const ListIpr: FC<IListIpr> = ({
@@ -29,8 +28,7 @@ const ListIpr: FC<IListIpr> = ({
   iprList = [],
   titleEmpty = 'Пока задач нет.',
   disabled = false,
-  isSelectedIprId= -1,
-  handleSelectedIprId= ()=> {console.log("нет функции отслеживающей актуальный ID")},
+  isSelectedIprId= 1,
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
@@ -70,7 +68,7 @@ const ListIpr: FC<IListIpr> = ({
                   ? () => navigate(`list-tasks/${index}`, { state: state }) 
                   : () => navigate(`/myipr/${index}`, { state: state }) }
                 position="left"
-                disabled={(isBoss ? false : el.id === 3 ? true : false) || (el.id === isSelectedIprId ? true : false)}
+                disabled={(isBoss ? false : el.id === 3 ? true : false) || (index === isSelectedIprId ? true : false)}
               >
                 {el.title}
               </Button>

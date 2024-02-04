@@ -9,6 +9,7 @@ import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
+import { selectUser } from "../../services/slice/userSlice";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
@@ -21,6 +22,7 @@ const MyTask: FC = (): JSX.Element => {
   const param = useParams();
   const dispatch = useAppDispatch();
   const { ipr } = useAppSelector(selectIpr);
+  const { user } = useAppSelector(selectUser);
   let task = null;
 
   useEffect(() => {
@@ -33,8 +35,8 @@ const MyTask: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   useEffect(() => {
-    dispatch(fetchIpr(Number(param!.id)));
-  }, []);
+    user && dispatch(fetchIpr(user?.id));
+  }, [user]);
 
   if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
 

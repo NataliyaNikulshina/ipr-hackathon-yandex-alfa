@@ -16,9 +16,9 @@ import styleTask from "./task.module.scss";
 const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
   const [crm, setCrm] = useState(checkbox);
 
-  const location = useLocation();
-  const navigate = useNavigate(); // функция принудительного перехода.
-  const url = window.location.href;
+  // const location = useLocation();
+  // const navigate = useNavigate(); // функция принудительного перехода.
+  // const url = window.location.href;
 
   const onCrmChange = () => {
     setCrm(!crm);
