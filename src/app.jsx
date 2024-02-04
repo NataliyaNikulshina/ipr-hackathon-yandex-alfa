@@ -14,8 +14,8 @@ import TaskCreateOrEdit from "./pages/taskCreateOrEdit/taskCreateOrEdit";
 import Popup from "./components/popup/popup";
 
 import NotFound from "./pages/not-found/not-found";
-
-import MyIpr from "./pages/myIpr/myIpr";
+import MyIprs from "./pages/myIprs/myIprs"
+import MyIpr from "./pages/myIpr/myIpr"
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
 
@@ -48,9 +48,9 @@ export const routesUrl = {
         createTask: "create-task",
         employeeTask: "task/:idTask",
           editEmployeeTask: "edit-task",
-          
-  myIPR: "myipr/:idMyIpr",
-    myTask: "my-task/:idMyTask",
+  myIPRs: "myiprs",        
+    myIPR: "myipr/:idMyIpr",
+      myTask: "my-task/:idMyTask",
 
   notFound: "*",
 };
@@ -81,9 +81,10 @@ const App = () => {
               </Route>
             </Route>
           </Route>
-
-          <Route path={routesUrl.myIPR} element={<MyIpr />}>
-            <Route path={routesUrl.myTask} element={<MyTask />} />
+          <Route path={routesUrl.myIPRs} element={<MyIprs />}>
+            <Route path={routesUrl.myIPR} element={<MyIpr />}>
+              <Route path={routesUrl.myTask} element={<MyTask />} />
+            </Route>
           </Route>
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />

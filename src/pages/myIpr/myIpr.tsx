@@ -42,7 +42,7 @@ const MyIpr: FC = (): JSX.Element => {
   // console.log(param!.idMyIpr);
 
   useEffect(() => {
-    if (pathname === `/myipr/${param!.idMyIpr}` && state && !isContainRoute(state, url)) {
+    if (pathname === `/myiprs/myipr/${param!.idMyIpr}` && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Мои ИПР" }],
         replace: true,
@@ -150,13 +150,13 @@ const MyIpr: FC = (): JSX.Element => {
                     iprList={ipr}
                     titleEmpty="ИПР пока нет."
                     disabled={
-                      pathname !== `/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
+                      pathname !== `/myiprs/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
                     }
                     isSelectedIprId={Number(param!.idMyIpr)}
                   />
                 )}
               </div>
-              {pathname === `/myipr/${param!.idMyIpr}` && ipr.length !== 0 && (
+              {pathname === `/myiprs/myipr/${param!.idMyIpr}` && ipr.length !== 0 && (
                 <>
                   {!isClosingTask ? (
                     <>
