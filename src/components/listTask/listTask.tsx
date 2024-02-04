@@ -28,7 +28,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
               <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} 
                     onClick={isBoss ? 
                     (() => navigate(`/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${el.id}`, { state: location.state })) 
-                    : (() => navigate(`/myipr/${param!.idMyIpr}/my-task/${el.id}`, { state: [{ path: `/myipr/${param!.idMyIpr}`, url: url, title: "Мои ИПР" }] })) }/>
+                    : (() => navigate(`/myiprs/myipr/${param!.idMyIpr}/my-task/${el.id}`, { state: [{ path: `/myiprs/myipr/${param!.idMyIpr}`, url: url, title: "Мои ИПР" }] })) }/>
             </Unpacker>
           ))
           : <li className={styleTask.title__empty}> {isSelectedIprId < 0 ? 'Задач не существует' : 'Выберите ИПР'}</li>
