@@ -8,7 +8,8 @@ import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
-import { selectIpr } from "../../services/slice/iprSlice";
+// import { selectIpr } from "../../services/slice/iprSlice";
+import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
@@ -21,7 +22,8 @@ const MyTask: FC = (): JSX.Element => {
   const url = window.location.href;
   const param = useParams();
   const dispatch = useAppDispatch();
-  const { ipr } = useAppSelector(selectIpr);
+  // const { ipr } = useAppSelector(selectIpr);
+  const { myIpr } = useAppSelector(selectMyIpr);
   const { user } = useAppSelector(selectUser);
   let task = null;
 
@@ -39,8 +41,8 @@ const MyTask: FC = (): JSX.Element => {
   }, [user]);
 
   // if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
-  if (ipr?.length) {
-    let actualIpr = ipr.find(elem => elem.id === Number(param!.idMyIpr)) || { tasks: [] };
+  if (myIpr?.length) {
+    let actualIpr = myIpr.find(elem => elem.id === Number(param!.idMyIpr)) || { tasks: [] };
     let actualTasksList = actualIpr.tasks;
     task = actualTasksList.find(elem => elem.id === Number(param!.idMyTask))
   }

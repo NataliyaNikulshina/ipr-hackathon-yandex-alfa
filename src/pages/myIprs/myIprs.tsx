@@ -5,9 +5,9 @@ import styles from "./myIprs.module.scss";
 import { isContainRoute } from "../../utils/breadcrumbs";
 // import getUserInfoApi from "../../api/user";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { selectIpr, fetchIpr } from "../../services/slice/iprSlice";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
-import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss";
 
 const MyIprs: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
@@ -15,7 +15,7 @@ const MyIprs: FC = (): JSX.Element => {
   const url = window.location.href;
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(selectUser);
-  const { ipr } = useAppSelector(selectIpr);
+  const { myIpr } = useAppSelector(selectMyIpr);
 
   useEffect(() => {
     user && dispatch(fetchIpr(user.id));
@@ -31,8 +31,8 @@ const MyIprs: FC = (): JSX.Element => {
   );
 
   useEffect(() => {
-    if (ipr.length)
-      navigate(`/myiprs/myipr/${ipr[0].id}`);
+    if (myIpr.length)
+      navigate(`/myiprs/myipr/${myIpr[0].id}`);
   }, [])
 
   return (
