@@ -19,6 +19,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
   const url = window.location.href;
   const param = useParams();
 
+  console.log(tasks)
 
   return (
     <div className={styleTask.container}>

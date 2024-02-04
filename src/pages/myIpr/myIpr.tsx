@@ -38,8 +38,8 @@ const MyIpr: FC = (): JSX.Element => {
 
   // вывод ИПР в консоль
   // console.log(user);
-  console.log(ipr);
-  console.log(param);
+  // console.log(ipr);
+  // console.log(param!.idMyIpr);
 
   useEffect(() => {
     if (pathname === `/myipr/${param!.idMyIpr}` && state && !isContainRoute(state, url)) {
@@ -96,7 +96,7 @@ const MyIpr: FC = (): JSX.Element => {
   // // Тригер следящий какой ИПР выбран.
   // const [isSelectedIprId, setIsSelectedIprId] = useState(-1);
   // // Актуальный массив задач.
-  // const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
+ 
 
   // const handleSelectedIprId = (id: number) => {
   //   setIsSelectedIprId(id);
@@ -108,13 +108,19 @@ const MyIpr: FC = (): JSX.Element => {
   //   };
   // }
 
-  // useEffect(()=>{
-  //   console.log(ipr)
-  //   let actualTasksList = ipr.length !== 0 ? ipr[Number(param!.idMyIpr)].tasks : [];
-  //   // setIsSelectedIprId(Number(param!.idMyIpr));
-  //   setIsActualTasksList(actualTasksList);
-  //   console.log(actualTasksList);
-  // }, [param!.idMyIpr])
+  const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
+
+  useEffect(()=>{
+    // if (ipr.some(elem => elem.id === Number(param!.idMyIpr))){
+    let actualIpr = ipr.find(elem => elem.id === Number(param!.idMyIpr)) || {tasks: []};
+    let actualTasksList = actualIpr.tasks;
+    setIsActualTasksList(actualTasksList);
+    // console.log(actualTasksList);
+    // } else {
+    //   navigate(`/notFound`, { replace: true }) // надо разобраться.
+    // }
+
+  }, [param!.idMyIpr, ipr])
 
   return (
     <section>
@@ -147,7 +153,6 @@ const MyIpr: FC = (): JSX.Element => {
                       pathname !== `/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
                     }
                     isSelectedIprId={Number(param!.idMyIpr)}
-                    // handleSelectedIprId={handleSelectedIprId}
                   />
                 )}
               </div>
@@ -157,7 +162,7 @@ const MyIpr: FC = (): JSX.Element => {
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
                         {ipr && ipr.length !== 0 && (
-                          <ListTask tasks={ipr[Number(param!.idMyIpr)].tasks} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
+                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
                         )}
                       </div>
                       <div
