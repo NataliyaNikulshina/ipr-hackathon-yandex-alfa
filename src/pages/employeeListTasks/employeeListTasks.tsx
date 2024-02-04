@@ -57,15 +57,17 @@ const EmployeeListTasks: FC = (): JSX.Element => {
             <ListTask tasks={mockDataTask} isBoss={isBoss} />
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-            <Button color="red" width="580" heigth="56" onClick={createTask}>
+            <Button color="red" width="281" heigth="56" onClick={createTask}>
               Создать задачу
             </Button>
-            <Button color="red" width="281" heigth="56" onClick={editIpr}>
+            <div className={styles.button}>
+            <Button color="grey" width="281" heigth="56" onClick={editIpr}>
               Редактировать ИПР
             </Button>
-            <Button color="red" width="281" heigth="56" onClick={statusIpr}>
+            <Button color="grey" width="281" heigth="56" onClick={statusIpr}>
               Статус ИПР
             </Button>
+          </div>
           </div>
         </>
       }

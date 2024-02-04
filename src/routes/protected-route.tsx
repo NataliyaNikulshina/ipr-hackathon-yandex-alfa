@@ -16,7 +16,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 }): JSX.Element => {
 
   const token = getAccessToken();
-  console.log(token);
+  // console.log(token);
 
   // для выхода из профиля
   // removeAccessToken();

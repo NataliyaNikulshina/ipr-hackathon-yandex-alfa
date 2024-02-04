@@ -13,7 +13,8 @@ import Button from "../../ui/buttons/button/button";
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUser } from "../../services/slice/userSlice";
-import { getIprApi, getUsersAllInfoApi } from "../../api/user";
+import { getIprApi } from "../../api/ipr";
+import { selectUser } from "../../services/slice/userSlice";
 
 import Loader from "../loader/loader";
 
@@ -26,15 +27,15 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.user);
-
-  const onClickIPR = () => {
-    navigate("/myipr");
-  };
+  const { user } = useAppSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
+
+  const onClickIPR = () => {
+    navigate("/myipr");
+  };
 
   const onClickTeam = () => {
     navigate("/");
@@ -43,8 +44,8 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   // вывод данных юзера в консоль
   // console.log(user);
   // getUsersAllInfoApi().then((res) => console.log(res));
-  // if (user) { const ipr = getIprApi(user?.id);
-  // console.log(ipr); }
+  // if (user) { getIprApi(user?.id).then((res)=>console.log(res));}
+  // getIprApi(user!.id).then((res)=>console.log(res));
 
   const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
 

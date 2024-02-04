@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { IUserMe } from "../../api/user";
 import { AppDispatch } from "../store";
 import { getUserInfoApi } from "../../api/user";
+import { RootState } from "../store";
 
 export type TGetUserInfoState = {
     user: IUserMe | null;
@@ -26,7 +27,7 @@ const initialState:TGetUserInfoState = {
 //     }
 // }
 
-export const fetchUser = createAsyncThunk('user', async () => {
+export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
     const responce = await getUserInfoApi();
     return responce
 })
@@ -66,7 +67,7 @@ export const userSlice = createSlice({
             state.isLoading = true;
             state.hasError = false;
         });
-        builder.addCase(fetchUser.fulfilled, (state, action) => {
+        builder.addCase(fetchUser.fulfilled, (state, action: PayloadAction<IUserMe>) => {
             state.isLoading = false;
             state.hasError = false;
             state.user = action.payload;
@@ -78,8 +79,10 @@ export const userSlice = createSlice({
     },
 });
 
-//export const { userFetching, userFetchingSuccess, userFetchingError } = userSlice.actions;
+// export const selectAllUsers = (state) => state.users;
 
-// export const selectUser = (state:TGetUserInfoState) => state.user;
+// export const { userFetching, userFetchingSuccess, userFetchingError } = userSlice.actions;
+
+export const selectUser = (state:RootState) => state.user;
 
 export default userSlice.reducer;

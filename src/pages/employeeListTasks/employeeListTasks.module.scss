@@ -15,10 +15,13 @@
 
 .wrapper{
   width: 552px;
-  display: flex
+  display: flex;
 }
 
 .wrapper_button{
+  @include flex (column, space-between, start, 16px);
+}
+
+.button{
     @include flex (row, space-between, start, 16px);
-    flex-wrap: wrap;
   }

@@ -58,7 +58,7 @@ const Signin: FC = (): JSX.Element => {
           name="email"
           placeholder="Email"
           minLength={2}
-          maxLength={30}
+          maxLength={40}
           pattern="^\S+@\S+\.\S+$"
           required
         />

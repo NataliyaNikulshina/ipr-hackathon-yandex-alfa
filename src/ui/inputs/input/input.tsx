@@ -18,6 +18,7 @@ interface IInput {
   required?: boolean;
   id?: string;
   pattern?: string;
+  size?: string;
 }
 
 const Input: FC<IInput> = ({
@@ -35,6 +36,7 @@ const Input: FC<IInput> = ({
   required,
   pattern,
   id,
+  size = "small"
 }): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [typeValues, setTypeValues] = useState<string>("");
@@ -59,6 +61,8 @@ const Input: FC<IInput> = ({
 
   const placeholder_active = stylesInput.placeholder + " " + stylesInput.placeholder_active;
   const input_error = stylesInput.input + " " + stylesInput.incorrect_input;
+  const wrapperAll = (size==="small") ? stylesInput.wrapper + " " + stylesInput.wrapper__small
+  : stylesInput.wrapper + " " + stylesInput.wrapper__big;
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const validityState = input.currentTarget.validity;
@@ -93,7 +97,7 @@ const Input: FC<IInput> = ({
   };
 
   return (
-    <div className={stylesInput.wrapper}>
+    <div className={wrapperAll}>
       <label className={stylesInput.inputContainer}>
       <span className={ 
         disabled ? stylesInput.placeholder_disabled : (value ? placeholder_active : stylesInput.placeholder)

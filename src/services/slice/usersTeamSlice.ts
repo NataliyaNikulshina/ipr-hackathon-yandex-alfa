@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { IUserMe } from "../../api/user";
+import { IUsers } from "../../api/user";
 import { AppDispatch } from "../store";
 import { getUsersAllInfoApi } from "../../api/user";
+import { RootState } from "../store";
 
 export type TGetUsersTeamInfoState = {
-    usersTeam: IUserMe[] | null;
+    usersTeam: IUsers[] | null;
     isLoading: boolean;
     hasError: boolean;
   };
@@ -48,6 +49,6 @@ export const usersTeamSlice = createSlice({
 
 //export const { userFetching, userFetchingSuccess, userFetchingError } = userSlice.actions;
 
-// export const selectUser = (state:TGetUserInfoState) => state.user;
+export const selectUsersTeam = (state:RootState) => state.usersTeam;
 
 export default usersTeamSlice.reducer;

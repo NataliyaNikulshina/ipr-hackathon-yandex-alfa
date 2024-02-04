@@ -1,40 +1,50 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import stylesMyIpr from "./myIpr.module.scss";
-import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss";
 import Link from "../../ui/links/link";
 import { isContainRoute } from "../../utils/breadcrumbs";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchIpr } from "../../services/slice/iprSlice";
 
 import ListTask from "../../components/listTask/listTask";
 import Button from "../../ui/buttons/button/button";
-import Rating from "../../components/rating/rating"
+import Rating from "../../components/rating/rating";
+import ListIpr from "../../components/listIpr/listIpr";
+import { selectUser } from "../../services/slice/userSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
 
 // Моковые данные
 import {
   mockDataTask,
   mockDataIpr,
 } from "../../ui/verificationConstants/verificationConstants";
-import ListIpr from "../../components/listIpr/listIpr";
-
-// замоканный is_Boss
-const isBoss = false;
 
 const MyIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(selectUser);
+  const { ipr } = useAppSelector(selectIpr);
 
-  useEffect(
-    () => {
-      if (pathname === "/myipr" && state && !isContainRoute(state, url)) {
-        navigate('', {
-          state: [...state, { path: pathname, url, title: "Мои ИПР" }],
-          replace: true
-        });
-      }
-    },
-    [pathname, url, state]
-  );
+  useEffect(() => {
+    user && dispatch(fetchIpr(user.id));
+  }, [user]);
+
+  // вывод ИПР в консоль
+  // console.log(user, ipr);
+  // console.log(user);
+  // console.log(ipr);
+
+  useEffect(() => {
+    if (pathname === "/myipr" && state && !isContainRoute(state, url)) {
+      navigate("", {
+        state: [...state, { path: pathname, url, title: "Мои ИПР" }],
+        replace: true,
+      });
+    }
+  }, [pathname, url, state]);
 
   function onClick() {
     alert("Переход к определенному списку задач");
@@ -69,7 +79,7 @@ const MyIpr: FC = (): JSX.Element => {
   const estimate = () => {
     // Проверяем случилось ли оценивание.
     if (isActualRating) {
-      // Тут нужно кудато послать наш рейтинг, видимо на бэк. 
+      // Тут нужно кудато послать наш рейтинг, видимо на бэк.
       alert(isActualRating);
       // И если ответ с бэка положительный сказать спасибо за голосование.
       setIsAssessment(true);
@@ -77,7 +87,7 @@ const MyIpr: FC = (): JSX.Element => {
       setIsClosingTask(false);
       // а ести отрицатеольный вызвать попап с ерором.
     }
-  }
+  };
 
   return (
     <section>
@@ -95,51 +105,92 @@ const MyIpr: FC = (): JSX.Element => {
             Назад
           </Link>
         </span>
-        <div className={gridAreasLayout.wrapper_main_info}>
-          <ListIpr size='small' iprList={mockDataIpr} titleEmpty='ИПР пока нет.' disabled={((pathname !== '/myipr') || isClosingTask) ? true : false} />
-        </div>
-        {pathname === '/myipr' &&
-          <>
-            {!isClosingTask ?
-              <>
-                <div className={gridAreasLayout.wrapper_work_info}>
-                  <ListTask tasks={mockDataTask} isBoss={isBoss} />
-                </div>
-                <div className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-                  <Button color="red" width="281" heigth="56" onClick={onClick}>
-                    Закрыть выбранные задачи
-                  </Button>
-                  <Button color="grey" width="281" heigth="56" onClick={hanleClickClosingTask}>
-                    Оценить ИПР
-                  </Button>
-                </div>
-              </>
-              :
-              <>
-                <div className={`${stylesMyIpr.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-                  <div className={stylesMyIpr.rating__box}>
-                    <Rating
-                      titleOpening='Оцените пожалуйста организацию и прохождение ИПР.'
-                      titleСlosing='Спасибо за оценку.'
-                      isAssessment={isAssessment}
-                      actualRating={setIsActualRating}
-                    />
-                  </div>
-                </div>
-                <div className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-                  {!isAssessment &&
-                    <Button color="red" width="522" heigth="56" onClick={estimate} disabled={!isActualRating ? true : false}>
-                      Оценить качество ИПР
-                    </Button>
-                  }
-                </div>
-              </>
-            }
-          </>
-        }
-        <Outlet />
+        <>
+
+
+          {ipr && ipr.length !== 0 ? (
+            <>
+              <div className={gridAreasLayout.wrapper_main_info}>
+                {ipr && (
+                  <ListIpr
+                    size="small"
+                    iprList={ipr}
+                    titleEmpty="ИПР пока нет."
+                    disabled={
+                      pathname !== "/myipr" || isClosingTask ? true : false
+                    }
+                  />
+                )}
+              </div>
+              {pathname === "/myipr" && (
+                <>
+                  {!isClosingTask ? (
+                    <>
+                      <div className={gridAreasLayout.wrapper_work_info}>
+                        {ipr && (
+                          <ListTask tasks={ipr[0].tasks} isBoss={false} />
+                        )}
+                      </div>
+                      <div
+                        className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+                      >
+                        <Button
+                          color="red"
+                          width="281"
+                          heigth="56"
+                          onClick={onClick}
+                        >
+                          Закрыть выбранные задачи
+                        </Button>
+                        <Button
+                          color="grey"
+                          width="281"
+                          heigth="56"
+                          onClick={hanleClickClosingTask}
+                        >
+                          Оценить ИПР
+                        </Button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className={`${stylesMyIpr.wrapper} ${gridAreasLayout.wrapper_work_info}`}
+                      >
+                        <div className={stylesMyIpr.rating__box}>
+                          <Rating
+                            titleOpening="Оцените пожалуйста организацию и прохождение ИПР."
+                            titleСlosing="Спасибо за оценку."
+                            isAssessment={isAssessment}
+                            actualRating={setIsActualRating}
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+                      >
+                        {!isAssessment && (
+                          <Button
+                            color="red"
+                            width="522"
+                            heigth="56"
+                            onClick={estimate}
+                            disabled={!isActualRating ? true : false}
+                          >
+                            Оценить качество ИПР
+                          </Button>
+                        )}
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+              <Outlet />
+            </>
+        ) : <p className={`${stylesMyIpr.container__title_empty} ${gridAreasLayout.wrapper_main_info}`} >ИПР пока нет</p>}
+        </>
       </div>
-    </section >
+    </section>
   );
 };
 

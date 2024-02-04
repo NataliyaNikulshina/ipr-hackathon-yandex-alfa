@@ -19,7 +19,8 @@ import MyIpr from "./pages/myIpr/myIpr";
 
 import StatusIpr from "./pages/statusIpr/statusIpr";
 
-
+import { selectUser } from "./services/slice/userSlice";
+import { useAppSelector } from "./services/store";
 
 import MyTask from "./pages/myTask/myTask";
 
@@ -57,9 +58,10 @@ export const routesUrl = {
 const App = () => {
   const path = useLocation().pathname;
   const handlePopup = HandlePopup();
+  const { isLoading } = useAppSelector(selectUser);
 
-  const [isLoader, setIsLoader] = useState(false);
-
+  // const [isLoader, setIsLoader] = useState(false);
+  
 
   return (
     <>
@@ -68,17 +70,14 @@ const App = () => {
         <Route path={routesUrl.layout} element={<ProtectedRoute><Layout handlePopup={handlePopup.open} /></ProtectedRoute>}>
           <Route path={routesUrl.homePage} element={<ProtectedRoute><HomePage /></ProtectedRoute>}>
             <Route path={routesUrl.employeeIpr} element={<ProtectedRoute><EmployeeIpr /></ProtectedRoute>}>
-              {/* Считаю что создание ИПР должно выкидывать обратно на страницу EmployeeIpr при успешной отсылки на бэк */}
-              <Route path={routesUrl.createIpr} element={<ProtectedRoute><IprCreateOrEdit role='create' /></ProtectedRoute>} />
-              {/* И не нужно с это страницы переходить в создание задачи! */}
+              <Route path={routesUrl.createIpr} element={<ProtectedRoute><IprCreateOrEdit role='create'/></ProtectedRoute>} /> 
               <Route path={routesUrl.employeeListTasks} element={<ProtectedRoute><EmployeeListTasks /></ProtectedRoute>}>
-                <Route path={routesUrl.createTask} element={<ProtectedRoute><TaskCreateOrEdit role='create' /></ProtectedRoute>} />
-                {/* Редактировать ИПР, про неё забыли.!!! */}
-                <Route path={routesUrl.editIpr} element={<ProtectedRoute><IprCreateOrEdit role='edit' /></ProtectedRoute>} />
-                <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
-                <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} >
-                  <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><TaskCreateOrEdit role='edit' /> </ProtectedRoute>} />
-                </Route>
+                  <Route path={routesUrl.createTask} element={<ProtectedRoute><TaskCreateOrEdit role='create' /></ProtectedRoute>} />
+                  <Route path={routesUrl.editIpr} element={<ProtectedRoute><IprCreateOrEdit role='edit' /></ProtectedRoute>} />
+                  <Route path={routesUrl.statusIpr} element={<ProtectedRoute><StatusIpr /></ProtectedRoute>} />
+                  <Route path={routesUrl.employeeTask} element={<ProtectedRoute><EmployeeTask /></ProtectedRoute>} >
+                    <Route path={routesUrl.editEmployeeTask} element={<ProtectedRoute><TaskCreateOrEdit role='edit' /> </ProtectedRoute>} />
+                  </Route> 
               </Route>
             </Route>
 
@@ -117,7 +116,7 @@ const App = () => {
       <Popup isOpen='isTaskTrackingLogPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isInfoPopupOpen' handlePopup={handlePopup} />
       <Popup isOpen='isErrorPopupOpen' handlePopup={handlePopup} />
-      <Loader isOpen={isLoader} />
+      <Loader isOpen={isLoading} />
     </>
   );
 };
