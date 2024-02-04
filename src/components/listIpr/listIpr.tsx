@@ -35,15 +35,6 @@ const ListIpr: FC<IListIpr> = ({
   const url = window.location.href;
   // const param = useParams();
 
-  // function onClickBoss(id:any) {
-  //   console.log(id);
-  //   navigate(`list-tasks/${1}` , { state: state });
-  // }
-
-  // function onClick() {
-  //   alert('Показать нужный список задач')
-  // }
-
   const styleAll =
     size === "big"
       ? styles.listIpr + " " + styles.listIpr__big

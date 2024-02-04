@@ -13,6 +13,7 @@ const StatusIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (pathname === "/employee-ipr/list-tasks/status-ipr" && state && !isContainRoute(state, url)) {
@@ -28,6 +29,7 @@ const StatusIpr: FC = (): JSX.Element => {
 
   function onClick() {
     console.log("ИПР выполнена");
+    setDisabled(!disabled);
   }
 
   // Тригер закрытия задачи и переключения на поле оценки.
@@ -55,7 +57,6 @@ const StatusIpr: FC = (): JSX.Element => {
     // Проверяем случилось ли оценивание.
     if (isActualRating) {
       // Тут нужно кудато послать наш рейтинг, видимо на бэк. 
-      alert(isActualRating);
       // И если ответ с бэка положительный сказать спасибо за голосование.
       setIsAssessment(true);
       // А лучше вернуться назад.
@@ -81,7 +82,7 @@ const StatusIpr: FC = (): JSX.Element => {
             <Button color="red" width="281" heigth="56" onClick={onClick}>
               Закрыть ИПР
             </Button>
-            <Button color="grey" width="281" heigth="56" onClick={hanleClickClosingTask}>
+            <Button color="grey" width="281" heigth="56" onClick={hanleClickClosingTask} disabled={disabled}>
               Оценить исполнение ИПР
             </Button>
           </div>
