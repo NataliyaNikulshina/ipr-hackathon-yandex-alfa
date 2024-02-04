@@ -19,10 +19,6 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
   const url = window.location.href;
   const param = useParams();
 
-  const onClickMyTasks = () => {
-    // navigate("/myipr/my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
-    navigate("my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
-  };
 
   return (
     <div className={styleTask.container}>
@@ -30,7 +26,10 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
         {tasks?.length
           ? tasks.map((el, index) => (
             <Unpacker key={el.id}>
-              <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} onClick={isBoss ? (() => navigate(`/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${index}`, { state: location.state })) : onClickMyTasks}/>
+              <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} 
+                    onClick={isBoss ? 
+                    (() => navigate(`/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${index}`, { state: location.state })) 
+                    : (() => navigate(`/myipr/${param!.idMyIpr}/my-task/${index}`, { state: [{ path: `/myipr/${param!.idMyIpr}`, url: url, title: "Мои ИПР" }] })) }/>
             </Unpacker>
           ))
           : <li className={styleTask.title__empty}> {isSelectedIprId > 0 ? 'Задач не существует' : 'Выберите ИПР'}</li>

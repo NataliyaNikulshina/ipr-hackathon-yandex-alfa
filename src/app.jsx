@@ -49,8 +49,8 @@ export const routesUrl = {
         employeeTask: "task/:idTask",
           editEmployeeTask: "edit-task",
           
-  myIPR: "myipr",
-  myTask: "my-task",
+  myIPR: "myipr/:idMyIpr",
+  myTask: "my-task/:idMyTask",
 
   notFound: "*",
 };
