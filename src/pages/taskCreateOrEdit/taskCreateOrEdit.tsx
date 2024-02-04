@@ -27,7 +27,7 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
   const param = useParams();
   const dispatch = useAppDispatch();
   const url = window.location.href;
-  let task = null;
+  let task: null | any = null;
   const { ipr } = useAppSelector(selectIpr);
   let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
   if (iprEmployee) task = iprEmployee!.tasks.find(elem => elem.id === Number(param.idTask));
@@ -36,8 +36,8 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
     description: { value: task && task.description || "", valueValid: false },
   });
   const [skills, setSkills] = useState(task && task.skill ||"hard");
-  const [startDate, setStartDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.start_date) || null);
-  const [endDate, setEndDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.end_date) || null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   useEffect(() => {
     if (pathname === "/employee-ipr/list-tasks/task/edit-task" && state && !isContainRoute(state, url)) {
@@ -57,8 +57,14 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
         replace: true,
       });
     }
-
   }, [pathname, url, state]);
+  useEffect(() => {
+    // Проверяем, что task загружен и устанавливаем даты
+    if (task) {
+      setStartDate(new Date(task.start_date));
+      setEndDate(new Date(task.end_date));
+    }
+  }, [task]);
 
   const clearInput = () => {
     setValues({
