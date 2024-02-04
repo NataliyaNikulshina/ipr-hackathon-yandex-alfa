@@ -65,10 +65,10 @@ const ListIpr: FC<IListIpr> = ({
                 width={widthButton}
                 heigth="48"
                 onClick={isBoss 
-                  ? () => navigate(`list-tasks/${index}`, { state: state }) 
-                  : () => navigate(`/myipr/${index}`, { state: state }) }
+                  ? () => navigate(`list-tasks/${el.id}`, { state: state }) 
+                  : () => navigate(`/myipr/${el.id}`, { state: state }) }
                 position="left"
-                disabled={(isBoss ? false : el.id === 3 ? true : false) || (index === isSelectedIprId ? true : false)}
+                disabled={isBoss ? false : (el.id === isSelectedIprId ? true : false)}
               >
                 {el.title}
               </Button>
