@@ -5,7 +5,7 @@ import { getIprApi } from "../../api/ipr";
 import { RootState } from "../store";
 
 export type TGetIprInfoState = {
-    ipr: IIpr[] | null;
+    ipr: IIpr[] | [];
     isLoading: boolean;
     hasError: boolean;
   };
@@ -16,7 +16,7 @@ const initialState:TGetIprInfoState = {
     hasError: false
 }
 
-export const fetchIpr = createAsyncThunk('usersTeam', async (id:number) => {
+export const fetchIpr = createAsyncThunk('ipr/fetch', async (id:number) => {
     const responce = await getIprApi(id);
     return responce
 })
@@ -31,7 +31,7 @@ export const iprSlice = createSlice({
             state.isLoading = true;
             state.hasError = false;
         });
-        builder.addCase(fetchIpr.fulfilled, (state, action) => {
+        builder.addCase(fetchIpr.fulfilled, (state, action:PayloadAction<IIpr[]>) => {
             state.isLoading = false;
             state.hasError = false;
             state.ipr = action.payload;

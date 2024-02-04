@@ -40,15 +40,15 @@ export const routesUrl = {
 
   layout: "/",
   homePage: "",
-  employeeIpr: "employee-ipr",
-  createIpr: "create-ipr",
-  employeeListTasks: "list-tasks",
-  editIpr: "edit-ipr",
-  statusIpr: "status-ipr",
-  createTask: "create-task",
-  employeeTask: "task",
-  editEmployeeTask: "edit-task",
-
+    employeeIpr: "employee-ipr/:id",
+      createIpr: "create-ipr",
+      employeeListTasks: "list-tasks/:idIpr",
+        editIpr: "edit-ipr",
+        statusIpr: "status-ipr",
+        createTask: "create-task",
+        employeeTask: "task/:idTask",
+          editEmployeeTask: "edit-task",
+          
   myIPR: "myipr",
   myTask: "my-task",
 

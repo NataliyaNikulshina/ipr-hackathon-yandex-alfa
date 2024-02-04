@@ -13,19 +13,21 @@ import Rating from "../../components/rating/rating";
 import ListIpr from "../../components/listIpr/listIpr";
 import { selectUser } from "../../services/slice/userSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
+import { ITask } from "../../api/ipr";
 
 // Моковые данные
 import {
   mockDataTask,
   mockDataIpr,
 } from "../../ui/verificationConstants/verificationConstants";
+import Loader from "../../components/loader/loader";
 
 const MyIpr: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector(selectUser);
+  const { user, isLoading } = useAppSelector(selectUser);
   const { ipr } = useAppSelector(selectIpr);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const MyIpr: FC = (): JSX.Element => {
   const [isActualRating, setIsActualRating] = useState(0);
 
   // преключаемся на поле оценки.
-  const hanleClickClosingTask = () => {
+  const handleClickClosingTask = () => {
     // Закрываем ИПРы оверлеем.
     setIsClosingTask(true);
     // Говорим что ИПР ещё не оценивалсяю
@@ -88,6 +90,21 @@ const MyIpr: FC = (): JSX.Element => {
       // а ести отрицатеольный вызвать попап с ерором.
     }
   };
+
+  // Тригер следящий какой ИПР выбран.
+  const [isSelectedIprId, setIsSelectedIprId] = useState(-1);
+  // Актуальный массив задач.
+  const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
+
+  const handleSelectedIprId = (id: number) => {
+    setIsSelectedIprId(id);
+    let actualIpr = ipr.find(elem => elem.id === id);
+    let actualTasksList = actualIpr ? actualIpr.tasks : [];
+    console.log(actualTasksList)
+    if (Array.isArray(actualTasksList)) {
+      setIsActualTasksList(actualTasksList);
+    };
+  }
 
   return (
     <section>
@@ -111,7 +128,7 @@ const MyIpr: FC = (): JSX.Element => {
           {ipr && ipr.length !== 0 ? (
             <>
               <div className={gridAreasLayout.wrapper_main_info}>
-                {ipr && (
+                {ipr && !isLoading && (
                   <ListIpr
                     size="small"
                     iprList={ipr}
@@ -119,6 +136,8 @@ const MyIpr: FC = (): JSX.Element => {
                     disabled={
                       pathname !== "/myipr" || isClosingTask ? true : false
                     }
+                    isSelectedIprId={isSelectedIprId}
+                    handleSelectedIprId={handleSelectedIprId}
                   />
                 )}
               </div>
@@ -128,7 +147,7 @@ const MyIpr: FC = (): JSX.Element => {
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
                         {ipr && (
-                          <ListTask tasks={ipr[0].tasks} isBoss={false} />
+                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={isSelectedIprId} />
                         )}
                       </div>
                       <div
@@ -146,7 +165,7 @@ const MyIpr: FC = (): JSX.Element => {
                           color="grey"
                           width="281"
                           heigth="56"
-                          onClick={hanleClickClosingTask}
+                          onClick={handleClickClosingTask}
                         >
                           Оценить ИПР
                         </Button>
@@ -187,7 +206,7 @@ const MyIpr: FC = (): JSX.Element => {
               )}
               <Outlet />
             </>
-        ) : <p className={`${stylesMyIpr.container__title_empty} ${gridAreasLayout.wrapper_main_info}`} >ИПР пока нет</p>}
+          ) : <p className={`${stylesMyIpr.container__title_empty} ${gridAreasLayout.wrapper_main_info}`} >ИПР пока нет</p>}
         </>
       </div>
     </section>

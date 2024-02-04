@@ -1,11 +1,13 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { useNavigate, useLocation, Outlet, useParams } from "react-router-dom";
 import styles from "./employeeListTasks.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Button from "../../ui/buttons/button/button";
 import ListTask from "../../components/listTask/listTask";
-
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
 import { isContainRoute, removeRemainingCrumbs } from "../../utils/breadcrumbs";
 
 // Моковые данные
@@ -21,9 +23,17 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const param = useParams();
+  const dispatch = useAppDispatch();
+  const { ipr } = useAppSelector(selectIpr);
+
+  // console.log(param,  ipr)
+  useEffect(() => {
+    dispatch(fetchIpr(Number(param!.id)));
+  }, []);
 
   useEffect(() => {
-    if (pathname==="/employee-ipr/list-tasks" && state && !isContainRoute(state, url)) {
+    if (pathname.endsWith(`list-tasks/${param!.idIpr}`) && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задачи ИПР" }],
         replace: true
@@ -48,13 +58,13 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   
   return (
     <>
-      {pathname === '/employee-ipr/list-tasks' &&
+      {(pathname.endsWith(`list-tasks/${param!.idIpr}`)) &&
         <>
           <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
             Название ИПР
           </h1>
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-            <ListTask tasks={mockDataTask} isBoss={isBoss} />
+            {ipr && <ListTask tasks={ipr[Number(param.idIpr)].tasks} isBoss={isBoss} />}
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="281" heigth="56" onClick={createTask}>

@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { FC, useState } from "react";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./listIpr.module.scss";
 import Unpacker from "../../ui/unpacker/unpacker";
 
@@ -19,6 +19,8 @@ export interface IListIpr {
   }[];
   titleEmpty?: string;
   disabled?: boolean;
+  isSelectedIprId?: number;
+  handleSelectedIprId?(editing: number): void;
 }
 
 const ListIpr: FC<IListIpr> = ({
@@ -27,19 +29,24 @@ const ListIpr: FC<IListIpr> = ({
   iprList = [],
   titleEmpty = 'Пока задач нет.',
   disabled = false,
+  isSelectedIprId= -1,
+  handleSelectedIprId= ()=> {console.log("нет функции отслеживающей актуальный ID")},
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  // const param = useParams();
 
-  function onClickBoss(e: any) {
-    e.preventDefault();
-    navigate("list-tasks", { state: state });
-  }
+  // function onClickBoss(id:any) {
+  //   console.log(id);
+  //   navigate(`list-tasks/${1}` , { state: state });
+  // }
 
-  function onClick() {
-    alert('Показать нужный список задач')
-  }
+  // function onClick() {
+  //   alert('Показать нужный список задач')
+  // }
+
+
 
   const styleAll =
     size === "big"
@@ -53,15 +60,15 @@ const ListIpr: FC<IListIpr> = ({
       <div className={disabled ? styles.disabled : ''}></div>
       <div className={`${styleAll} ${disabled ? styles.disabled__scroll : ''}`}>
         {iprList?.length
-          ? iprList.map((el) => (
+          ? iprList.map((el, index) => (
             <Unpacker key={el.id}>
               <Button
                 color="ipr"
                 width={widthButton}
                 heigth="48"
-                onClick={isBoss ? onClickBoss : onClick}
+                onClick={isBoss ? () => navigate(`list-tasks/${index}`, { state: state }) : () => handleSelectedIprId(el.id)}
                 position="left"
-                disabled={isBoss ? false : el.id === 3 ? true : false}
+                disabled={(isBoss ? false : el.id === 3 ? true : false) || (el.id === isSelectedIprId ? true : false)}
               >
                 {el.title}
               </Button>

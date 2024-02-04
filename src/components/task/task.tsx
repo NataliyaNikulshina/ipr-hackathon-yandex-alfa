@@ -13,21 +13,12 @@ import { ITask } from "../../api/ipr";
 import styleTask from "./task.module.scss";
 
 
-const Task: FC<ITask> = ({ name, checkbox, status, isBoss }) => {
+const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
   const [crm, setCrm] = useState(checkbox);
 
   const location = useLocation();
   const navigate = useNavigate(); // функция принудительного перехода.
   const url = window.location.href;
-
-  const onClickMyTasks = () => {
-    // navigate("/myipr/my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
-    navigate("my-task", { state: [{ path: "/myipr", url: "/myipr", title: "Мои ИПР" }] });
-  };
-
-  const onClickEmployeeTasks = () => {
-    navigate("/employee-ipr/list-tasks/task", { state: location.state });
-  };
 
   const onCrmChange = () => {
     setCrm(!crm);
@@ -40,7 +31,7 @@ const Task: FC<ITask> = ({ name, checkbox, status, isBoss }) => {
         color="transparent"
         width="456"
         heigth="35"
-        onClick={isBoss ? onClickEmployeeTasks : onClickMyTasks}
+        onClick={onClick}
       >
         {name}
       </Button>

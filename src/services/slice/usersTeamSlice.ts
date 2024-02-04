@@ -18,7 +18,7 @@ const initialState:TGetUsersTeamInfoState = {
 }
 
 
-export const fetchUsers = createAsyncThunk('usersTeam', async () => {
+export const fetchUsers = createAsyncThunk('usersTeam/fetch', async () => {
     const responce = await getUsersAllInfoApi();
     return responce
 })
