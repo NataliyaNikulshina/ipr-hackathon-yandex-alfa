@@ -111,9 +111,10 @@ const MyIpr: FC = (): JSX.Element => {
   useEffect(()=>{
     console.log(ipr)
     let actualTasksList = ipr.length !== 0 ? ipr[Number(param!.idMyIpr)].tasks : [];
-    setIsSelectedIprId(Number(param!.idMyIpr));
+    // setIsSelectedIprId(Number(param!.idMyIpr));
     setIsActualTasksList(actualTasksList);
-  }, [])
+    console.log(actualTasksList);
+  }, [param!.idMyIpr])
 
   return (
     <section>
