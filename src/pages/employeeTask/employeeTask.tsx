@@ -66,7 +66,7 @@ const EmployeeTask: FC = (): JSX.Element => {
               value={task.description}
               disabled
             />
-            <DeadlineBlock deadline={task.end_date} />
+            <DeadlineBlock deadline={task.end_date} status={task.status}/>
           </div>
 
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>

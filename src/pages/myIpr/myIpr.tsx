@@ -56,7 +56,8 @@ const MyIpr: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate(-1);
+    if(state === null) navigate('/');
+    else navigate(-1);
   };
 
   // Тригер закрытия задачи и переключения на поле оценки.
