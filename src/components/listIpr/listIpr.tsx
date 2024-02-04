@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./listIpr.module.scss";
 import Unpacker from "../../ui/unpacker/unpacker";
@@ -19,6 +19,8 @@ export interface IListIpr {
   }[];
   titleEmpty?: string;
   disabled?: boolean;
+  isSelectedIprId?: number;
+  handleSelectedIprId?(editing: number): void;
 }
 
 const ListIpr: FC<IListIpr> = ({
@@ -26,7 +28,9 @@ const ListIpr: FC<IListIpr> = ({
   isBoss = false,
   iprList = [],
   titleEmpty = 'Пока задач нет.',
-  disabled = false
+  disabled = false,
+  isSelectedIprId= -1,
+  handleSelectedIprId= ()=> {console.log("нет функции отслеживающей актуальный ID")},
 }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
@@ -38,9 +42,11 @@ const ListIpr: FC<IListIpr> = ({
   //   navigate(`list-tasks/${1}` , { state: state });
   // }
 
-  function onClick() {
-    alert('Показать нужный список задач')
-  }
+  // function onClick() {
+  //   alert('Показать нужный список задач')
+  // }
+
+
 
   const styleAll =
     size === "big"
@@ -60,9 +66,9 @@ const ListIpr: FC<IListIpr> = ({
                 color="ipr"
                 width={widthButton}
                 heigth="48"
-                onClick={isBoss ? ()=>navigate(`list-tasks/${index}` , { state: state }) : onClick}
+                onClick={isBoss ? () => navigate(`list-tasks/${index}`, { state: state }) : () => handleSelectedIprId(el.id)}
                 position="left"
-                disabled={isBoss ? false : el.id === 3 ? true : false}
+                disabled={(isBoss ? false : el.id === 3 ? true : false) || (el.id === isSelectedIprId ? true : false)}
               >
                 {el.title}
               </Button>

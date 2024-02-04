@@ -4,12 +4,12 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Signin from "./pages/signin/signin";
 
 import Layout from "./components/layout/layout";
-  import HomePage from "./pages/homePage/homePage";
-    import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
-      import IprCreateOrEdit from "./pages/iprCreateOrEdit/iprCreateOrEdit";
-      import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
-      import EmployeeTask from "./pages/employeeTask/employeeTask";
-        import TaskCreateOrEdit from "./pages/taskCreateOrEdit/taskCreateOrEdit";
+import HomePage from "./pages/homePage/homePage";
+import EmployeeIpr from "./pages/employeeIpr/employeeIpr";
+import IprCreateOrEdit from "./pages/iprCreateOrEdit/iprCreateOrEdit";
+import EmployeeListTasks from "./pages/employeeListTasks/employeeListTasks";
+import EmployeeTask from "./pages/employeeTask/employeeTask";
+import TaskCreateOrEdit from "./pages/taskCreateOrEdit/taskCreateOrEdit";
 
 import Popup from "./components/popup/popup";
 
@@ -50,7 +50,7 @@ export const routesUrl = {
           editEmployeeTask: "edit-task",
           
   myIPR: "myipr",
-    myTask: "my-task",
+  myTask: "my-task",
 
   notFound: "*",
 };
