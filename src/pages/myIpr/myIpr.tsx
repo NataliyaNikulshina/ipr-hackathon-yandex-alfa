@@ -38,7 +38,7 @@ const MyIpr: FC = (): JSX.Element => {
 
   // вывод ИПР в консоль
   // console.log(user);
-  // console.log(ipr);
+  console.log(ipr);
   console.log(param);
 
   useEffect(() => {
@@ -110,10 +110,10 @@ const MyIpr: FC = (): JSX.Element => {
 
   useEffect(()=>{
     console.log(ipr)
-    let actualTasksList = ipr ? ipr[Number(param!.idMyIpr)].tasks : [];
+    let actualTasksList = ipr.length !== 0 ? ipr[Number(param!.idMyIpr)].tasks : [];
     setIsSelectedIprId(Number(param!.idMyIpr));
     setIsActualTasksList(actualTasksList);
-  }, [ipr])
+  }, [])
 
   return (
     <section>
@@ -145,18 +145,18 @@ const MyIpr: FC = (): JSX.Element => {
                     disabled={
                       pathname !== `/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
                     }
-                    isSelectedIprId={isSelectedIprId}
+                    isSelectedIprId={Number(param!.idMyIpr)}
                     // handleSelectedIprId={handleSelectedIprId}
                   />
                 )}
               </div>
-              {pathname === `/myipr/${param!.idMyIpr}` && (
+              {pathname === `/myipr/${param!.idMyIpr}` && ipr.length !== 0 && (
                 <>
                   {!isClosingTask ? (
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
                         {ipr && (
-                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={isSelectedIprId} />
+                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
                         )}
                       </div>
                       <div
