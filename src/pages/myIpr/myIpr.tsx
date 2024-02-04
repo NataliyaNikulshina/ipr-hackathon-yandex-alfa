@@ -93,10 +93,10 @@ const MyIpr: FC = (): JSX.Element => {
     }
   };
 
-  // Тригер следящий какой ИПР выбран.
-  const [isSelectedIprId, setIsSelectedIprId] = useState(-1);
-  // Актуальный массив задач.
-  const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
+  // // Тригер следящий какой ИПР выбран.
+  // const [isSelectedIprId, setIsSelectedIprId] = useState(-1);
+  // // Актуальный массив задач.
+  // const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
 
   // const handleSelectedIprId = (id: number) => {
   //   setIsSelectedIprId(id);
@@ -108,13 +108,13 @@ const MyIpr: FC = (): JSX.Element => {
   //   };
   // }
 
-  useEffect(()=>{
-    console.log(ipr)
-    let actualTasksList = ipr.length !== 0 ? ipr[Number(param!.idMyIpr)].tasks : [];
-    // setIsSelectedIprId(Number(param!.idMyIpr));
-    setIsActualTasksList(actualTasksList);
-    console.log(actualTasksList);
-  }, [param!.idMyIpr])
+  // useEffect(()=>{
+  //   console.log(ipr)
+  //   let actualTasksList = ipr.length !== 0 ? ipr[Number(param!.idMyIpr)].tasks : [];
+  //   // setIsSelectedIprId(Number(param!.idMyIpr));
+  //   setIsActualTasksList(actualTasksList);
+  //   console.log(actualTasksList);
+  // }, [param!.idMyIpr])
 
   return (
     <section>
@@ -156,8 +156,8 @@ const MyIpr: FC = (): JSX.Element => {
                   {!isClosingTask ? (
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
-                        {ipr && (
-                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
+                        {ipr && ipr.length !== 0 && (
+                          <ListTask tasks={ipr[Number(param!.idMyIpr)].tasks} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
                         )}
                       </div>
                       <div
