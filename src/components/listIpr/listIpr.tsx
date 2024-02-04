@@ -44,8 +44,6 @@ const ListIpr: FC<IListIpr> = ({
   //   alert('Показать нужный список задач')
   // }
 
-
-
   const styleAll =
     size === "big"
       ? styles.listIpr + " " + styles.listIpr__big
@@ -65,10 +63,10 @@ const ListIpr: FC<IListIpr> = ({
                 width={widthButton}
                 heigth="48"
                 onClick={isBoss 
-                  ? () => navigate(`list-tasks/${index}`, { state: state }) 
+                  ? () => navigate(`list-tasks/${el.id}`, { state: state }) 
                   : () => navigate(`/myipr/${index}`, { state: state }) }
                 position="left"
-                disabled={(isBoss ? false : el.id === 3 ? true : false) || (index === isSelectedIprId ? true : false)}
+                disabled={isBoss ? false : (index === isSelectedIprId ? true : false)}
               >
                 {el.title}
               </Button>

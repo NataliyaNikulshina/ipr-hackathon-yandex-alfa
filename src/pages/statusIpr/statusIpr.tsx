@@ -27,7 +27,7 @@ const StatusIpr: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   function onClick() {
-    alert("Закрыть ИПР");
+    console.log("ИПР выполнена");
   }
 
   // Тригер закрытия задачи и переключения на поле оценки.
