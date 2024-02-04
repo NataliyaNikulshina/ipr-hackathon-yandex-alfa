@@ -1,4 +1,4 @@
-import { getReq, postReq } from "./api";
+import { getReq, postReq, patchReq } from "./api";
 
 // типизация данных ИПР
 
@@ -41,7 +41,7 @@ export type IAddIpr = {
   end_date: string;
   start_date: string;
   title: string,
-  executor: IIprUser,
+  executor: number,
   status: string
 }
 
@@ -59,7 +59,17 @@ export function getIprApi(id: number) {
 // Запрос на создание ИПР 
 export function addIprApi(userInfo:IAddIpr) {
   return postReq<IAddIprResponse>({ 
-    uri: "api/v1/iprs/?user_id=${id}", 
+    uri: `api/v1/iprs/`, 
+    auth: true, 
+    data: userInfo 
+  });
+}
+
+
+// Запрос на изменение ИПР 
+export function editIprApi(userInfo:IAddIpr, id: number) {
+  return patchReq<IAddIprResponse>({ 
+    uri: `api/v1/iprs/${id}/`, 
     auth: true, 
     data: userInfo 
   });

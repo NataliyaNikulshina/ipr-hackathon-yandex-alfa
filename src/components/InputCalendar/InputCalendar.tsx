@@ -37,6 +37,7 @@ const InputCalendar: React.FC<InputCalendarProps> = ({ icon, name, value, onChan
         className="calendar__input"
         ref={datePickerRef}
         name={name}
+        required
         // value={value}
       />
       <button className={icon ? 'calendar__button activ' : 'calendar__button'} onClick={handleButtonClick}>

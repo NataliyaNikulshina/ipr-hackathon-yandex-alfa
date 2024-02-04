@@ -26,6 +26,7 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   const param = useParams();
   const dispatch = useAppDispatch();
   const { ipr } = useAppSelector(selectIpr);
+  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
 
   // console.log(param,  ipr)
   useEffect(() => {
@@ -58,13 +59,13 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   
   return (
     <>
-      {(pathname.endsWith(`list-tasks/${param!.idIpr}`)) &&
+      {(pathname.endsWith(`list-tasks/${param!.idIpr}`)) && iprEmployee && 
         <>
           <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
             Название ИПР
           </h1>
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-            {ipr && <ListTask tasks={ipr[Number(param.idIpr)].tasks} isBoss={isBoss} />}
+            {ipr && <ListTask tasks={iprEmployee.tasks} isBoss={isBoss} />}
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="281" heigth="56" onClick={createTask}>
