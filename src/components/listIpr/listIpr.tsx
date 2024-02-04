@@ -44,8 +44,6 @@ const ListIpr: FC<IListIpr> = ({
   //   alert('Показать нужный список задач')
   // }
 
-
-
   const styleAll =
     size === "big"
       ? styles.listIpr + " " + styles.listIpr__big

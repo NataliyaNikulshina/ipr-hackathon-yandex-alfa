@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./iprCreateOrEdit.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss";
 
@@ -10,25 +10,42 @@ import useForm from "../../utils/use-form";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
+import { addIprApi, editIprApi } from "../../api/ipr";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { selectUser } from "../../services/slice/userSlice";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
+
 export interface IIprCreateOrEdit {
   role: string;
   ipr?: object;
 }
 
-const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
+const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
-  const { values, handleChange, setValues } = useForm({
-    name: { value: "", valueValid: false },
-  });
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const param = useParams();
 
+  const { ipr } = useAppSelector(selectIpr);
+  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
+  const { values, handleChange, setValues } = useForm({
+    name: { value: iprEmployee && iprEmployee.title || "", valueValid: false },
+  });
+  const [startDate, setStartDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.start_date) || null);
+  const [endDate, setEndDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.end_date) ||null);
+  const { user, isLoading } = useAppSelector(selectUser);
+  
+  const dispatch = useAppDispatch();
+  
+
+  console.log(ipr)
+
+  
 
   useEffect(() => {
     if (
-      pathname === "/employee-ipr/create-ipr" &&
+      pathname.endsWith("create-ipr") &&
       state &&
       !isContainRoute(state, url)
     ) {
@@ -40,7 +57,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
         replace: true,
       });
     } else if (
-      pathname === "/employee-ipr/list-tasks/edit-ipr" &&
+      pathname.endsWith("edit-ipr") &&
       state &&
       !isContainRoute(state, url)
     ) {
@@ -51,17 +68,12 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
     }
   }, [pathname, url, state]);
 
-  function onClick(e: any) {
-    e.preventDefault();
-    navigate(-1);
-  }
-
   const clearInput = () => {
     setValues({
-      name: { value: "", valueValid: false },
+      name: { value: iprEmployee && iprEmployee.title || "", valueValid: false },
     });
-    setStartDate(null);
-    setEndDate(null);
+    setStartDate( iprEmployee && new Date(iprEmployee.start_date) || null);
+    setEndDate( iprEmployee && new Date(iprEmployee.end_date) || null);
   };
 
   const handleDateChangeStart = (date: Date | null) => {
@@ -76,6 +88,35 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    role === "create"
+      ? (endDate && startDate &&
+        addIprApi(
+          {
+            title: values.name.value,
+            end_date: endDate.toJSON().slice(0, 10),
+            start_date: startDate.toJSON().slice(0, 10),
+            executor: Number(param.id),
+            status: "in_progress",
+          }
+        ).then((res) => {
+          dispatch(fetchIpr(Number(param!.id)));
+          navigate(-1);
+        }))
+      // : (console.log(values.name.value))
+       : ( endDate && startDate && iprEmployee &&
+        editIprApi(
+          {
+            title: values.name.value,
+            end_date: endDate.toJSON().slice(0, 10),
+            start_date: startDate.toJSON().slice(0, 10),
+            executor: Number(param.id),
+            status: "in_progress",
+          },
+          iprEmployee.id
+        ).then((res) => {
+          dispatch(fetchIpr(Number(param!.id)));
+          navigate(-1);
+        }));
   };
 
   return (
@@ -89,9 +130,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
       >
         <section className={styles.listIpr}>
           <div className={styles.labelIpr}>
-            <p className={styles.autorIpr}>
-              Автор ИПР: Антонова Екатерина Владимировна
-            </p>
+            <p className={styles.autorIpr}>Название</p>
             <Input
               onChange={handleChange}
               placeholder="Введите название ИПР"
@@ -104,7 +143,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
           </div>
           <div className={styles.dateIprWrapp}>
             <div className={styles.labelIpr}>
-              <p className={styles.autorIpr}>Дата создания ИПР</p>
+              <p className={styles.autorIpr}>Дата создания</p>
               <InputCalendar
                 icon={true}
                 name="dataCreator"
@@ -113,7 +152,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role, ipr }): JSX.Element => {
               />
             </div>
             <div className={styles.labelIpr}>
-              <p className={styles.autorIpr}>Дата закрытия ИПР</p>
+              <p className={styles.autorIpr}>Дата закрытия</p>
               <InputCalendar
                 icon={true}
                 name="dataEnd"

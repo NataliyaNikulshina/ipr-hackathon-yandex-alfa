@@ -38,7 +38,15 @@ const MyTask: FC = (): JSX.Element => {
     user && dispatch(fetchIpr(user?.id));
   }, [user]);
 
-  if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
+  // if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
+  if (ipr?.length) {
+    let actualIpr = ipr.find(elem => elem.id === Number(param!.idMyIpr)) || { tasks: [] };
+    let actualTasksList = actualIpr.tasks;
+    task = actualTasksList.find(elem => elem.id === Number(param!.idMyTask))
+  }
+
+
+  // ipr.find(elem => elem.id === Number(param!.idMyIpr))
 
   const routeTo = (e: any) => {
     e.preventDefault();
@@ -47,12 +55,12 @@ const MyTask: FC = (): JSX.Element => {
 
   return (
     <>
-    { task && (
-    <>
-      <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-        {task.name}
-      </h1>
-      <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+      {task && (
+        <>
+          <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
+            {task.name}
+          </h1>
+          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
             <div className={styles.wrapper__task}>
               <p className={styles.text}>Описание задачи</p>
               <Textarea
@@ -62,13 +70,13 @@ const MyTask: FC = (): JSX.Element => {
               />
               <DeadlineBlock deadline={task.end_date} />
             </div>
-      </div>
-      <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+          </div>
+          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="522" heigth="56" onClick={routeTo}>
               Закрыть задачу
             </Button>
-      </div>
-    </> )}
+          </div>
+        </>)}
     </>
   );
 };
