@@ -18,13 +18,14 @@ const EmployeeTask: FC = (): JSX.Element => {
   const url = window.location.href;
   const dispatch = useAppDispatch();
   const { ipr } = useAppSelector(selectIpr);
+  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
   let task = null;
 
   useEffect(() => {
     dispatch(fetchIpr(Number(param!.id)));
   }, []);
 
-  if (ipr?.length) task = ipr![Number(param!.idIpr)].tasks[Number(param!.idTask)];
+  if (iprEmployee) task = iprEmployee.tasks.find(elem => elem.id === Number(param.idTask));
 
   useEffect(() => {
     if (pathname === `/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${param.idTask}` && state && !isContainRoute(state, url)) {

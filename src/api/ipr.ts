@@ -18,12 +18,24 @@ export type ITask = {
   description?: string;
   end_date?: string;
   name: string;
+  skill?: string;
   start_date?: string;
   status: string;
   checkbox?: boolean;
   isBoss?: boolean;
   onClick?: VoidFunction | ((e: any) => void);
 };
+
+export type IAddTask = {
+  end_date: string;
+  start_date: string;
+  name: string,
+  description: string;
+  executor: number,
+  status: string,
+  ipr: number,
+  skill: string
+}
 
 export type IIpr = {
   creation_date: string;
@@ -47,6 +59,7 @@ export type IAddIpr = {
 
 export interface IIprResponse extends Array<IIpr> {}
 export interface IAddIprResponse extends IIpr {}
+export interface IAddTaskResponse extends ITask {}
 
 // Запрос на получение данных ИПР отпределенного пользователя
 export function getIprApi(id: number) {
@@ -70,6 +83,26 @@ export function addIprApi(userInfo:IAddIpr) {
 export function editIprApi(userInfo:IAddIpr, id: number) {
   return patchReq<IAddIprResponse>({ 
     uri: `api/v1/iprs/${id}/`, 
+    auth: true, 
+    data: userInfo 
+  });
+}
+
+
+// Запрос на создание задачи 
+export function addTaskApi(userInfo:IAddTask) {
+  return postReq<IAddTaskResponse>({ 
+    uri: `api/v1/tasks/`, 
+    auth: true, 
+    data: userInfo 
+  });
+}
+
+
+// Запрос на изменение задачи 
+export function editTaskApi(userInfo:IAddTask, id: number) {
+  return patchReq<IAddTaskResponse>({ 
+    uri: `api/v1/tasks/${id}/`, 
     auth: true, 
     data: userInfo 
   });

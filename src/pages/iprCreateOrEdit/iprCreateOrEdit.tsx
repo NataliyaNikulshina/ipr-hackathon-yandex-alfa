@@ -138,6 +138,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
               name="name"
               value={values.name.value}
               maxLength={100}
+              close={false}
               required
             />
           </div>
@@ -167,7 +168,6 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
             color="red"
             width="281"
             heigth="56"
-            onClick={handleSubmit}
             buttonHtmlType="submit"
           >
             {role === "create" ? "Создать ИПР" : "Изменить ИПР"}
