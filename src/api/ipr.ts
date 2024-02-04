@@ -1,4 +1,4 @@
-import { getReq, postReq, patchReq } from "./api";
+import { getReq, postReq, patchReq, deleteReq } from "./api";
 
 // типизация данных ИПР
 
@@ -105,5 +105,13 @@ export function editTaskApi(userInfo:IAddTask, id: number) {
     uri: `api/v1/tasks/${id}/`, 
     auth: true, 
     data: userInfo 
+  });
+}
+
+// Запрос на удаление задачи 
+export function deleteTaskApi( id: number) {
+  return deleteReq<IAddTaskResponse>({ 
+    uri: `api/v1/tasks/${id}/`, 
+    auth: true
   });
 }

@@ -9,6 +9,7 @@ import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
+import { deleteTaskApi } from "../../api/ipr";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 const EmployeeTask: FC = (): JSX.Element => {
@@ -38,7 +39,11 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   function handleRouteStatusIpr(e: any) {
     e.preventDefault();
-    navigate(-1);
+    deleteTaskApi(Number(param.idTask))
+    .then (()=>{
+      dispatch(fetchIpr(Number(param!.id)));
+      navigate(-1);
+    });
   }
 
   function editTask(e: any) {

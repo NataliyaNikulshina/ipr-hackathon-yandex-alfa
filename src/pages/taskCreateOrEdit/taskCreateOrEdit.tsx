@@ -10,7 +10,7 @@ import InputCalendar from "../../components/InputCalendar/InputCalendar";
 import useForm from "../../utils/use-form";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
-import { addTaskApi } from "../../api/ipr";
+import { addTaskApi, editTaskApi, ITask } from "../../api/ipr";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
@@ -63,10 +63,10 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
   const clearInput = () => {
     setValues({
       name: { value: "", valueValid: false },
-      description: { value: "", valueValid: false },
+      description: { value: "" , valueValid: false },
     });
-    setStartDate(null);
-    setEndDate(null);
+    setStartDate(iprEmployee && new Date(iprEmployee.start_date) || null);
+    setEndDate(iprEmployee && new Date(iprEmployee.end_date) || null);
   }
 
   const handleDateChangeStart = (date: Date | null) => {
@@ -97,7 +97,22 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
         dispatch(fetchIpr(Number(param!.id)));
         navigate(-1);
       }))
-    : console.log('edit')
+    : (endDate && startDate &&
+      editTaskApi({
+          name: values.name.value,
+          description: values.description.value,
+          end_date: endDate!.toJSON().slice(0, 10),
+          start_date: startDate!.toJSON().slice(0, 10),
+          executor: Number(param.id),
+          status: "in_progress",
+          skill: skills,
+          ipr: Number(param.idIpr)
+        },
+        Number(param.idTask))
+        .then((res) => {
+          dispatch(fetchIpr(Number(param!.id)));
+          navigate(-1);
+        }))
   };
 
   function handleSkillsChange(e: any) {
@@ -109,9 +124,8 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
       {role === "create" ? "Создание новой задачи" : "Редактирование задачи"}
       </h2>
-      <form
+      <div
         className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
-        onSubmit={handleSubmit}
       >
         <section className={styles.listTask}>
           <div className={styles.nameTask}>
@@ -159,14 +173,14 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
           </div>
         </section>
       <div className={`${styles.wrapper__button}`}>
-        <Button color="red" width="281" heigth="56" buttonHtmlType="submit">
+        <Button color="red" width="281" heigth="56" onClick={handleSubmit}>
         {role === "create" ? "Добавить задачу" : "Редактировать задачу"}
         </Button>
         <Button color="grey" width="281" heigth="56" onClick={clearInput}>
         {role === "create" ? "Очистить" : "Отмена"}
         </Button>
       </div>
-      </form>
+      </div>
     </>
   );
 };
