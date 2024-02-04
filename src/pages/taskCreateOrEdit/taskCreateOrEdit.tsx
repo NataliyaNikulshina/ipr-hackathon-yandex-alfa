@@ -68,11 +68,11 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
 
   const clearInput = () => {
     setValues({
-      name: { value: "", valueValid: false },
-      description: { value: "" , valueValid: false },
+      name: { value: task && task.name || "", valueValid: false },
+    description: { value: task && task.description || "", valueValid: false },
     });
-    setStartDate(iprEmployee && new Date(iprEmployee.start_date) || null);
-    setEndDate(iprEmployee && new Date(iprEmployee.end_date) || null);
+    setStartDate(new Date(task.start_date) || null);
+    setEndDate(new Date(task.end_date) || null);
   }
 
   const handleDateChangeStart = (date: Date | null) => {
