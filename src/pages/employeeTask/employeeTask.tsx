@@ -9,6 +9,7 @@ import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
+import { deleteTaskApi } from "../../api/ipr";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 const EmployeeTask: FC = (): JSX.Element => {
@@ -18,13 +19,14 @@ const EmployeeTask: FC = (): JSX.Element => {
   const url = window.location.href;
   const dispatch = useAppDispatch();
   const { ipr } = useAppSelector(selectIpr);
+  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
   let task = null;
 
   useEffect(() => {
     dispatch(fetchIpr(Number(param!.id)));
   }, []);
 
-  if (ipr?.length) task = ipr![Number(param!.idIpr)].tasks[Number(param!.idTask)];
+  if (iprEmployee) task = iprEmployee.tasks.find(elem => elem.id === Number(param.idTask));
 
   useEffect(() => {
     if (pathname === `/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${param.idTask}` && state && !isContainRoute(state, url)) {
@@ -37,7 +39,11 @@ const EmployeeTask: FC = (): JSX.Element => {
 
   function handleRouteStatusIpr(e: any) {
     e.preventDefault();
-    navigate(-1);
+    deleteTaskApi(Number(param.idTask))
+    .then (()=>{
+      dispatch(fetchIpr(Number(param!.id)));
+      navigate(-1);
+    });
   }
 
   function editTask(e: any) {

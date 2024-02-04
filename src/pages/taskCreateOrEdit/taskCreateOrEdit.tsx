@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./taskCreateOrEdit.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
@@ -10,23 +10,34 @@ import InputCalendar from "../../components/InputCalendar/InputCalendar";
 import useForm from "../../utils/use-form";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
+import { addTaskApi, editTaskApi, ITask } from "../../api/ipr";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
+
 
 export interface ITaskCreateOrEdit {
   role: string;
-  task: object;
+  task?: object;
 }
 
-const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element => {
-  const [skills, setSkills] = useState("hard");
+const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
+  const param = useParams();
+  const dispatch = useAppDispatch();
   const url = window.location.href;
+  let task = null;
+  const { ipr } = useAppSelector(selectIpr);
+  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
+  if (iprEmployee) task = iprEmployee!.tasks.find(elem => elem.id === Number(param.idTask));
   const { values, handleChange, setValues } = useForm({
-    name: { value: "", valueValid: false },
-    description: { value: "", valueValid: false },
+    name: { value: task && task.name || "", valueValid: false },
+    description: { value: task && task.description || "", valueValid: false },
   });
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [skills, setSkills] = useState(task && task.skill ||"hard");
+  const [startDate, setStartDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.start_date) || null);
+  const [endDate, setEndDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.end_date) || null);
 
   useEffect(() => {
     if (pathname === "/employee-ipr/list-tasks/task/edit-task" && state && !isContainRoute(state, url)) {
@@ -49,17 +60,13 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
 
   }, [pathname, url, state]);
 
-  function onClick() {
-    navigate(-1);
-  }
-
   const clearInput = () => {
     setValues({
       name: { value: "", valueValid: false },
-      description: { value: "", valueValid: false },
+      description: { value: "" , valueValid: false },
     });
-    setStartDate(null);
-    setEndDate(null);
+    setStartDate(iprEmployee && new Date(iprEmployee.start_date) || null);
+    setEndDate(iprEmployee && new Date(iprEmployee.end_date) || null);
   }
 
   const handleDateChangeStart = (date: Date | null) => {
@@ -74,6 +81,38 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    role === "create"
+      ? (endDate && startDate &&
+    addTaskApi({
+        name: values.name.value,
+        description: values.description.value,
+        end_date: endDate!.toJSON().slice(0, 10),
+        start_date: startDate!.toJSON().slice(0, 10),
+        executor: Number(param.id),
+        status: "in_progress",
+        skill: skills,
+        ipr: Number(param.idIpr)
+      })
+      .then((res) => {
+        dispatch(fetchIpr(Number(param!.id)));
+        navigate(-1);
+      }))
+    : (endDate && startDate &&
+      editTaskApi({
+          name: values.name.value,
+          description: values.description.value,
+          end_date: endDate!.toJSON().slice(0, 10),
+          start_date: startDate!.toJSON().slice(0, 10),
+          executor: Number(param.id),
+          status: "in_progress",
+          skill: skills,
+          ipr: Number(param.idIpr)
+        },
+        Number(param.idTask))
+        .then((res) => {
+          dispatch(fetchIpr(Number(param!.id)));
+          navigate(-1);
+        }))
   };
 
   function handleSkillsChange(e: any) {
@@ -85,13 +124,12 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
       {role === "create" ? "Создание новой задачи" : "Редактирование задачи"}
       </h2>
-      <form
+      <div
         className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
-        onSubmit={handleSubmit}
       >
         <section className={styles.listTask}>
           <div className={styles.nameTask}>
-            <Input onChange={handleChange} name="name" value={values.name.value} placeholder="Введите название"/>
+            <Input onChange={handleChange} name="name" value={values.name.value} placeholder="Введите название" close={false}/>
             <div className={styles.skillsTask}>
               <Button
                 name="skill"
@@ -142,7 +180,7 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role, task }): JSX.Element =>
         {role === "create" ? "Очистить" : "Отмена"}
         </Button>
       </div>
-      </form>
+      </div>
     </>
   );
 };

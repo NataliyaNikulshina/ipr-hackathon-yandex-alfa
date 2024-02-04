@@ -19,6 +19,7 @@ interface IInput {
   id?: string;
   pattern?: string;
   size?: string;
+  close?: boolean
 }
 
 const Input: FC<IInput> = ({
@@ -36,7 +37,8 @@ const Input: FC<IInput> = ({
   required,
   pattern,
   id,
-  size = "small"
+  size = "small",
+  close = true,
 }): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [typeValues, setTypeValues] = useState<string>("");
@@ -138,7 +140,7 @@ const Input: FC<IInput> = ({
           onClick={setValues}
           className={`${stylesInput.button}`}
         >
-          <CloseIcon />
+          {close && <CloseIcon />}
         </button>
       )}
     </div>

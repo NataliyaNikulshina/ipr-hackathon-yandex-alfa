@@ -19,13 +19,11 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
   const url = window.location.href;
   const param = useParams();
 
-  console.log(tasks)
-
   return (
     <div className={styleTask.container}>
       <ul className={styleTask.list}>
         {tasks?.length
-          ? tasks.map((el, index) => (
+          ? tasks.map((el) => (
             <Unpacker key={el.id}>
               <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} 
                     onClick={isBoss ? 
@@ -33,7 +31,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
                     : (() => navigate(`/myiprs/myipr/${param!.idMyIpr}/my-task/${el.id}`, { state: [{ path: `/myiprs/myipr/${param!.idMyIpr}`, url: url, title: "Мои ИПР" }] })) }/>
             </Unpacker>
           ))
-          : <li className={styleTask.title__empty}> {isSelectedIprId > 0 ? 'Задач не существует' : 'Выберите ИПР'}</li>
+          : <li className={styleTask.title__empty}> {isSelectedIprId < 0 ? 'Задач не существует' : 'Выберите ИПР'}</li>
         }
         {/* <li className={styleTask.item}>
           <input type="checkbox">{tasks.checkbox}</input>

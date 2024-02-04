@@ -5,14 +5,14 @@ import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scs
 import Link from "../../ui/links/link";
 import { isContainRoute } from "../../utils/breadcrumbs";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { fetchIpr } from "../../services/slice/iprSlice";
+import { fetchmyIpr } from "../../services/slice/myIprSlice";
 
 import ListTask from "../../components/listTask/listTask";
 import Button from "../../ui/buttons/button/button";
 import Rating from "../../components/rating/rating";
 import ListIpr from "../../components/listIpr/listIpr";
 import { selectUser } from "../../services/slice/userSlice";
-import { selectIpr } from "../../services/slice/iprSlice";
+import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { ITask } from "../../api/ipr";
 
 // Моковые данные
@@ -28,12 +28,12 @@ const MyIpr: FC = (): JSX.Element => {
   const url = window.location.href;
   const dispatch = useAppDispatch();
   const { user, isLoading } = useAppSelector(selectUser);
-  const { ipr } = useAppSelector(selectIpr);
+  const { myIpr } = useAppSelector(selectMyIpr);
   const param = useParams();
 
 
   useEffect(() => {
-    user && dispatch(fetchIpr(user.id));
+    user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
   // вывод ИПР в консоль
@@ -112,7 +112,7 @@ const MyIpr: FC = (): JSX.Element => {
 
   useEffect(()=>{
     // if (ipr.some(elem => elem.id === Number(param!.idMyIpr))){
-    let actualIpr = ipr.find(elem => elem.id === Number(param!.idMyIpr)) || {tasks: []};
+    let actualIpr = myIpr.find(elem => elem.id === Number(param!.idMyIpr)) || {tasks: []};
     let actualTasksList = actualIpr.tasks;
     setIsActualTasksList(actualTasksList);
     // console.log(actualTasksList);
@@ -120,7 +120,7 @@ const MyIpr: FC = (): JSX.Element => {
     //   navigate(`/notFound`, { replace: true }) // надо разобраться.
     // }
 
-  }, [param!.idMyIpr, ipr])
+  }, [param!.idMyIpr, myIpr])
 
   return (
     <section>
@@ -141,13 +141,13 @@ const MyIpr: FC = (): JSX.Element => {
         <>
 
 
-          {ipr && ipr.length !== 0 ? (
+          {myIpr && myIpr.length !== 0 ? (
             <>
               <div className={gridAreasLayout.wrapper_main_info}>
-                {ipr && !isLoading && (
+                {myIpr && !isLoading && (
                   <ListIpr
                     size="small"
-                    iprList={ipr}
+                    iprList={myIpr}
                     titleEmpty="ИПР пока нет."
                     disabled={
                       pathname !== `/myiprs/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
@@ -156,12 +156,12 @@ const MyIpr: FC = (): JSX.Element => {
                   />
                 )}
               </div>
-              {pathname === `/myiprs/myipr/${param!.idMyIpr}` && ipr.length !== 0 && (
+              {pathname === `/myiprs/myipr/${param!.idMyIpr}` && myIpr.length !== 0 && (
                 <>
                   {!isClosingTask ? (
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
-                        {ipr && ipr.length !== 0 && (
+                        {myIpr && myIpr.length !== 0 && (
                           <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
                         )}
                       </div>

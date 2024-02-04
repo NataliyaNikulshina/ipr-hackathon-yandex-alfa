@@ -112,7 +112,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
             executor: Number(param.id),
             status: "in_progress",
           },
-          iprEmployee.id
+          Number(param.idIpr)
         ).then((res) => {
           dispatch(fetchIpr(Number(param!.id)));
           navigate(-1);
@@ -124,9 +124,8 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
         {role === "create" ? "Создание нового ИПР" : "Редактирование ИПР"}
       </h2>
-      <form
+      <div
         className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
-        onSubmit={handleSubmit}
       >
         <section className={styles.listIpr}>
           <div className={styles.labelIpr}>
@@ -138,6 +137,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
               name="name"
               value={values.name.value}
               maxLength={100}
+              close={false}
               required
             />
           </div>
@@ -168,7 +168,6 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
             width="281"
             heigth="56"
             onClick={handleSubmit}
-            buttonHtmlType="submit"
           >
             {role === "create" ? "Создать ИПР" : "Изменить ИПР"}
           </Button>
@@ -176,7 +175,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
             {role === "create" ? "Очистить" : "Отмена"}
           </Button>
         </div>
-      </form>
+      </div>
     </>
   );
 };

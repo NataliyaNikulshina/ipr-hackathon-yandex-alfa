@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUser } from "../../services/slice/userSlice";
 import { getIprApi } from "../../api/ipr";
 import { selectUser } from "../../services/slice/userSlice";
-import { selectIpr, fetchIpr } from "../../services/slice/iprSlice";
+import { selectMyIpr, fetchmyIpr } from "../../services/slice/myIprSlice";
 
 import Loader from "../loader/loader";
 
@@ -29,10 +29,10 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(selectUser);
-  const { ipr } = useAppSelector(selectIpr);
+  const { myIpr } = useAppSelector(selectMyIpr);
 
   useEffect(() => {
-    user && dispatch(fetchIpr(user.id));
+    user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
   // console.log(user);

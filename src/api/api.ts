@@ -34,6 +34,10 @@ function request<T>(url: string, options: TOptions): Promise<T> {
   return fetch(url, options).then(checkRes);
 }
 
+function requestNotRes<T>(url: string, options: TOptions): Promise<T> {
+  return fetch(url, options).then();
+}
+
 const BASE_PARAMS = {
   headers: {
     "Content-Type": "application/json;charset=utf-8",
@@ -72,7 +76,7 @@ export function patchReq<T>(options: TReq) {
 
 export function deleteReq<T>(options: TReq) {
     const { path, params } = getReqParams({ ...options, method: 'DELETE' });
-    return request<T>(path, params);
+    return requestNotRes<T>(path, params);
   }
 
 export default {
