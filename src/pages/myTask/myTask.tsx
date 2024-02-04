@@ -1,11 +1,14 @@
 import { FC, useState, useEffect, FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./myTask.module.scss";
 import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
 
 import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { fetchIpr } from "../../services/slice/iprSlice";
+import { selectIpr } from "../../services/slice/iprSlice";
 
 import { isContainRoute } from "../../utils/breadcrumbs";
 
@@ -15,15 +18,25 @@ const MyTask: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
+  const param = useParams();
+  const dispatch = useAppDispatch();
+  const { ipr } = useAppSelector(selectIpr);
+  let task = null;
 
   useEffect(() => {
-    if (pathname === "/myipr/my-task" && state && !isContainRoute(state, url)) {
+    if (pathname === `/myipr/${param!.idMyIpr}/my-task/${param!.idMyTask}` && state && !isContainRoute(state, url)) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Задача" }],
         replace: true
       });
     }
   }, [pathname, url, state]);
+
+  useEffect(() => {
+    dispatch(fetchIpr(Number(param!.id)));
+  }, []);
+
+  if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
 
   const routeTo = (e: any) => {
     e.preventDefault();
@@ -32,18 +45,20 @@ const MyTask: FC = (): JSX.Element => {
 
   return (
     <>
+    { task && (
+    <>
       <h1 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
-        Тест на знание корпоративной культуры
+        {task.name}
       </h1>
       <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
             <div className={styles.wrapper__task}>
               <p className={styles.text}>Описание задачи</p>
               <Textarea
                 height="102px"
-                value="Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. Необходимо изучить материалы, которые присланы на почту в понедельник. Затем пройти тест. После дать оценку своим знаниям по вашему мнению."
+                value={task.description}
                 disabled
               />
-              <DeadlineBlock deadline={'2024-02-05T12:00:00.000Z'} />
+              <DeadlineBlock deadline={task.end_date} />
             </div>
       </div>
       <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
@@ -51,6 +66,7 @@ const MyTask: FC = (): JSX.Element => {
               Закрыть задачу
             </Button>
       </div>
+    </> )}
     </>
   );
 };

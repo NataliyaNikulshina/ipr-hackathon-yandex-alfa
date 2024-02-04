@@ -34,7 +34,7 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
   }, []);
 
   const onClickIPR = () => {
-    navigate("/myipr");
+    navigate("/myipr/0");
   };
 
   const onClickTeam = () => {
