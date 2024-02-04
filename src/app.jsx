@@ -50,7 +50,7 @@ export const routesUrl = {
           editEmployeeTask: "edit-task",
           
   myIPR: "myipr/:idMyIpr",
-  myTask: "my-task/:idMyTask",
+    myTask: "my-task/:idMyTask",
 
   notFound: "*",
 };
@@ -80,7 +80,6 @@ const App = () => {
                   </Route> 
               </Route>
             </Route>
-
           </Route>
 
           <Route path={routesUrl.myIPR} element={<MyIpr />}>
