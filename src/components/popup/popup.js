@@ -64,7 +64,7 @@ const Popup = (props) => {
         {isOpen.popupAssignment === 'task' ?
           <div className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-box`]}`}>
             <div className={`${popupStyle[`${isOpen.popupAssignment}-popup__list-box`]}`}>
-                <span className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-titl`]}`}>Сегодня</span>
+              <span className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-titl`]}`}>Сегодня</span>
               <ul className={`${popupStyle[`${isOpen.popupAssignment}-popup__tasks-list`]}`}>
                 {isOpen.arrTodayTasks.length ?
                   isOpen.arrTodayTasks.map((title) => <Unpacker key={title.id}>

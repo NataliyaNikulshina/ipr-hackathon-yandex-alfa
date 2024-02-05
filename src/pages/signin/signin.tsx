@@ -19,7 +19,9 @@ const Signin: FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    (values.email.valueValid && values.password.valueValid) ? setButtonDisabled(false) : setButtonDisabled(true);
+    values.email.valueValid && values.password.valueValid
+      ? setButtonDisabled(false)
+      : setButtonDisabled(true);
   }, [values]);
 
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
@@ -27,21 +29,22 @@ const Signin: FC = (): JSX.Element => {
     signinApi({
       email: values.email.value,
       password: values.password.value,
-    })
-      .then((res) => {
-        saveAccessToken(res.access);
-        saveRefreshToken(res.refresh);
-        navigate('/');
-      })
-
+    }).then((res) => {
+      saveAccessToken(res.access);
+      saveRefreshToken(res.refresh);
+      navigate("/");
+    });
   };
 
   const clearInput = () => {
     setValues({
       email: { value: "", valueValid: false },
-      password: { value: values.password.value, valueValid: values.password.valueValid },
+      password: {
+        value: values.password.value,
+        valueValid: values.password.valueValid,
+      },
     });
-  }
+  };
 
   return (
     <section className={stylesSignin.signinPage}>
@@ -81,11 +84,7 @@ const Signin: FC = (): JSX.Element => {
         >
           Войти
         </Button>
-        <Link
-          href={"#"}
-          color='blue'
-          size='18'
-        >
+        <Link href={"#"} color="blue" size="18">
           Забыли пароль?
         </Link>
       </form>

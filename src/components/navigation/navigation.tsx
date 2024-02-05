@@ -11,7 +11,7 @@ const Crumb = ({ title, path, url }: any) => {
   const navigate = useNavigate();
   const { state, pathname } = useLocation();
 
-  const routeTo = (e:MouseEvent) => {
+  const routeTo = (e: MouseEvent) => {
     e.preventDefault();
     navigate(path, { replace: true, state: removeRemainingCrumbs(state, url) });
   };
@@ -20,11 +20,17 @@ const Crumb = ({ title, path, url }: any) => {
     <span className={styleNav.wrapper}>
       {path === pathname ? (
         <Link href={url} color="grey" size="14" underline={false} disabled>
-        {title}
+          {title}
         </Link>
       ) : (
         <>
-          <Link href={url} onClick={routeTo} color="grey" size="14" underline={false}>
+          <Link
+            href={url}
+            onClick={routeTo}
+            color="grey"
+            size="14"
+            underline={false}
+          >
             {title}
           </Link>
           {` > `}
@@ -41,7 +47,10 @@ const Navigation: FC<Navigation> = () => {
       {location.state ? (
         location.state.map((crumb: any) => <Crumb {...crumb} key={crumb.url} />)
       ) : (
-        <Crumb title={location.pathname==='/' ? 'Моя команда' : 'Мои ИПР'} path={location.pathname} />
+        <Crumb
+          title={location.pathname === "/" ? "Моя команда" : "Мои ИПР"}
+          path={location.pathname}
+        />
       )}
     </nav>
   );

@@ -18,55 +18,55 @@ const Rating = (props) => {
   return (
     <div className={`${ratingStyle['rating']}`}>
       <p className={`${ratingStyle['rating__title']}`}>{props.isAssessment ? props.titleСlosing : props.titleOpening}</p>
-{props.isAssessment ? '' :
-      <div className={`${ratingStyle['rating__icon-box']}`} data-total-value={isRating}>
-        <RatingButton
-          svgHref={ratingIcon}
-          svgId='#star'
-          viewBox='0 0 48 48'
-          elementStyle={ratingStyle}
-          elementType='rating'
-          destiny='price'
-          onClick={handleClickRating}
-          dataItemValue='5' />
-        <RatingButton
-          svgHref={ratingIcon}
-          svgId='#star'
-          viewBox='0 0 48 48'
-          elementStyle={ratingStyle}
-          elementType='rating'
-          destiny='price'
-          onClick={handleClickRating}
-          dataItemValue='4' />
-        <RatingButton
-          svgHref={ratingIcon}
-          svgId='#star'
-          viewBox='0 0 48 48'
-          elementStyle={ratingStyle}
-          elementType='rating'
-          destiny='price'
-          onClick={handleClickRating}
-          dataItemValue='3' />
-        <RatingButton
-          svgHref={ratingIcon}
-          svgId='#star'
-          viewBox='0 0 48 48'
-          elementStyle={ratingStyle}
-          elementType='rating'
-          destiny='price'
-          onClick={handleClickRating}
-          dataItemValue='2' />
-        <RatingButton
-          svgHref={ratingIcon}
-          svgId='#star'
-          viewBox='0 0 48 48'
-          elementStyle={ratingStyle}
-          elementType='rating'
-          destiny='price'
-          onClick={handleClickRating}
-          dataItemValue='1' />
-      </div>
-}
+      {props.isAssessment ? '' :
+        <div className={`${ratingStyle['rating__icon-box']}`} data-total-value={isRating}>
+          <RatingButton
+            svgHref={ratingIcon}
+            svgId='#star'
+            viewBox='0 0 48 48'
+            elementStyle={ratingStyle}
+            elementType='rating'
+            destiny='price'
+            onClick={handleClickRating}
+            dataItemValue='5' />
+          <RatingButton
+            svgHref={ratingIcon}
+            svgId='#star'
+            viewBox='0 0 48 48'
+            elementStyle={ratingStyle}
+            elementType='rating'
+            destiny='price'
+            onClick={handleClickRating}
+            dataItemValue='4' />
+          <RatingButton
+            svgHref={ratingIcon}
+            svgId='#star'
+            viewBox='0 0 48 48'
+            elementStyle={ratingStyle}
+            elementType='rating'
+            destiny='price'
+            onClick={handleClickRating}
+            dataItemValue='3' />
+          <RatingButton
+            svgHref={ratingIcon}
+            svgId='#star'
+            viewBox='0 0 48 48'
+            elementStyle={ratingStyle}
+            elementType='rating'
+            destiny='price'
+            onClick={handleClickRating}
+            dataItemValue='2' />
+          <RatingButton
+            svgHref={ratingIcon}
+            svgId='#star'
+            viewBox='0 0 48 48'
+            elementStyle={ratingStyle}
+            elementType='rating'
+            destiny='price'
+            onClick={handleClickRating}
+            dataItemValue='1' />
+        </div>
+      }
     </div>
   );
 };

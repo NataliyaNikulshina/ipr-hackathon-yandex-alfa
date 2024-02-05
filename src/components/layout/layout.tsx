@@ -1,5 +1,5 @@
-import { FC, useState, useEffect } from "react";
-import { Outlet, useMatch } from "react-router";
+import { FC, useEffect } from "react";
+import { Outlet } from "react-router";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import stylesLayout from "./layout.module.scss";
@@ -13,9 +13,8 @@ import Button from "../../ui/buttons/button/button";
 import { footerLinkList } from "../../ui/verificationConstants/verificationConstants.js";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUser } from "../../services/slice/userSlice";
-import { getIprApi } from "../../api/ipr";
 import { selectUser } from "../../services/slice/userSlice";
-import { selectMyIpr, fetchmyIpr } from "../../services/slice/myIprSlice";
+import { fetchmyIpr } from "../../services/slice/myIprSlice";
 
 import Loader from "../loader/loader";
 
@@ -24,12 +23,11 @@ export interface ILayout {
 }
 
 const Layout: FC<ILayout> = ({ handlePopup }) => {
-  // const matchChat = useMatch('/chat/:id');
+
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(selectUser);
-  const { myIpr } = useAppSelector(selectMyIpr);
 
   useEffect(() => {
     user && dispatch(fetchmyIpr(user.id));
@@ -47,7 +45,7 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
     navigate("/");
   };
 
-  const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
+  const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`;
 
   return (
     <div className={stylesLayout.layout}>
@@ -63,7 +61,9 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
             appointment={user.position}
             handlePopup={handlePopup}
           />
-        ) : (<Loader />)}
+        ) : (
+          <Loader />
+        )}
         <Button color="nav_white" width="304" heigth="48">
           Мои достижения
         </Button>

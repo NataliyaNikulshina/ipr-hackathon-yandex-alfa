@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./statusIpr.module.scss";
-import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss"
+import gridAreasLayout from "../../ui/gridAreasLayout/gridAreasLayout.module.scss";
 
 import Button from "../../ui/buttons/button/button";
 import { isContainRoute } from "../../utils/breadcrumbs";
@@ -16,7 +16,11 @@ const StatusIpr: FC = (): JSX.Element => {
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (pathname === "/employee-ipr/list-tasks/status-ipr" && state && !isContainRoute(state, url)) {
+    if (
+      pathname === "/employee-ipr/list-tasks/status-ipr" &&
+      state &&
+      !isContainRoute(state, url)
+    ) {
       navigate("", {
         state: [
           ...state,
@@ -55,59 +59,83 @@ const StatusIpr: FC = (): JSX.Element => {
   const estimate = () => {
     // Проверяем случилось ли оценивание.
     if (isActualRating) {
-      // Тут нужно кудато послать наш рейтинг, видимо на бэк. 
+      // Тут нужно кудато послать наш рейтинг, видимо на бэк.
       // И если ответ с бэка положительный сказать спасибо за голосование.
       setIsAssessment(true);
       // А лучше вернуться назад.
       setIsClosingTask(false);
       // а ести отрицатеольный вызвать попап с ерором.
     }
-  }
+  };
 
   return (
     <>
-      <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>Повышение уровня квалификации</h2>
-      {!isClosingTask ?
+      <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
+        Повышение уровня квалификации
+      </h2>
+      {!isClosingTask ? (
         <>
-          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+          <div
+            className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
+          >
             <section className={styles.wrapper_ipr}>
               <p className={styles.subtitle}>Статус выполнения ИПР</p>
               <ProgressBar percentage={80} />
               <p className={styles.subtitle}>ИПР выполнен в срок</p>
-              <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"} status={'complete'}/>
+              <DeadlineBlock
+                deadline={"2024-02-05T12:00:00.000Z"}
+                status={"complete"}
+              />
             </section>
           </div>
-          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
+          <div
+            className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+          >
             <Button color="red" width="281" heigth="56" onClick={onClick}>
               Закрыть ИПР
             </Button>
-            <Button color="grey" width="281" heigth="56" onClick={hanleClickClosingTask} disabled={disabled}>
+            <Button
+              color="grey"
+              width="281"
+              heigth="56"
+              onClick={hanleClickClosingTask}
+              disabled={disabled}
+            >
               Оценить исполнение ИПР
             </Button>
           </div>
         </>
-        :
+      ) : (
         <>
-          <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
+          <div
+            className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
+          >
             <div className={styles.rating__box}>
               <Rating
-                titleOpening='Оцените пожалуйста организацию и прохождение ИПР.'
-                titleСlosing='Спасибо за оценку.'
+                titleOpening="Оцените пожалуйста организацию и прохождение ИПР."
+                titleСlosing="Спасибо за оценку."
                 isAssessment={isAssessment}
                 actualRating={setIsActualRating}
               />
             </div>
           </div>
-          <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-            {!isAssessment &&
-              <Button color="red" width="522" heigth="56" onClick={estimate} disabled={!isActualRating ? true : false}>
+          <div
+            className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+          >
+            {!isAssessment && (
+              <Button
+                color="red"
+                width="522"
+                heigth="56"
+                onClick={estimate}
+                disabled={!isActualRating ? true : false}
+              >
                 Оценить качество ИПР
               </Button>
-            }
+            )}
           </div>
         </>
-      }
-
+      )}
     </>
   );
 };

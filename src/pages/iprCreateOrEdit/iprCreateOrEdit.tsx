@@ -28,12 +28,19 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
   const param = useParams();
 
   const { ipr } = useAppSelector(selectIpr);
-  let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
+  let iprEmployee = ipr.find((elem) => elem.id === Number(param.idIpr));
   const { values, handleChange, setValues } = useForm({
-    name: { value: iprEmployee && iprEmployee.title || "", valueValid: false },
+    name: {
+      value: (iprEmployee && iprEmployee.title) || "",
+      valueValid: false,
+    },
   });
-  const [startDate, setStartDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.start_date) || null);
-  const [endDate, setEndDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.end_date) ||null);
+  const [startDate, setStartDate] = useState<Date | null>(
+    (iprEmployee && new Date(iprEmployee.start_date)) || null
+  );
+  const [endDate, setEndDate] = useState<Date | null>(
+    (iprEmployee && new Date(iprEmployee.end_date)) || null
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -63,10 +70,13 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
 
   const clearInput = () => {
     setValues({
-      name: { value: iprEmployee && iprEmployee.title || "", valueValid: false },
+      name: {
+        value: (iprEmployee && iprEmployee.title) || "",
+        valueValid: false,
+      },
     });
-    setStartDate( iprEmployee && new Date(iprEmployee.start_date) || null);
-    setEndDate( iprEmployee && new Date(iprEmployee.end_date) || null);
+    setStartDate((iprEmployee && new Date(iprEmployee.start_date)) || null);
+    setEndDate((iprEmployee && new Date(iprEmployee.end_date)) || null);
   };
 
   const handleDateChangeStart = (date: Date | null) => {
@@ -80,20 +90,21 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     role === "create"
-      ? (endDate && startDate &&
-        addIprApi(
-          {
-            title: values.name.value,
-            end_date: endDate.toJSON().slice(0, 10),
-            start_date: startDate.toJSON().slice(0, 10),
-            executor: Number(param.id),
-            status: "in_progress",
-          }
-        ).then((res) => {
+      ? endDate &&
+        startDate &&
+        addIprApi({
+          title: values.name.value,
+          end_date: endDate.toJSON().slice(0, 10),
+          start_date: startDate.toJSON().slice(0, 10),
+          executor: Number(param.id),
+          status: "in_progress",
+        }).then((res) => {
           dispatch(fetchIpr(Number(param!.id)));
           navigate(-1);
-        }))
-       : ( endDate && startDate && iprEmployee &&
+        })
+      : endDate &&
+        startDate &&
+        iprEmployee &&
         editIprApi(
           {
             title: values.name.value,
@@ -106,7 +117,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
         ).then((res) => {
           dispatch(fetchIpr(Number(param!.id)));
           navigate(-1);
-        }));
+        });
   };
 
   return (
@@ -114,9 +125,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
       <h2 className={`${styles.title} ${gridAreasLayout.wrapper_title}`}>
         {role === "create" ? "Создание нового ИПР" : "Редактирование ИПР"}
       </h2>
-      <div
-        className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}
-      >
+      <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
         <section className={styles.listIpr}>
           <div className={styles.labelIpr}>
             <p className={styles.autorIpr}>Название</p>
@@ -153,12 +162,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
           </div>
         </section>
         <div className={`${styles.wrapper_button}`}>
-          <Button
-            color="red"
-            width="281"
-            heigth="56"
-            onClick={handleSubmit}
-          >
+          <Button color="red" width="281" heigth="56" onClick={handleSubmit}>
             {role === "create" ? "Создать ИПР" : "Изменить ИПР"}
           </Button>
           <Button color="grey" width="281" heigth="56" onClick={clearInput}>
