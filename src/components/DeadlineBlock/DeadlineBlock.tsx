@@ -2,13 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import formatDate from '../../utils/formateDate';
 import Time from '../../ui/icons/time'
+import CompleteIcon from '../../ui/icons/statusTask/complete';
 import './DeadlineBlock.scss'
 
 interface DeadlineBlockProps {
   deadline: string | undefined;
+  status: string | undefined;
 }
 
-const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline }) => {
+const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline, status }) => {
   const [timeRemaining, setTimeRemaining] = useState<number>(calculateTimeRemaining());
 
   function calculateTimeRemaining(): number {
@@ -42,7 +44,11 @@ const DeadlineBlock: React.FC<DeadlineBlockProps> = ({ deadline }) => {
       <span className='deadline__title'>{formatTime(timeRemaining)}</span>
       <p className='deadline__description'>Готовность: {formatDate(deadline!)}г.</p>
       <div className='deadline__icon'>
-        <Time />
+        {status === 'complete' ? (
+          <CompleteIcon />
+        ) : (
+          <Time />
+        )}
       </div>
     </div>
   );

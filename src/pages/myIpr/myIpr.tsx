@@ -56,7 +56,8 @@ const MyIpr: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate(-1);
+    if(state === null) navigate('/');
+    else navigate(-1);
   };
 
   // Тригер закрытия задачи и переключения на поле оценки.
@@ -84,7 +85,6 @@ const MyIpr: FC = (): JSX.Element => {
     // Проверяем случилось ли оценивание.
     if (isActualRating) {
       // Тут нужно кудато послать наш рейтинг, видимо на бэк.
-      alert(isActualRating);
       // И если ответ с бэка положительный сказать спасибо за голосование.
       setIsAssessment(true);
       // А лучше вернуться назад.

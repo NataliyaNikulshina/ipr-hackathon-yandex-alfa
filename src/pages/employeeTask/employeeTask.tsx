@@ -66,12 +66,12 @@ const EmployeeTask: FC = (): JSX.Element => {
               value={task.description}
               disabled
             />
-            <DeadlineBlock deadline={task.end_date} />
+            <DeadlineBlock deadline={task.end_date} status={task.status}/>
           </div>
 
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="281" heigth="56" onClick={handleRouteStatusIpr}>
-              Закрыть задачу
+              Удалить задачу
             </Button>
             <Button color="red" width="281" heigth="56" onClick={editTask}>
               Редактировать задачу
