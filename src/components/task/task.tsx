@@ -13,7 +13,8 @@ import { ITask } from "../../api/ipr";
 import styleTask from "./task.module.scss";
 
 
-const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
+
+const Task: FC<ITask> = ({ handleChangeCheked, id, name, checkbox, status, isBoss, onClick }) => {
   const [crm, setCrm] = useState(checkbox);
 
   // const location = useLocation();
@@ -22,11 +23,14 @@ const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
 
   const onCrmChange = () => {
     setCrm(!crm);
+    if (handleChangeCheked) {
+      handleChangeCheked(!crm, id)
+    }
   };
 
   return (
     <li className={styleTask.item}>
-      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} disabled={status==='complete'}/>}
+      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} disabled={status === 'complete'} />}
       <Button
         color="transparent"
         width="456"

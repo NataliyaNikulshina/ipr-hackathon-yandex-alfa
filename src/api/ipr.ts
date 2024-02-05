@@ -12,7 +12,7 @@ export type IIprUser = {
 };
 
 export type ITask = {
-  id?: number;
+  id: number;
   creation_date?: string;
   creator?: string;
   description?: string;
@@ -24,6 +24,7 @@ export type ITask = {
   checkbox?: boolean;
   isBoss?: boolean;
   onClick?: VoidFunction | ((e: any) => void);
+  handleChangeCheked?: ((chek: boolean, id: number) => void);
 };
 
 export type IAddTask = {
@@ -35,6 +36,10 @@ export type IAddTask = {
   status: string,
   ipr: number,
   skill: string
+}
+
+export type IAddTaskStatus = {
+  status: string,
 }
 
 export type IIpr = {
@@ -101,6 +106,15 @@ export function addTaskApi(userInfo:IAddTask) {
 
 // Запрос на изменение задачи 
 export function editTaskApi(userInfo:IAddTask, id: number) {
+  return patchReq<IAddTaskResponse>({ 
+    uri: `api/v1/tasks/${id}/`, 
+    auth: true, 
+    data: userInfo 
+  });
+}
+
+// Запрос на изменение статуса задачи 
+export function editTaskStatusApi(userInfo:IAddTaskStatus, id: number) {
   return patchReq<IAddTaskResponse>({ 
     uri: `api/v1/tasks/${id}/`, 
     auth: true, 
