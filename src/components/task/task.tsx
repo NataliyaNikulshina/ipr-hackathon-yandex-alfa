@@ -26,7 +26,7 @@ const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
 
   return (
     <li className={styleTask.item}>
-      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} />}
+      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} disabled={status==='complete'}/>}
       <Button
         color="transparent"
         width="456"
