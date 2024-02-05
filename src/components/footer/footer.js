@@ -1,4 +1,3 @@
-import React from 'react';
 import footerStyle from './footer.module.scss';
 import Unpacker from '../../ui/unpacker/unpacker.js'
 import LogoIcon from "../../ui/icons/logo";

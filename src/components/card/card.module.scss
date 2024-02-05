@@ -21,22 +21,24 @@
 }
 
 @mixin foto($radius) {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    object-position: center;
-    border-radius: $radius;
-}
-.avatar {
-    @include foto($border-radius-circle);
-}
-.logo{
-    @include foto(0);
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: $radius;
 }
 
-.icon{
-    @include button-style-reset;
-    @include position( absolute, $top:15px, $left:15px);
+.avatar {
+  @include foto($border-radius-circle);
+}
+
+.logo {
+  @include foto(0);
+}
+
+.icon {
+  @include button-style-reset;
+  @include position(absolute, $top: 15px, $left: 15px);
 }
 
 .wrapperIcons {
@@ -59,10 +61,12 @@
   text-align: center;
   @include indents($p, $m);
   @include font("Arial", $l-font-size, $weight);
-  }
+}
+
 .appointment {
   @include text(0, 0, $normal);
 }
+
 .name {
-    @include text(0, 0, $bold);
+  @include text(0, 0, $bold);
 }

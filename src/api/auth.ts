@@ -1,17 +1,17 @@
-import { getReq, postReq } from './api';
+import { postReq } from './api';
 
 export interface IUserSigninState {
   email: string;
   password: string;
 }
 
-export interface IUserSigninResponse extends TUserSignin {}
+export interface IUserSigninResponse extends TUserSignin { }
 
 // типизация данных пользователя
 export type TUserSignin = {
-    email: string;
-    access: string;
-    refresh: string;
+  email: string;
+  access: string;
+  refresh: string;
 };
 
 // запрос авторизации

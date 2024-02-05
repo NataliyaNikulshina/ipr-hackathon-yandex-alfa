@@ -62,9 +62,9 @@ export type IAddIpr = {
   status: string
 }
 
-export interface IIprResponse extends Array<IIpr> {}
-export interface IAddIprResponse extends IIpr {}
-export interface IAddTaskResponse extends ITask {}
+export interface IIprResponse extends Array<IIpr> { }
+export interface IAddIprResponse extends IIpr { }
+export interface IAddTaskResponse extends ITask { }
 
 // Запрос на получение данных ИПР отпределенного пользователя
 export function getIprApi(id: number) {
@@ -75,57 +75,54 @@ export function getIprApi(id: number) {
 }
 
 // Запрос на создание ИПР 
-export function addIprApi(userInfo:IAddIpr) {
-  return postReq<IAddIprResponse>({ 
-    uri: `api/v1/iprs/`, 
-    auth: true, 
-    data: userInfo 
+export function addIprApi(userInfo: IAddIpr) {
+  return postReq<IAddIprResponse>({
+    uri: `api/v1/iprs/`,
+    auth: true,
+    data: userInfo
   });
 }
-
 
 // Запрос на изменение ИПР 
-export function editIprApi(userInfo:IAddIpr, id: number) {
-  return patchReq<IAddIprResponse>({ 
-    uri: `api/v1/iprs/${id}/`, 
-    auth: true, 
-    data: userInfo 
+export function editIprApi(userInfo: IAddIpr, id: number) {
+  return patchReq<IAddIprResponse>({
+    uri: `api/v1/iprs/${id}/`,
+    auth: true,
+    data: userInfo
   });
 }
-
 
 // Запрос на создание задачи 
-export function addTaskApi(userInfo:IAddTask) {
-  return postReq<IAddTaskResponse>({ 
-    uri: `api/v1/tasks/`, 
-    auth: true, 
-    data: userInfo 
+export function addTaskApi(userInfo: IAddTask) {
+  return postReq<IAddTaskResponse>({
+    uri: `api/v1/tasks/`,
+    auth: true,
+    data: userInfo
   });
 }
 
-
 // Запрос на изменение задачи 
-export function editTaskApi(userInfo:IAddTask, id: number) {
-  return patchReq<IAddTaskResponse>({ 
-    uri: `api/v1/tasks/${id}/`, 
-    auth: true, 
-    data: userInfo 
+export function editTaskApi(userInfo: IAddTask, id: number) {
+  return patchReq<IAddTaskResponse>({
+    uri: `api/v1/tasks/${id}/`,
+    auth: true,
+    data: userInfo
   });
 }
 
 // Запрос на изменение статуса задачи 
-export function editTaskStatusApi(userInfo:IAddTaskStatus, id: number) {
-  return patchReq<IAddTaskResponse>({ 
-    uri: `api/v1/tasks/${id}/`, 
-    auth: true, 
-    data: userInfo 
+export function editTaskStatusApi(userInfo: IAddTaskStatus, id: number) {
+  return patchReq<IAddTaskResponse>({
+    uri: `api/v1/tasks/${id}/`,
+    auth: true,
+    data: userInfo
   });
 }
 
 // Запрос на удаление задачи 
-export function deleteTaskApi( id: number) {
-  return deleteReq<IAddTaskResponse>({ 
-    uri: `api/v1/tasks/${id}/`, 
+export function deleteTaskApi(id: number) {
+  return deleteReq<IAddTaskResponse>({
+    uri: `api/v1/tasks/${id}/`,
     auth: true
   });
 }
