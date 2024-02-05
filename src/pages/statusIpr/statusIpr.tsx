@@ -75,7 +75,7 @@ const StatusIpr: FC = (): JSX.Element => {
               <p className={styles.subtitle}>Статус выполнения ИПР</p>
               <ProgressBar percentage={80} />
               <p className={styles.subtitle}>ИПР выполнен в срок</p>
-              <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"} />
+              <DeadlineBlock deadline={"2024-02-05T12:00:00.000Z"} status={'complete'}/>
             </section>
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>

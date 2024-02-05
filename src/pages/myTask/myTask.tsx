@@ -11,7 +11,7 @@ import { fetchIpr } from "../../services/slice/iprSlice";
 // import { selectIpr } from "../../services/slice/iprSlice";
 import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
-
+import { editTaskApi } from "../../api/ipr";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 
@@ -25,7 +25,7 @@ const MyTask: FC = (): JSX.Element => {
   // const { ipr } = useAppSelector(selectIpr);
   const { myIpr } = useAppSelector(selectMyIpr);
   const { user } = useAppSelector(selectUser);
-  let task = null;
+  let task: null | any = null;
 
   useEffect(() => {
     if (pathname === `/myiprs/myipr/${param!.idMyIpr}/my-task/${param!.idMyTask}` && state && !isContainRoute(state, url)) {
@@ -52,7 +52,21 @@ const MyTask: FC = (): JSX.Element => {
 
   const routeTo = (e: any) => {
     e.preventDefault();
-    navigate(-1);
+    editTaskApi({
+      name: task.name,
+      description: task.description,
+      end_date: task.end_date,
+      start_date: task.start_date,
+      executor: Number(user!.id),
+      status: "complete",
+      skill: task.skill,
+      ipr: Number(param.idMyIpr)
+    },
+    Number(param.idMyTask))
+    .then((res) => {
+      dispatch(fetchIpr(Number(user!.id)));
+      navigate(-1);
+    })
   };
 
   return (
@@ -70,7 +84,7 @@ const MyTask: FC = (): JSX.Element => {
                 value={task.description}
                 disabled
               />
-              <DeadlineBlock deadline={task.end_date} />
+              <DeadlineBlock deadline={task.end_date} status={task.status}/>
             </div>
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
