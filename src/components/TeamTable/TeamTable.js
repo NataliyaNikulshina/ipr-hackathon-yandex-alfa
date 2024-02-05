@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./TeamTable.scss";
 import FilterIcon from "../../ui/icons/filter";
-import ButtonTableMore from "../../ui/buttons/buttonTableMore/buttonTableMore";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchUsers } from "../../services/slice/usersTeamSlice";
 import { selectUsersTeam } from "../../services/slice/usersTeamSlice";
@@ -14,7 +12,6 @@ const TeamTable = () => {
   const table = React.createRef();
   const [filter, setFilter] = useState("");
   const [filterType, setFilterType] = useState("nameAll");
-  const [employees, setEmployees] = useState([]);
   const dispatch = useAppDispatch();
   const { usersTeam } = useAppSelector(selectUsersTeam);
   const { user } = useAppSelector(selectUser);
@@ -28,16 +25,16 @@ const TeamTable = () => {
     let filteredEmployees = [];
     user.is_boss === true
       ? (filteredEmployees = usersTeam.filter(
-          (employee) =>
-            employee.team === user.ruled_team && employee.team !== null
-        ))
+        (employee) =>
+          employee.team === user.ruled_team && employee.team !== null
+      ))
       : (filteredEmployees = usersTeam.filter(
-          (employee) =>
-            (employee.team === user.team ||
-              employee.ruled_team === user.team) &&
-            employee.team !== null &&
-            employee.id !== user.id
-        ));
+        (employee) =>
+          (employee.team === user.team ||
+            employee.ruled_team === user.team) &&
+          employee.team !== null &&
+          employee.id !== user.id
+      ));
     const initSelect = () => {
       return filteredEmployees.map((item) => ({
         ...item,

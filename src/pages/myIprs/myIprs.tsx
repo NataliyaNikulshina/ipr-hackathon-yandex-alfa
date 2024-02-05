@@ -20,29 +20,28 @@ const MyIprs: FC = (): JSX.Element => {
     user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
-  useEffect(
-    () => {
-      if (pathname === "/myiprs" && state && !isContainRoute(state, url)) {
-        navigate('', { state: [...state, { path: pathname, url, title: "Мои ИПР" }], replace: true });
-      }
-    },
-    [pathname, url, state]
-  );
+  useEffect(() => {
+    if (pathname === "/myiprs" && state && !isContainRoute(state, url)) {
+      navigate("", {
+        state: [...state, { path: pathname, url, title: "Мои ИПР" }],
+        replace: true,
+      });
+    }
+  }, [pathname, url, state]);
 
   useEffect(() => {
-    if (myIpr.length)
-      navigate(`/myiprs/myipr/${myIpr[0].id}`);
-  }, [])
+    if (myIpr.length) navigate(`/myiprs/myipr/${myIpr[0].id}`);
+  }, []);
 
   return (
     <>
-      {pathname === '/myiprs' &&
+      {pathname === "/myiprs" && (
         <>
           <div className={styles.title_empty_box}>
             <p className={styles.title_empty}>ИПР пока нет</p>
           </div>
         </>
-      }
+      )}
       <Outlet />
     </>
   );

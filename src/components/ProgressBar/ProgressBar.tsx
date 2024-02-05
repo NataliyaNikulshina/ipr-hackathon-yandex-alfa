@@ -1,5 +1,5 @@
-import React from 'react';
-import './ProgressBar.scss';
+import React from "react";
+import "./ProgressBar.scss";
 
 interface ProgressBarProps {
   percentage: number;
@@ -13,7 +13,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ percentage }) => {
   const progressStyle: React.CSSProperties = {
     width: `${clampedPercentage}%`,
   };
-   // Создаем стили для позиционирования числа
+  // Создаем стили для позиционирования числа
   const numberStyle: React.CSSProperties = {
     marginLeft: `${clampedPercentage - 5}%`,
   };
@@ -23,7 +23,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ percentage }) => {
       <div className="progress-bar-background">
         <div className="progress-bar" style={progressStyle}></div>
       </div>
-      <span className="progress-bar-span" style={numberStyle}>{percentage}%</span>
+      <span className="progress-bar-span" style={numberStyle}>
+        {percentage}%
+      </span>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { getReq, postReq } from './api';
+import { postReq } from "./api";
 
 export interface IUserSigninState {
   email: string;
@@ -9,17 +9,17 @@ export interface IUserSigninResponse extends TUserSignin {}
 
 // типизация данных пользователя
 export type TUserSignin = {
-    email: string;
-    access: string;
-    refresh: string;
+  email: string;
+  access: string;
+  refresh: string;
 };
 
 // запрос авторизации
 function signinApi(userInfo: IUserSigninState) {
-  return postReq<IUserSigninResponse>({ uri: "api/v1/auth/jwt/create/", data: userInfo });
+  return postReq<IUserSigninResponse>({
+    uri: "api/v1/auth/jwt/create/",
+    data: userInfo,
+  });
 }
 
-
-export {
-  signinApi,
-};
+export { signinApi };

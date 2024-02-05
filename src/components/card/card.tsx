@@ -8,7 +8,10 @@ import people from "../../ui/icons/achievement/people.svg";
 import timer from "../../ui/icons/achievement/timer.svg";
 
 // Ссылки на проверочные константы (заглушки)
-import { arrTodayTasks, arrThisWekTasks } from '../../ui/verificationConstants/verificationConstants.js'
+import {
+  arrTodayTasks,
+  arrThisWekTasks,
+} from "../../ui/verificationConstants/verificationConstants.js";
 
 export interface ICard {
   size: string;
@@ -19,10 +22,10 @@ export interface ICard {
 }
 
 const Card: FC<ICard> = ({ size, avatar, name, appointment, handlePopup }) => {
-
   function onClick() {
     const popupAssignment = "task";
-    handlePopup && handlePopup({ popupAssignment, arrTodayTasks, arrThisWekTasks });
+    handlePopup &&
+      handlePopup({ popupAssignment, arrTodayTasks, arrThisWekTasks });
   }
 
   const styleAll =

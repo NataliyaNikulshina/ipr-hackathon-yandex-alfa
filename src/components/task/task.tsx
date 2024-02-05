@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../../ui/buttons/button/button";
 import Checkbox from "../../ui/checkbox/checkbox";
 import NotCompletedIcon from "../../ui/icons/statusTask/notCompleted";
@@ -7,36 +6,40 @@ import InProgressIcon from "../../ui/icons/statusTask/inProgress";
 import CompleteIcon from "../../ui/icons/statusTask/complete";
 import CanselIcon from "../../ui/icons/statusTask/cansel";
 import TrailIcon from "../../ui/icons/statusTask/trail";
-import EditIcon from "../../ui/icons/edit";
 import { ITask } from "../../api/ipr";
 
 import styleTask from "./task.module.scss";
 
-
-
-const Task: FC<ITask> = ({ handleChangeCheked, id, name, checkbox, status, isBoss, onClick }) => {
+const Task: FC<ITask> = ({
+  handleChangeCheked,
+  id,
+  name,
+  checkbox,
+  status,
+  isBoss,
+  onClick,
+}) => {
   const [crm, setCrm] = useState(checkbox);
-
-  // const location = useLocation();
-  // const navigate = useNavigate(); // функция принудительного перехода.
-  // const url = window.location.href;
 
   const onCrmChange = () => {
     setCrm(!crm);
     if (handleChangeCheked) {
-      handleChangeCheked(!crm, id)
+      handleChangeCheked(!crm, id);
     }
   };
 
   return (
     <li className={styleTask.item}>
-      {!isBoss && <Checkbox checked={crm!} onChange={onCrmChange} name="crm" value={name} disabled={status === 'complete'} />}
-      <Button
-        color="transparent"
-        width="456"
-        heigth="35"
-        onClick={onClick}
-      >
+      {!isBoss && (
+        <Checkbox
+          checked={crm!}
+          onChange={onCrmChange}
+          name="crm"
+          value={name}
+          disabled={status === "complete"}
+        />
+      )}
+      <Button color="transparent" width="456" heigth="35" onClick={onClick}>
         {name}
       </Button>
       <div className={styleTask.status}>
