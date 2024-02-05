@@ -37,6 +37,10 @@ export type IAddTask = {
   skill: string
 }
 
+export type IAddTaskStatus = {
+  status: string,
+}
+
 export type IIpr = {
   creation_date: string;
   creator: IIprUser;
@@ -101,6 +105,15 @@ export function addTaskApi(userInfo:IAddTask) {
 
 // Запрос на изменение задачи 
 export function editTaskApi(userInfo:IAddTask, id: number) {
+  return patchReq<IAddTaskResponse>({ 
+    uri: `api/v1/tasks/${id}/`, 
+    auth: true, 
+    data: userInfo 
+  });
+}
+
+// Запрос на изменение статуса задачи 
+export function editTaskStatusApi(userInfo:IAddTaskStatus, id: number) {
   return patchReq<IAddTaskResponse>({ 
     uri: `api/v1/tasks/${id}/`, 
     auth: true, 

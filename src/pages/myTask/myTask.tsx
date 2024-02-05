@@ -11,14 +11,16 @@ import { fetchIpr } from "../../services/slice/iprSlice";
 // import { selectIpr } from "../../services/slice/iprSlice";
 import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
-import { editTaskApi } from "../../api/ipr";
+import { editTaskStatusApi } from "../../api/ipr";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
 // import { editTaskApi } from "../../api/ipr";
 
+export interface IMyTask {
+  handlePopup(editing: object): void;
+}
 
-
-const MyTask: FC = (): JSX.Element => {
+const MyTask: FC<IMyTask> = ({ handlePopup }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -52,23 +54,40 @@ const MyTask: FC = (): JSX.Element => {
 
   // ipr.find(elem => elem.id === Number(param!.idMyIpr))
 
-  const routeTo = (e: any) => {
+  // const routeTo = (e: any) => {
+  //   e.preventDefault();
+  //   editTaskApi({
+  //     name: task.name,
+  //     description: task.description,
+  //     end_date: task.end_date,
+  //     start_date: task.start_date,
+  //     executor: Number(user!.id),
+  //     status: "complete",
+  //     skill: task.skill,
+  //     ipr: Number(param.idMyIpr)
+  //   },
+  //   Number(param.idMyTask))
+  //   .then((res) => {
+  //     dispatch(fetchIpr(Number(user!.id)));
+  //     navigate(-1);
+  //   })
+  // };
+
+  const handleEditTaskStatus = (e: any) => {
     e.preventDefault();
-    editTaskApi({
-      name: task.name,
-      description: task.description,
-      end_date: task.end_date,
-      start_date: task.start_date,
-      executor: Number(user!.id),
+    editTaskStatusApi({
       status: "complete",
-      skill: task.skill,
-      ipr: Number(param.idMyIpr)
     },
-    Number(param.idMyTask))
-    .then((res) => {
-      dispatch(fetchIpr(Number(user!.id)));
-      navigate(-1);
-    })
+      Number(param.idMyTask))
+      .then((res) => {
+        dispatch(fetchIpr(Number(user!.id)));
+        navigate(-1);
+      })
+      .catch((res) => {
+        const popupAssignment = "error";
+        const text = "При изменении статуса задачи что то пошло не так"
+        handlePopup && handlePopup({ popupAssignment, newPopupText: text });
+      })
   };
 
   return (
@@ -86,11 +105,11 @@ const MyTask: FC = (): JSX.Element => {
                 value={task.description}
                 disabled
               />
-              <DeadlineBlock deadline={task.end_date} status={task.status}/>
+              <DeadlineBlock deadline={task.end_date} status={task.status} />
             </div>
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-            <Button color="red" width="522" heigth="56" onClick={routeTo}>
+            <Button color="red" width="522" heigth="56" onClick={handleEditTaskStatus}>
               Закрыть задачу
             </Button>
           </div>
