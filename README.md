@@ -41,31 +41,31 @@ MVP индивидуального плана развития для сотру
     npm run start
 
 ### Структура приложения:
-Главная страница - Моя команда
-Мои ИПР -> Мои задачи
-ИПР сотрудника -> Задачи сотрудника
+- Главная страница - Моя команда
+- Мои ИПР -> Мои задачи
+- ИПР сотрудника -> Задачи сотрудника
 
 
 #### Создано в соавторстве
 ☑️ PM
-Likhachev Roman	
+- Likhachev Roman	
 🛵 PdM
-Trofimova Kristina	
+- Trofimova Kristina	
 📈 SA
-Brul Pavel	
-Yamaeva Olga
-🎯BA
-Bogdanovich Gouzel
-Penezeva Daria
+- Brul Pavel	
+- Yamaeva Olga
+🎯 BA
+- Bogdanovich Gouzel
+- Penezeva Daria
 🎨 design
-Stanislavenko Alina	
-Petukhova Alina	
-Naumova Polina	
-⚙️backend
-Galiaskarov Artur
-Volkov Mikhail	
-Ilya Kotenko	
-Sadykov Miron	
+- Stanislavenko Alina	
+- Petukhova Alina	
+- Naumova Polina	
+⚙️ backend
+- Galiaskarov Artur
+- Volkov Mikhail	
+- Ilya Kotenko	
+- Sadykov Miron	
 🔨 Fronted
 - 👨‍💻 [Nikulshina Nataliya](https://github.com/NataliyaNikulshina)
 - 👨‍💻 [Prokofev Pavel](https://github.com/Pavel-Prokofev)
