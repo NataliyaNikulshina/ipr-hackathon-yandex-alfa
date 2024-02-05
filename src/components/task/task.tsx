@@ -13,6 +13,7 @@ import { ITask } from "../../api/ipr";
 import styleTask from "./task.module.scss";
 
 
+
 const Task: FC<ITask> = ({ name, checkbox, status, isBoss, onClick }) => {
   const [crm, setCrm] = useState(checkbox);
 
