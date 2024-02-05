@@ -4,6 +4,7 @@
 MVP индивидуального плана развития для сотрудников в Альфа-Банке. Сервис, в рамках которого для сотрудников можно будет
 составить ИПР (индивидуальные планы развития), просматривать его и валидировать выполнение
 целей. 
+![Main page](./docs/pics/main_page.png)
 
 ### Стек технологий:
 - React
@@ -47,26 +48,24 @@ MVP индивидуального плана развития для сотру
 
 
 #### Создано в соавторстве
-☑️ PM
-- Likhachev Roman	
-🛵 PdM
-- Trofimova Kristina	
-📈 SA
-- Brul Pavel	
-- Yamaeva Olga
-🎯 BA
-- Bogdanovich Gouzel
-- Penezeva Daria
-🎨 design
-- Stanislavenko Alina	
-- Petukhova Alina	
-- Naumova Polina	
-⚙️ backend
-- Galiaskarov Artur
-- Volkov Mikhail	
-- Ilya Kotenko	
-- Sadykov Miron	
-🔨 Fronted
-- 👨‍💻 [Nikulshina Nataliya](https://github.com/NataliyaNikulshina)
-- 👨‍💻 [Prokofev Pavel](https://github.com/Pavel-Prokofev)
-- 👨‍💻 [Nistratova Anastasiia](https://github.com/Anastasiia-Nist)
+- ☑️ PM Likhachev Roman	
+- 🛵 PdM Trofimova Kristina	
+- 📈 SA
+  - Brul Pavel	
+  - Yamaeva Olga
+- 🎯 BA
+  - Bogdanovich Gouzel
+  - Penezeva Daria
+- 🎨 design
+  - Stanislavenko Alina	
+  - Petukhova Alina	
+  - Naumova Polina	
+- ⚙️ backend
+  - Galiaskarov Artur
+  - Volkov Mikhail	
+  - Ilya Kotenko	
+  - Sadykov Miron	
+- 🔨 Fronted
+  - 👨‍💻 [Nikulshina Nataliya](https://github.com/NataliyaNikulshina)
+  - 👨‍💻 [Prokofev Pavel](https://github.com/Pavel-Prokofev)
+  - 👨‍💻 [Nistratova Anastasiia](https://github.com/Anastasiia-Nist)
