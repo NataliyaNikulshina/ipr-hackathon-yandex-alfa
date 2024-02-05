@@ -25,7 +25,7 @@ const ListTask: FC<IListTask> = ({ tasks, isBoss,  isSelectedIprId = -1}) => {
         {tasks?.length
           ? tasks.map((el) => (
             <Unpacker key={el.id}>
-              <Task name={el.name} checkbox={el.checkbox} status={el.status} isBoss={isBoss} 
+              <Task name={el.name} checkbox={el.status === 'complete'} status={el.status} isBoss={isBoss} 
                     onClick={isBoss ? 
                     (() => navigate(`/employee-ipr/${param.id}/list-tasks/${param.idIpr}/task/${el.id}`, { state: location.state })) 
                     : (() => navigate(`/myiprs/myipr/${param!.idMyIpr}/my-task/${el.id}`, { state: [{ path: `/myiprs/myipr/${param!.idMyIpr}`, url: url, title: "Мои ИПР" }] })) }/>
