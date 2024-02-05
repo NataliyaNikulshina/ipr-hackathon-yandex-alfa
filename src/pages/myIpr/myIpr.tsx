@@ -13,6 +13,7 @@ import Rating from "../../components/rating/rating";
 import ListIpr from "../../components/listIpr/listIpr";
 import { selectUser } from "../../services/slice/userSlice";
 import { selectMyIpr } from "../../services/slice/myIprSlice";
+import { editTaskStatusApi } from "../../api/ipr";
 import { ITask } from "../../api/ipr";
 
 // Моковые данные
@@ -22,7 +23,11 @@ import {
 } from "../../ui/verificationConstants/verificationConstants";
 import Loader from "../../components/loader/loader";
 
-const MyIpr: FC = (): JSX.Element => {
+export interface IMyIpr {
+  handlePopup(editing: object): void;
+}
+
+const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -123,7 +128,44 @@ const MyIpr: FC = (): JSX.Element => {
     // }
   }, [param!.idMyIpr, myIpr])
 
- const [isChekedTaskIdList, setIsChekedTaskIdList] = useState([]);
+  const [isChekedTaskIdList, setIsChekedTaskIdList] = useState<number[]>([]);
+
+  const handleChangeCheked = (chek: boolean, id: number) => {
+    if (chek) {
+      if (!isChekedTaskIdList.some((elem) => elem === id)) {
+        setIsChekedTaskIdList([...isChekedTaskIdList, id]);
+      }
+    } else {
+      const newChekedTaskIdList = isChekedTaskIdList.filter((elem) => elem !== id);
+      setIsChekedTaskIdList(newChekedTaskIdList);
+    }
+  }
+
+
+  const handleEditTaskStatus = (taskId: number) => {
+    editTaskStatusApi({
+      status: "complete",
+    },
+      Number(taskId))
+      .then((res) => {
+        dispatch(fetchmyIpr(Number(user!.id)));
+        if (taskId === isChekedTaskIdList[isChekedTaskIdList.length - 1]) {
+          setIsChekedTaskIdList([]);
+        }
+      })
+      .catch((res) => {
+        const popupAssignment = "error";
+        const text = "При изменении статуса задачи что то пошло не так"
+        handlePopup && handlePopup({ popupAssignment, newPopupText: text });
+      })
+  };
+
+
+  const submitChekedTask = ()=> {
+    isChekedTaskIdList.forEach((taskId)=> {
+      handleEditTaskStatus(taskId);
+    })
+  }
 
   return (
     <section>
@@ -165,7 +207,7 @@ const MyIpr: FC = (): JSX.Element => {
                     <>
                       <div className={gridAreasLayout.wrapper_work_info}>
                         {myIpr && myIpr.length !== 0 && (
-                          <ListTask tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
+                          <ListTask handleChangeCheked={handleChangeCheked} tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
                         )}
                       </div>
                       <div
@@ -175,7 +217,7 @@ const MyIpr: FC = (): JSX.Element => {
                           color="red"
                           width="281"
                           heigth="56"
-                          onClick={onClick}
+                          onClick={submitChekedTask}
                         >
                           Закрыть выбранные задачи
                         </Button>

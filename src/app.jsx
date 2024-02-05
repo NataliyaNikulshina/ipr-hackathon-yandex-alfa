@@ -82,7 +82,7 @@ const App = () => {
             </Route>
           </Route>
           <Route path={routesUrl.myIPRs} element={<MyIprs />}>
-            <Route path={routesUrl.myIPR} element={<MyIpr />}>
+            <Route path={routesUrl.myIPR} element={<MyIpr handlePopup={handlePopup.open} />}>
               <Route path={routesUrl.myTask} element={<MyTask handlePopup={handlePopup.open} />} />
             </Route>
           </Route>

@@ -105,7 +105,7 @@ const MyTask: FC<IMyTask> = ({ handlePopup }): JSX.Element => {
             </div>
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
-            <Button color="red" width="522" heigth="56" onClick={handleEditTaskStatus}>
+            <Button color="red" width="522" heigth="56" onClick={handleEditTaskStatus} disabled={task.status === 'complete'}>
               Закрыть задачу
             </Button>
           </div>

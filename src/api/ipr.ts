@@ -12,7 +12,7 @@ export type IIprUser = {
 };
 
 export type ITask = {
-  id?: number;
+  id: number;
   creation_date?: string;
   creator?: string;
   description?: string;
@@ -24,6 +24,7 @@ export type ITask = {
   checkbox?: boolean;
   isBoss?: boolean;
   onClick?: VoidFunction | ((e: any) => void);
+  handleChangeCheked?: ((chek: boolean, id: number) => void);
 };
 
 export type IAddTask = {
