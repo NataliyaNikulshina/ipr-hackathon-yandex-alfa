@@ -4,6 +4,7 @@
 MVP индивидуального плана развития для сотрудников в Альфа-Банке. Сервис, в рамках которого для сотрудников можно будет
 составить ИПР (индивидуальные планы развития), просматривать его и валидировать выполнение
 целей. 
+![Main page](./src/images/main_page.png)
 
 ### Стек технологий:
 - React
@@ -19,6 +20,7 @@ MVP индивидуального плана развития для сотру
 
 ## Инструкция по работае с проектом через домен
 - Frontend: https://ipr.ddns.net/
+- Backend: https://github.com/Reagent992/ipr-hackathon-yandex-alfa
 - Swagger: https://ipr.ddns.net/api/v1/schema/swagger-ui/
 
 ## Установка и запуск проекта:
@@ -40,12 +42,30 @@ MVP индивидуального плана развития для сотру
     npm run start
 
 ### Структура приложения:
-Главная страница - Моя команда
-Мои ИПР -> Мои задачи
-ИПР сотрудника -> Задачи сотрудника
+- Главная страница - Моя команда
+- Мои ИПР -> Мои задачи
+- ИПР сотрудника -> Задачи сотрудника
 
 
 #### Создано в соавторстве
-- 👨‍💻 [Наталия Никульшина](https://github.com/NataliyaNikulshina)
-- 👨‍💻 [Павел Прокофьев](https://github.com/Pavel-Prokofev)
-- 👨‍💻 [Анастасия Нистратова](https://github.com/Anastasiia-Nist)
+- ☑️ PM Likhachev Roman	
+- 🛵 PdM Trofimova Kristina	
+- 📈 SA
+  - Brul Pavel	
+  - Yamaeva Olga
+- 🎯 BA
+  - Bogdanovich Gouzel
+  - Penezeva Daria
+- 🎨 design
+  - Stanislavenko Alina	
+  - Petukhova Alina	
+  - Naumova Polina	
+- ⚙️ backend
+  - Galiaskarov Artur
+  - Volkov Mikhail	
+  - Ilya Kotenko	
+  - Sadykov Miron	
+- 🔨 Fronted
+  - 👨‍💻 [Nikulshina Nataliya](https://github.com/NataliyaNikulshina)
+  - 👨‍💻 [Prokofev Pavel](https://github.com/Pavel-Prokofev)
+  - 👨‍💻 [Nistratova Anastasiia](https://github.com/Anastasiia-Nist)
