@@ -19,6 +19,7 @@ MVP индивидуального плана развития для сотру
 
 ## Инструкция по работае с проектом через домен
 - Frontend: https://ipr.ddns.net/
+- Backend: https://github.com/Reagent992/ipr-hackathon-yandex-alfa
 - Swagger: https://ipr.ddns.net/api/v1/schema/swagger-ui/
 
 ## Установка и запуск проекта:
@@ -46,6 +47,26 @@ MVP индивидуального плана развития для сотру
 
 
 #### Создано в соавторстве
-- 👨‍💻 [Наталия Никульшина](https://github.com/NataliyaNikulshina)
-- 👨‍💻 [Павел Прокофьев](https://github.com/Pavel-Prokofev)
-- 👨‍💻 [Анастасия Нистратова](https://github.com/Anastasiia-Nist)
+☑️ PM
+Likhachev Roman	
+🛵 PdM
+Trofimova Kristina	
+📈 SA
+Brul Pavel	
+Yamaeva Olga
+🎯BA
+Bogdanovich Gouzel
+Penezeva Daria
+🎨 design
+Stanislavenko Alina	
+Petukhova Alina	
+Naumova Polina	
+⚙️backend
+Galiaskarov Artur
+Volkov Mikhail	
+Ilya Kotenko	
+Sadykov Miron	
+🔨 Fronted
+- 👨‍💻 [Nikulshina Nataliya](https://github.com/NataliyaNikulshina)
+- 👨‍💻 [Prokofev Pavel](https://github.com/Pavel-Prokofev)
+- 👨‍💻 [Nistratova Anastasiia](https://github.com/Anastasiia-Nist)

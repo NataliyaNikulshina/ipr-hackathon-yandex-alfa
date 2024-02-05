@@ -1,4 +1,4 @@
-import { getReq } from './api';
+import { getReq, getReqUser } from './api';
 
 // типизация данных пользователя
 export type IUserMe = {
@@ -25,10 +25,9 @@ export interface IUsersResponse extends IUsers {}
 export interface IUserResponse extends IUser {}
 
 
-
 // Запрос на получение данных пользователя
 export function getUserMeInfoApi() {
-  return getReq<IUserMeResponse>({ uri: 'api/v1/users/me/', auth: true });
+return getReqUser<IUserMeResponse>({ uri: 'api/v1/users/me/', auth: true });
 }
 
 // Запрос на получение данных всех пользователей

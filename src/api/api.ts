@@ -1,4 +1,4 @@
-import { getAccessToken } from "../utils/authService";
+import { removeAccessToken, removeRefreshToken, getAccessToken } from '../utils/authService';
 
 // типизация запросов api
 export interface IResponse<T> extends Response {
@@ -30,6 +30,7 @@ export function checkRes<T>(res: IResponse<T>): Promise<T> | Promise<never> {
   return Promise.reject([`Ошибка ${res.status}`, res.json()]);
 }
 
+
 function request<T>(url: string, options: TOptions): Promise<T> {
   return fetch(url, options).then(checkRes);
 }
@@ -38,9 +39,19 @@ function requestNotRes<T>(url: string, options: TOptions): Promise<T> {
   return fetch(url, options).then();
 }
 
+function requestUser<T>(url: string, options: TOptions): Promise<T> {
+  return fetch(url, options).then(checkRes)
+  .catch((err) => {
+        console.log(err);
+        if (err[0] === 'Ошибка 401') {
+          removeAccessToken();
+          removeRefreshToken();
+        }});
+}
+
 const BASE_PARAMS = {
   headers: {
-    "Content-Type": "application/json;charset=utf-8",
+    "Content-Type": "application/json;charset=utf-8"
   },
 };
 
@@ -57,6 +68,11 @@ function getReqParams({ uri, id, method, data, auth }: TReq) {
     params.body = JSON.stringify(data);
   }
   return { path, params };
+}
+
+export function getReqUser<T>(options: TReq) {
+  const { path, params } = getReqParams({ ...options, method: "GET" });
+  return requestUser<T>(path, params);
 }
 
 export function getReq<T>(options: TReq) {
