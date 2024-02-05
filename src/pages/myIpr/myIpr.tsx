@@ -110,6 +110,8 @@ const MyIpr: FC = (): JSX.Element => {
 
   const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
 
+ 
+
   useEffect(()=>{
     // if (ipr.some(elem => elem.id === Number(param!.idMyIpr))){
     let actualIpr = myIpr.find(elem => elem.id === Number(param!.idMyIpr)) || {tasks: []};
@@ -119,8 +121,9 @@ const MyIpr: FC = (): JSX.Element => {
     // } else {
     //   navigate(`/notFound`, { replace: true }) // надо разобраться.
     // }
-
   }, [param!.idMyIpr, myIpr])
+
+ const [isChekedTaskIdList, setIsChekedTaskIdList] = useState([]);
 
   return (
     <section>
