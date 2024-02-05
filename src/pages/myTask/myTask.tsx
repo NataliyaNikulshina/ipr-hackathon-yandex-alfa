@@ -7,14 +7,12 @@ import Button from "../../ui/buttons/button/button";
 import Textarea from "../../ui/textarea/textarea";
 import DeadlineBlock from "../../components/DeadlineBlock/DeadlineBlock";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { fetchIpr } from "../../services/slice/iprSlice";
-// import { selectIpr } from "../../services/slice/iprSlice";
+import { fetchmyIpr } from "../../services/slice/myIprSlice";
 import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
 import { editTaskStatusApi } from "../../api/ipr";
 import { isContainRoute } from "../../utils/breadcrumbs";
 
-// import { editTaskApi } from "../../api/ipr";
 
 export interface IMyTask {
   handlePopup(editing: object): void;
@@ -26,7 +24,6 @@ const MyTask: FC<IMyTask> = ({ handlePopup }): JSX.Element => {
   const url = window.location.href;
   const param = useParams();
   const dispatch = useAppDispatch();
-  // const { ipr } = useAppSelector(selectIpr);
   const { myIpr } = useAppSelector(selectMyIpr);
   const { user } = useAppSelector(selectUser);
   let task: null | any = null;
@@ -41,10 +38,9 @@ const MyTask: FC<IMyTask> = ({ handlePopup }): JSX.Element => {
   }, [pathname, url, state]);
 
   useEffect(() => {
-    user && dispatch(fetchIpr(user?.id));
+    user && dispatch(fetchmyIpr(user?.id));
   }, [user]);
 
-  // if (ipr?.length) task = ipr![Number(param!.idMyIpr)].tasks[Number(param!.idMyTask)];
   if (myIpr?.length) {
     let actualIpr = myIpr.find(elem => elem.id === Number(param!.idMyIpr)) || { tasks: [] };
     let actualTasksList = actualIpr.tasks;
@@ -80,7 +76,7 @@ const MyTask: FC<IMyTask> = ({ handlePopup }): JSX.Element => {
     },
       Number(param.idMyTask))
       .then((res) => {
-        dispatch(fetchIpr(Number(user!.id)));
+        dispatch(fetchmyIpr(Number(user!.id)));
         navigate(-1);
       })
       .catch((res) => {
