@@ -1,0 +1,45 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.container {
+  width: 950px;
+  min-height: 500px;
+  border-radius: $xl-border-radius;
+  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
+    2px 2px 5px 0px rgba(95, 99, 104, 0.15);
+  @include indents(42px, 0);
+
+  &__title_empty {
+    margin: auto;
+    @include font($listIpr__title_empty-font-family,
+      $listIpr__title_empty-font-size,
+      $listIpr__title_empty-font-weight,
+      $listIpr__title_empty-font-color );
+    @include line-sizes($listIpr__title_empty-line-height);
+    text-align: center;
+  }
+}
+
+.link {
+  @include flex(row, start, start);
+  @include indents(5px 0 0, 0);
+  height: 26px;
+}
+
+.wrapper {
+  width: 552px;
+  display: flex
+}
+
+.wrapper__task {
+  @include flex(column, start, start, 16px);
+  width: 552px;
+}
+
+.rating__box {
+  @include flex(row, center, center);
+}
+
+.wrapper_button {
+  @include flex (row, space-between, start, 16px);
+}

@@ -1,0 +1,34 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.title {
+  @include font("Arial", 24px, $bold, #0E0E0E);
+  line-height: 26px;
+  @include indents(0, 0);
+}
+
+.subtitle {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+  margin: 0;
+}
+
+.wrapper {
+  width: 578px;
+  display: flex
+}
+
+.wrapper_button {
+  width: 578px;
+  @include flex (row, space-between, start, 16px);
+}
+
+.wrapper_ipr {
+  width: 578px;
+  @include flex (column, start, start, 18px);
+}
+
+.rating__box {
+  @include flex(row, center, center);
+}

@@ -1,0 +1,108 @@
+@use "./_variables" as vars;
+
+/* Миксины для всего проекта */
+
+/* RESET */
+/* Сброс стиля текстовых элементов */
+@mixin style-text-reset {
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+}
+
+/* Сброс стиля списка */
+@mixin list-style-reset {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* Свойства шрифта и строки */
+@mixin font($font-family,
+  $font-size: inherit,
+  $font-weight: inherit,
+  $color: inherit) {
+  font-family: $font-family, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin line-sizes($line-height: inherit, $letter-spacing: inherit) {
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+/* Сброс стиля кнопок и единый курсор */
+@mixin button-style-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* Flex-блок */
+@mixin flex(
+  $direction: row,
+  $justify-content: false,
+  $align-items: false,
+  $gap: false
+) {
+  display: flex;
+  flex-direction: $direction;
+
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+
+  @if $align-items {
+    align-items: $align-items;
+  }
+
+  @if $gap {
+    gap: $gap;
+  }
+}
+
+/* Отступы */
+@mixin indents($padding: 0, $margin: 0) {
+  padding: $padding;
+  margin: $margin;
+}
+
+/* Размеры элемента' */
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+/* Позиционирование элемента */
+@mixin position(
+  $position,
+  $top: false,
+  $right: false,
+  $bottom: false,
+  $left: false
+) {
+  position: $position;
+  @if $top {
+    top: $top;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom {
+    bottom: $bottom;
+  }
+  @if $left {
+    left: $left;
+  }
+}

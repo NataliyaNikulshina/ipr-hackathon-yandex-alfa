@@ -1,0 +1,26 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+@mixin icon () {
+    @include flex(row, center, center, 16px);
+    @include font("Arial", $l-font-size, $normal);
+}
+
+.black {
+    @include icon();
+    color: #000000;
+}
+
+.blue {
+    @include icon();
+    color: #2A77EF;
+}
+
+.grey {
+    @include icon();
+    color: #6A6B74;
+}
+
+.underline{
+    text-decoration: none;
+}

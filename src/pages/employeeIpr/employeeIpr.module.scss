@@ -1,0 +1,25 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.page {
+  background-color: #fff;
+  width: 100%;
+}
+
+.container {
+  width: 950px;
+  border-radius: $xl-border-radius;
+  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07),
+    2px 2px 5px 0px rgba(95, 99, 104, 0.15);
+  @include indents(42px, 0);
+
+  &__button {
+    @include flex (column, space-between, start, 16px);
+  }
+}
+
+.link {
+  @include flex(row, start, start);
+  height: 26px;
+  @include indents(5px 0 3px 0);
+}

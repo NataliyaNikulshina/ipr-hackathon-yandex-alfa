@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas: 
+  'goBack title'
+  'mainInfo workingInfo'
+  'dop buttons';
+  row-gap: 40px;
+  column-gap: 40px;
+}
+
+.wrapper_link {
+  grid-area: goBack;
+}
+
+.wrapper_title {
+  grid-area: title;
+}
+
+.wrapper_main_info {
+  grid-area: mainInfo;
+}
+
+.wrapper_work_info {
+  grid-area: workingInfo;
+}
+
+.wrapper_buttons {
+  grid-area: buttons;
+}
+
+.wrapper_dop {
+  grid-area: dop;
+}

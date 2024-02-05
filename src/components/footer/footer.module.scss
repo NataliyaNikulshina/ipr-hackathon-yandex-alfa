@@ -1,0 +1,43 @@
+@import "../../stylesheets/variables.scss";
+@import "../../stylesheets/mixins.scss";
+
+.footer {
+  border-block-start: 2px solid #DEE1E6;
+  border-block-end: 2px solid #DEE1E6;
+  @include flex(row, space-between);
+  padding-block: 16px;
+  width: 100%;
+
+  &__links-box {
+    list-style: none;
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(4, 1fr);
+    inline-size: 100%;
+    justify-content: space-between;
+    justify-items: start;
+    padding: 0;
+    margin: 0;
+  }
+
+  // &__links {
+  //   text-decoration: none;
+  //   color: currentColor;
+  //   transition: opacity .4s;
+  //   @include font($footer-font-family,
+  //     $footer-font-size,
+  //     $normal );
+  //   @include line-sizes($footer-line-height);
+
+  //   &:hover {
+  //     opacity: 0.6;
+  //   }
+  // }
+
+  &__logo {
+    inline-size: 40px;
+    block-size: 40px;
+    margin: 18px 20px;
+  }
+
+}

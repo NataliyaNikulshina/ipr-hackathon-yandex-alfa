@@ -1,0 +1,32 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.page {
+    margin: 0 auto;
+    max-width: 1280px;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.container {
+    @include flex(column, flex-start, start, 14px);
+    @include indents(167px 217px, 0);
+}
+
+.wrapper {
+    @include flex(row, flex-start, center, 8px);
+}
+
+@mixin text($p, $m, $size, $weight, $color) {
+    @include indents($p, $m);
+    @include font("Arial", $size, $weight, $color);
+}
+
+.title {
+    @include text(0 0 9px 0, 0, 48px, $bold, #EF3124)
+}
+
+.description {
+    @include text(0, 0, 18px, $bold, #0E0E0E)
+}

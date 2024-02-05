@@ -1,3 +1,8 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Arial', sans-serif;
   font-weight: 400;
@@ -6,4 +11,28 @@ body {
   margin: 0;
   width: 100%;
   background: #fff;
+  scrollbar-width: thin;          /* "auto" или "thin" */
+  scrollbar-color: red #DEE1E6;
+
+  &::-webkit-scrollbar {
+    border-radius: 12px;
+    width: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: #ef3124;
+    // border: solid 4px #dee1e6;
+  }
+
+  &::-webkit-scrollbar-track {
+    //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    background-color: #dee1e6;
+    margin: 10px;
+  }
+}
+.container {
+  max-width: 955px;
 }

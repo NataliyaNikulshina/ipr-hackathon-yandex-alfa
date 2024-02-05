@@ -1,0 +1,8 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.page {
+  @include flex(column, start, center, 40px);
+  background-color: #FFFFFF;
+  width: 100%;
+}

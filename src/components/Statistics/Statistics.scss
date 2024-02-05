@@ -1,0 +1,44 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.statistics {
+  @include style-text-reset;
+  @include flex(row, space-between);
+  width: 100%;
+  border-radius: 34px;
+  box-shadow: -1px -1px 5px 0px rgba(95, 99, 104, 0.07), 2px 2px 5px 0px rgba(95, 99, 104, 0.15);
+  padding: 24px 24px 24px 34px;
+
+  &__title {
+    font-size: $s-font-size;
+    color: #6a6b74;
+    text-align: center;
+    min-height: 33px;
+  }
+
+  &__count {
+    color: #ef3124;
+    font-size: $xxl-font-size;
+    text-align: center;
+  }
+
+  &__list {
+    width: 100%;
+    @include list-style-reset;
+    @include flex(row, start, start, 10px);
+  }
+
+  &__item {
+    width: 100px;
+    height: 100%;
+    @include flex(column, start, center, 30px);
+    border-left: 1px solid #d5d6dc;
+  }
+  &__item:first-child {
+    width: 140px;
+    gap: 0;
+    min-height: 0;
+    padding-right: 10px;
+    border-left: none;
+  }
+}

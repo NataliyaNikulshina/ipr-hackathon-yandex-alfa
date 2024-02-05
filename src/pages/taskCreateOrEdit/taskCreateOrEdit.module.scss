@@ -1,0 +1,66 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+
+.title {
+  @include font("Arial", $xl-font-size, 700, #0E0E0E);
+  line-height: 26px;
+  @include indents(0, 0);
+}
+
+.wrapper {
+  @include flex(column, space-between, start, 42px);
+
+  &__button {
+    @include flex(row, space-between, start, 16px);
+  }
+}
+
+.autorTask {
+  font-size: $l-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+}
+
+.nameTask {
+  @include flex(row, space-between, center, 20px);
+}
+
+.labelTask {
+  @include flex(column, start, start);
+  width: 100%;
+}
+
+.listTask {
+  width: 575px;
+  @include flex (column, start, start, 20px);
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.dateTaskWrapp {
+  display: flex;
+  gap: 20px;
+}
+
+
+button[name='skill'] {
+  border: none;
+  border-radius: 0;
+  border: 1px solid #6A6B74;
+}
+
+button[value='soft'] {
+  border-radius: 0 4px 4px 0;
+}
+
+button[value='hard'] {
+  border-radius: 4px 0 0 4px;
+}
+
+.skillsTask {
+  @include flex (row, start, center);
+  border-radius: 4px;
+}

@@ -1,0 +1,28 @@
+@use "../../stylesheets/variables" as *;
+@use "../../stylesheets/mixins" as *;
+
+.title {
+  @include font("Arial", 24px, $bold, #0E0E0E);
+  line-height: 26px;
+  @include indents(0, 0);
+}
+
+.text {
+  @include font("Arial", 18px, $normal, #000000);
+  line-height: 20px;
+  @include indents(0 0 6px 0, 0);
+}
+
+.wrapper{
+  width: 552px;
+  display: flex
+}
+
+.wrapper__task{
+  @include flex(column, start, start, 16px); 
+  width: 552px;
+}
+
+.wrapper_button{
+    @include flex (row, space-between, start, 16px);
+  }

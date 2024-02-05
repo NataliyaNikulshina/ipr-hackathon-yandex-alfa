@@ -1,0 +1,60 @@
+/* Переменные жирности шрифта */
+$bold: 600;
+$semi-bold: 500;
+$normal: 400;
+
+/* Переменные размеров шрифта */
+$xxl-font-size: 40px;
+$xl-font-size: 24px;
+$l-font-size: 18px;
+$m-font-size: 16px;
+$s-font-size: 14px;
+$xs-font-size: 12px;
+
+/* Переменные радиуса скругления */
+$xl-border-radius: 34px;
+$l-border-radius: 12px;
+$m-border-radius: 8px;
+$s-border-radius: 4px;
+$border-radius-circle: 50%;
+
+/* Переменные параметров шрифта попапа информации и ошибок */
+$info-and-error-popup-font-family: Arial;
+$info-and-error-popup-font-size: 48px;
+$info-and-error-popup-font-weight: 700;
+$info-and-error-popup-line-height: normal;
+
+/* Переменные параметров шрифта титула списка попапа задач */
+$task-popup-titl-font-family: Arial;
+$task-popup-titl-font-size: 14px;
+$task-popup-titl-line-height: 1.3;
+
+/* Цвет фона сегодняшней задачи списка попапа задач */
+$task-popup-today-color: #008837;
+
+/* Переменные параметров шрифта задачи попапа задач */
+$task-popup-font-family: Arial;
+$task-popup-font-size: 18px;
+$task-popup-line-height: 1.1;
+
+/* Цвет фона недельной задачи списка попапа задач */
+$task-popup-this-week-color: #DEE1E6;
+
+/* Переменные параметров шрифта footer */
+$footer-font-family: Arial;
+$footer-font-size: 18px;
+$footer-line-height: 1.1;
+
+/* Переменные параметров шрифта rating */
+$rating-titl-font-family: Arial;
+$rating-titl-font-size: 18px;
+$rating-titl-font-weight: 700;
+$rating-titl-font-color: #6A6B74;
+$rating-titl-line-height: 1.1;
+
+/* Переменные параметров шрифта listIpr__title_empty */
+$listIpr__title_empty-font-family: Arial;
+$listIpr__title_empty-font-size: 24px;
+$listIpr__title_empty-font-weight: 700;
+$listIpr__title_empty-font-color: #D5D6DC;
+$listIpr__title_empty-line-height: 1.1;
