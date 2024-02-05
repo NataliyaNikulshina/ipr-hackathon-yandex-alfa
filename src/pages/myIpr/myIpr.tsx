@@ -16,18 +16,11 @@ import { selectMyIpr } from "../../services/slice/myIprSlice";
 import { editTaskStatusApi } from "../../api/ipr";
 import { ITask } from "../../api/ipr";
 
-// Моковые данные
-import {
-  mockDataTask,
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
-import Loader from "../../components/loader/loader";
-
 export interface IMyIpr {
   handlePopup(editing: object): void;
 }
 
-const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
+const MyIpr: FC<IMyIpr> = ({ handlePopup }): JSX.Element => {
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
   const url = window.location.href;
@@ -36,18 +29,16 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
   const { myIpr } = useAppSelector(selectMyIpr);
   const param = useParams();
 
-
   useEffect(() => {
     user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
-  // вывод ИПР в консоль
-  // console.log(user);
-  // console.log(ipr);
-  // console.log(param!.idMyIpr);
-
   useEffect(() => {
-    if (pathname === `/myiprs/myipr/${param!.idMyIpr}` && state && !isContainRoute(state, url)) {
+    if (
+      pathname === `/myiprs/myipr/${param!.idMyIpr}` &&
+      state &&
+      !isContainRoute(state, url)
+    ) {
       navigate("", {
         state: [...state, { path: pathname, url, title: "Мои ИПР" }],
         replace: true,
@@ -55,13 +46,9 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
     }
   }, [pathname, url, state]);
 
-  function onClick() {
-    alert("Переход к определенному списку задач");
-  }
-
   const routeTo = (e: any) => {
     e.preventDefault();
-    if(state === null) navigate('/');
+    if (state === null) navigate("/");
     else navigate(-1);
   };
 
@@ -98,35 +85,15 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
     }
   };
 
-  // // Тригер следящий какой ИПР выбран.
-  // const [isSelectedIprId, setIsSelectedIprId] = useState(-1);
-  // // Актуальный массив задач.
- 
-
-  // const handleSelectedIprId = (id: number) => {
-  //   setIsSelectedIprId(id);
-  //   let actualIpr = ipr.find(elem => elem.id === id);
-  //   let actualTasksList = actualIpr ? actualIpr.tasks : [];
-  //   console.log(actualTasksList)
-  //   if (Array.isArray(actualTasksList)) {
-  //     setIsActualTasksList(actualTasksList);
-  //   };
-  // }
-
   const [isActualTasksList, setIsActualTasksList] = useState<ITask[]>([]);
 
- 
-
-  useEffect(()=>{
-    // if (ipr.some(elem => elem.id === Number(param!.idMyIpr))){
-    let actualIpr = myIpr.find(elem => elem.id === Number(param!.idMyIpr)) || {tasks: []};
+  useEffect(() => {
+    let actualIpr = myIpr.find(
+      (elem) => elem.id === Number(param!.idMyIpr)
+    ) || { tasks: [] };
     let actualTasksList = actualIpr.tasks;
     setIsActualTasksList(actualTasksList);
-    // console.log(actualTasksList);
-    // } else {
-    //   navigate(`/notFound`, { replace: true }) // надо разобраться.
-    // }
-  }, [param!.idMyIpr, myIpr])
+  }, [param!.idMyIpr, myIpr]);
 
   const [isChekedTaskIdList, setIsChekedTaskIdList] = useState<number[]>([]);
 
@@ -136,17 +103,20 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
         setIsChekedTaskIdList([...isChekedTaskIdList, id]);
       }
     } else {
-      const newChekedTaskIdList = isChekedTaskIdList.filter((elem) => elem !== id);
+      const newChekedTaskIdList = isChekedTaskIdList.filter(
+        (elem) => elem !== id
+      );
       setIsChekedTaskIdList(newChekedTaskIdList);
     }
-  }
-
+  };
 
   const handleEditTaskStatus = (taskId: number) => {
-    editTaskStatusApi({
-      status: "complete",
-    },
-      Number(taskId))
+    editTaskStatusApi(
+      {
+        status: "complete",
+      },
+      Number(taskId)
+    )
       .then((res) => {
         dispatch(fetchmyIpr(Number(user!.id)));
         if (taskId === isChekedTaskIdList[isChekedTaskIdList.length - 1]) {
@@ -155,17 +125,16 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
       })
       .catch((res) => {
         const popupAssignment = "error";
-        const text = "При изменении статуса задачи что то пошло не так"
+        const text = "При изменении статуса задачи что то пошло не так";
         handlePopup && handlePopup({ popupAssignment, newPopupText: text });
-      })
+      });
   };
 
-
-  const submitChekedTask = ()=> {
-    isChekedTaskIdList.forEach((taskId)=> {
+  const submitChekedTask = () => {
+    isChekedTaskIdList.forEach((taskId) => {
       handleEditTaskStatus(taskId);
-    })
-  }
+    });
+  };
 
   return (
     <section>
@@ -184,8 +153,6 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
           </Link>
         </span>
         <>
-
-
           {myIpr && myIpr.length !== 0 ? (
             <>
               <div className={gridAreasLayout.wrapper_main_info}>
@@ -195,78 +162,93 @@ const MyIpr: FC<IMyIpr> = ({handlePopup}): JSX.Element => {
                     iprList={myIpr}
                     titleEmpty="ИПР пока нет."
                     disabled={
-                      pathname !== `/myiprs/myipr/${param!.idMyIpr}` || isClosingTask ? true : false
+                      pathname !== `/myiprs/myipr/${param!.idMyIpr}` ||
+                      isClosingTask
+                        ? true
+                        : false
                     }
                     isSelectedIprId={Number(param!.idMyIpr)}
                   />
                 )}
               </div>
-              {pathname === `/myiprs/myipr/${param!.idMyIpr}` && myIpr.length !== 0 && (
-                <>
-                  {!isClosingTask ? (
-                    <>
-                      <div className={gridAreasLayout.wrapper_work_info}>
-                        {myIpr && myIpr.length !== 0 && (
-                          <ListTask handleChangeCheked={handleChangeCheked} tasks={isActualTasksList} isBoss={false} isSelectedIprId={Number(param!.idMyIpr)} />
-                        )}
-                      </div>
-                      <div
-                        className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
-                      >
-                        <Button
-                          color="red"
-                          width="281"
-                          heigth="56"
-                          onClick={submitChekedTask}
-                        >
-                          Закрыть выбранные задачи
-                        </Button>
-                        <Button
-                          color="grey"
-                          width="281"
-                          heigth="56"
-                          onClick={handleClickClosingTask}
-                        >
-                          Оценить ИПР
-                        </Button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div
-                        className={`${stylesMyIpr.wrapper} ${gridAreasLayout.wrapper_work_info}`}
-                      >
-                        <div className={stylesMyIpr.rating__box}>
-                          <Rating
-                            titleOpening="Оцените пожалуйста организацию и прохождение ИПР."
-                            titleСlosing="Спасибо за оценку."
-                            isAssessment={isAssessment}
-                            actualRating={setIsActualRating}
-                          />
+              {pathname === `/myiprs/myipr/${param!.idMyIpr}` &&
+                myIpr.length !== 0 && (
+                  <>
+                    {!isClosingTask ? (
+                      <>
+                        <div className={gridAreasLayout.wrapper_work_info}>
+                          {myIpr && myIpr.length !== 0 && (
+                            <ListTask
+                              handleChangeCheked={handleChangeCheked}
+                              tasks={isActualTasksList}
+                              isBoss={false}
+                              isSelectedIprId={Number(param!.idMyIpr)}
+                            />
+                          )}
                         </div>
-                      </div>
-                      <div
-                        className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
-                      >
-                        {!isAssessment && (
+                        <div
+                          className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+                        >
                           <Button
                             color="red"
-                            width="522"
+                            width="281"
                             heigth="56"
-                            onClick={estimate}
-                            disabled={!isActualRating ? true : false}
+                            onClick={submitChekedTask}
                           >
-                            Оценить качество ИПР
+                            Закрыть выбранные задачи
                           </Button>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </>
-              )}
+                          <Button
+                            color="grey"
+                            width="281"
+                            heigth="56"
+                            onClick={handleClickClosingTask}
+                          >
+                            Оценить ИПР
+                          </Button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div
+                          className={`${stylesMyIpr.wrapper} ${gridAreasLayout.wrapper_work_info}`}
+                        >
+                          <div className={stylesMyIpr.rating__box}>
+                            <Rating
+                              titleOpening="Оцените пожалуйста организацию и прохождение ИПР."
+                              titleСlosing="Спасибо за оценку."
+                              isAssessment={isAssessment}
+                              actualRating={setIsActualRating}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={`${stylesMyIpr.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}
+                        >
+                          {!isAssessment && (
+                            <Button
+                              color="red"
+                              width="522"
+                              heigth="56"
+                              onClick={estimate}
+                              disabled={!isActualRating ? true : false}
+                            >
+                              Оценить качество ИПР
+                            </Button>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
               <Outlet />
             </>
-          ) : <p className={`${stylesMyIpr.container__title_empty} ${gridAreasLayout.wrapper_main_info}`} >ИПР пока нет</p>}
+          ) : (
+            <p
+              className={`${stylesMyIpr.container__title_empty} ${gridAreasLayout.wrapper_main_info}`}
+            >
+              ИПР пока нет
+            </p>
+          )}
         </>
       </div>
     </section>

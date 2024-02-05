@@ -8,16 +8,7 @@ import ListTask from "../../components/listTask/listTask";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { fetchIpr } from "../../services/slice/iprSlice";
 import { selectIpr } from "../../services/slice/iprSlice";
-import { isContainRoute, removeRemainingCrumbs } from "../../utils/breadcrumbs";
-
-// Моковые данные
-import {
-  mockDataTask,
-  mockDataIpr,
-} from "../../ui/verificationConstants/verificationConstants";
-
-// замоканный is_Boss
-const isBoss = true;
+import { isContainRoute } from "../../utils/breadcrumbs";
 
 const EmployeeListTasks: FC = (): JSX.Element => {
   const { state, pathname } = useLocation();
@@ -28,7 +19,6 @@ const EmployeeListTasks: FC = (): JSX.Element => {
   const { ipr } = useAppSelector(selectIpr);
   let iprEmployee = ipr.find(elem => elem.id === Number(param.idIpr));
 
-  // console.log(param,  ipr)
   useEffect(() => {
     dispatch(fetchIpr(Number(param!.id)));
   }, []);
@@ -65,7 +55,7 @@ const EmployeeListTasks: FC = (): JSX.Element => {
             Название ИПР
           </h1>
           <div className={`${styles.wrapper} ${gridAreasLayout.wrapper_work_info}`}>
-            {ipr && <ListTask tasks={iprEmployee.tasks} isBoss={isBoss} />}
+            {ipr && <ListTask tasks={iprEmployee.tasks} isBoss={true} />}
           </div>
           <div className={`${styles.wrapper_button} ${gridAreasLayout.wrapper_buttons}`}>
             <Button color="red" width="281" heigth="56" onClick={createTask}>

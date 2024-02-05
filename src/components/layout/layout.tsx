@@ -35,27 +35,17 @@ const Layout: FC<ILayout> = ({ handlePopup }) => {
     user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
-  // console.log(user);
-  // console.log(ipr);
-
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
 
   const onClickIPR = () => {
     navigate(`/myiprs`);
-    // navigate(`/myipr/${ipr[0].id}`);
   };
 
   const onClickTeam = () => {
     navigate("/");
   };
-
-  // вывод данных юзера в консоль
-  // console.log(user);
-  // getUsersAllInfoApi().then((res) => console.log(res));
-  // if (user) { getIprApi(user?.id).then((res)=>console.log(res));}
-  // getIprApi(user!.id).then((res)=>console.log(res));
 
   const nameAll = `${user?.last_name} ${user?.first_name} ${user?.patronymic}`
 

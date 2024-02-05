@@ -34,14 +34,7 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
   });
   const [startDate, setStartDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.start_date) || null);
   const [endDate, setEndDate] = useState<Date | null>(iprEmployee && new Date(iprEmployee.end_date) ||null);
-  const { user, isLoading } = useAppSelector(selectUser);
-  
   const dispatch = useAppDispatch();
-  
-
-  console.log(ipr)
-
-  
 
   useEffect(() => {
     if (
@@ -78,12 +71,10 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
 
   const handleDateChangeStart = (date: Date | null) => {
     setStartDate(date);
-    console.log(date?.toLocaleDateString());
   };
 
   const handleDateChangeEnd = (date: Date | null) => {
     setEndDate(date);
-    console.log(date?.toLocaleDateString());
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -102,7 +93,6 @@ const IprCreateOrEdit: FC<IIprCreateOrEdit> = ({ role }): JSX.Element => {
           dispatch(fetchIpr(Number(param!.id)));
           navigate(-1);
         }))
-      // : (console.log(values.name.value))
        : ( endDate && startDate && iprEmployee &&
         editIprApi(
           {

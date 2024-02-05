@@ -9,68 +9,6 @@ import { selectUsersTeam } from "../../services/slice/usersTeamSlice";
 import { selectUser } from "../../services/slice/userSlice";
 import { Link } from "react-router-dom";
 import { fetchEmployee } from "../../services/slice/employeeSlice";
-// моковые данные для верстки
-const mockData = [
-  {
-    id: 1,
-    name: "Чернявский Андрей Михайлович",
-    position: "Менеджер по кредитованию",
-  },
-  { id: 2, name: "Самойлов Игорь Леонидович", position: "Начальник отдела IT" },
-  {
-    id: 3,
-    name: "Трофимова Елена Аркадьевна",
-    position: "Финансовый консультант",
-  },
-  {
-    id: 4,
-    name: "Лазаренко Инна Павловна",
-    position: "Специалист по инвестициям",
-  },
-  { id: 5, name: "Новикова Ксения Денисовна", position: "HR-менеджер" },
-  {
-    id: 6,
-    name: "Чернявский Андрей Михайлович",
-    position: "Менеджер по кредитованию",
-  },
-  { id: 7, name: "Самойлов Игорь Леонидович", position: "Начальник отдела IT" },
-  { id: 8, name: "Кириенко Мария Петрова", position: "Дизайнер" },
-  { id: 9, name: "Новикова Ксения Денисовна", position: "HR-менеджер" },
-  {
-    id: 10,
-    name: "Чернявский Андрей Михайлович",
-    position: "Менеджер по кредитованию",
-  },
-  {
-    id: 11,
-    name: "Самойлов Игорь Леонидович",
-    position: "Начальник отдела IT",
-  },
-  { id: 12, name: "Кириенко Мария Петрова", position: "Дизайнер" },
-  {
-    id: 13,
-    name: "Чернявский Андрей Михайлович",
-    position: "Менеджер по кредитованию",
-  },
-  {
-    id: 14,
-    name: "Самойлов Игорь Леонидович",
-    position: "Начальник отдела IT",
-  },
-  { id: 15, name: "Кириенко Мария Петрова", position: "Дизайнер" },
-  { id: 16, name: "Новикова Ксения Денисовна", position: "HR-менеджер" },
-  {
-    id: 17,
-    name: "Чернявский Андрей Михайлович",
-    position: "Менеджер по кредитованию",
-  },
-  {
-    id: 18,
-    name: "Самойлов Игорь Леонидович",
-    position: "Начальник отдела IT",
-  },
-  { id: 19, name: "Кириенко Мария Петрова", position: "Дизайнер" },
-];
 
 const TeamTable = () => {
   const table = React.createRef();
@@ -85,8 +23,6 @@ const TeamTable = () => {
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
-
-  // console.log(usersTeam);
 
   function filteredItems() {
     let filteredEmployees = [];
@@ -131,29 +67,10 @@ const TeamTable = () => {
   }
 
   const handleFilterChangeType = () => {
-    console.log("click");
     filterType === "nameAll"
       ? setFilterType("position")
       : setFilterType("nameAll");
   };
-
-  // const navigate = useNavigate();
-
-  // const routeTo = (empId) => {
-  //   // e.preventDefault();
-  //   try {
-  //     // dispatch(fetchEmployee(empId));
-  //     navigate(`/employee-ipr/${empId}`, {
-  //       state: [{ path: "/", url: url, title: "Моя команда" }],
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   // navigate(`/employee-ipr`, {
-  //   //   state: [{ path: "/", url: url, title: "Моя команда" }],
-  //   // });
-  // };
-
 
   return (
     <section className="team-table">

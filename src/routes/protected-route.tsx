@@ -16,17 +16,6 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 }): JSX.Element => {
 
   const token = getAccessToken();
-  // console.log(token);
-
-  // для выхода из профиля
-  // removeAccessToken();
-  // removeRefreshToken();
-
-  // useEffect(() => {
-  //   if (!token) {
-  //     getRefreshToken();
-  //   }
-  // }, [token]);
 
   if (token && notAuth) {
     return <Navigate to={routesUrl.layout} />;

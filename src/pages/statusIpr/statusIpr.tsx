@@ -28,7 +28,6 @@ const StatusIpr: FC = (): JSX.Element => {
   }, [pathname, url, state]);
 
   function onClick() {
-    console.log("ИПР выполнена");
     setDisabled(!disabled);
   }
 

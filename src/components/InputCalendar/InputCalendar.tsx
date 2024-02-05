@@ -10,16 +10,9 @@ interface InputCalendarProps {
   name: string;
   value: Date | null;
   onChange: (date: Date | null) => void;
-  setValues?: () => void;
 }
-const InputCalendar: React.FC<InputCalendarProps> = ({ icon, name, value, onChange, setValues }) => {
-  // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+const InputCalendar: React.FC<InputCalendarProps> = ({ icon, name, value, onChange }) => {
   const datePickerRef = useRef<DatePicker>(null);
-
-  // const handleDateChange = (date: Date | null) => {
-  //   setSelectedDate(date);
-  //   console.log(date?.toLocaleDateString())
-  // };
 
   const handleButtonClick = () => {
     if (datePickerRef.current) {
@@ -38,7 +31,6 @@ const InputCalendar: React.FC<InputCalendarProps> = ({ icon, name, value, onChan
         ref={datePickerRef}
         name={name}
         required
-        // value={value}
       />
       <button className={icon ? 'calendar__button activ' : 'calendar__button'} onClick={handleButtonClick}>
         <CalendarIcon />

@@ -77,12 +77,10 @@ const TaskCreateOrEdit: FC<ITaskCreateOrEdit> = ({ role }): JSX.Element => {
 
   const handleDateChangeStart = (date: Date | null) => {
     setStartDate(date);
-    console.log(date?.toLocaleDateString());
   };
 
   const handleDateChangeEnd = (date: Date | null) => {
     setEndDate(date);
-    console.log(date?.toLocaleDateString());
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

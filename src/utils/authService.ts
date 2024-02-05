@@ -5,7 +5,6 @@
  * @param accessToken сохраняемый токен
  */
  const saveAccessToken = (accessToken: string) => {
-  // console.log(accessToken);
   localStorage.setItem('accessToken', accessToken);
 };
 
@@ -14,7 +13,6 @@
  */
 const getAccessToken = (): string | null => {
   const accessToken = localStorage.getItem('accessToken');
-  // console.log(accessToken);
   return accessToken ?? null;
 };
 
@@ -30,7 +28,6 @@ const removeAccessToken = (): void => {
  * @param refreshToken сохраняемый токен
  */
 const saveRefreshToken = (refreshToken: string) => {
-  // console.log(refreshToken);
   localStorage.setItem('refreshToken', refreshToken);
 };
 

@@ -42,7 +42,6 @@ function requestNotRes<T>(url: string, options: TOptions): Promise<T> {
 function requestUser<T>(url: string, options: TOptions): Promise<T> {
   return fetch(url, options).then(checkRes)
   .catch((err) => {
-        console.log(err);
         if (err[0] === 'Ошибка 401') {
           removeAccessToken();
           removeRefreshToken();

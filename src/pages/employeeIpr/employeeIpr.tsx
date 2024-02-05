@@ -34,16 +34,12 @@ const EmployeeIpr: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // console.log(param!.id)
     dispatch(fetchEmployee(Number(param!.id)));
   }, []);
 
   useEffect(() => {
     employee && dispatch(fetchIpr(Number(param!.id)));
   }, [employee]);
-
-  // console.log(employee)
-  console.log(ipr)
 
   useEffect(
     () => {
