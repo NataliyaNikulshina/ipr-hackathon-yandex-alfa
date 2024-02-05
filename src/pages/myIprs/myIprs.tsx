@@ -5,8 +5,7 @@ import styles from "./myIprs.module.scss";
 import { isContainRoute } from "../../utils/breadcrumbs";
 // import getUserInfoApi from "../../api/user";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { fetchIpr } from "../../services/slice/iprSlice";
-import { selectMyIpr } from "../../services/slice/myIprSlice";
+import { selectMyIpr, fetchmyIpr } from "../../services/slice/myIprSlice";
 import { selectUser } from "../../services/slice/userSlice";
 
 const MyIprs: FC = (): JSX.Element => {
@@ -18,7 +17,7 @@ const MyIprs: FC = (): JSX.Element => {
   const { myIpr } = useAppSelector(selectMyIpr);
 
   useEffect(() => {
-    user && dispatch(fetchIpr(user.id));
+    user && dispatch(fetchmyIpr(user.id));
   }, [user]);
 
   useEffect(
