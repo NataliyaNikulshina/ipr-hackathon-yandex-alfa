@@ -41,6 +41,12 @@ MVP индивидуального плана развития для сотру
 
     npm run start
 
+### Пользователи для входа
+- Пароль для всех: fd3fvcv33df
+- Директор romanov.pyotr@idp-test.com
+- Руководитель команды sheremetev.boris@idp-test.com
+- Сотрудник rumyanceva.mariya@idp-test.com
+
 ### Структура приложения:
 - Главная страница - Моя команда
 - Мои ИПР -> Мои задачи
